@@ -11,9 +11,9 @@ def index():
     return render_template('index.html')
 
 
-@main.route('/test')
+@main.route('/guido')
 def test():
-    return render_template('test.html')
+    return render_template('guido.html')
 
 
 @main.route('/profile')
