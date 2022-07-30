@@ -69,3 +69,10 @@ nav .start-contact, a:nth-child(5):hover~.animation {
   left: 470px;
   background-color: #e67e22;
 }
+.zibi{
+    background-color:red;
+}
+
+.title{
+    font-size: 4800px;
+}
