@@ -29,7 +29,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/guidomatijas/flask_auth_app/auth"
+set -gx VIRTUAL_ENV "/Users/guidomatijas/TakeIt/auth"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
