@@ -69,10 +69,165 @@ nav .start-contact, a:nth-child(5):hover~.animation {
   left: 470px;
   background-color: #e67e22;
 }
-.zibi{
+
+
+
+
+/*signup page */
+.choosesign{
+display:inline;
+    width:30%;
     background-color:red;
+
 }
 
-.title{
-    font-size: 4800px;
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+
+/* file upload center */
+
+input[type=file] {
+color:black;
+width: auto;
 }
+
+input{
+    width: 40%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: block;
+    border: none;
+    margin:auto;
+    margin-bottom:10px;
+    background: #f1f1f1;
+    box-shadow: 0 2px 3px black;
+    border-bottom: 0.25em solid #0f5177;
+    top:-2px;
+    border-radius: 15px;}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+
+/* Set a style for all buttons */
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+
+/* Extra styles for the cancel button */
+
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+
+/* Float cancel and signup buttons and add an equal width */
+
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+input::placeholder {
+    text-align: right;
+}
+
+/* Add padding to container elements*/
+
+#containersign {
+  width:40%;
+  padding: 0px;
+  text-align: right;
+    }
+
+
+/* Clear floats */
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+/* Change styles for cancel button and signup button on extra small screens */
+
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+}
+
+
+
+  .header{
+                padding: 5px 120px;
+                width: 150px;
+                height: 70px;
+                background-color: #236B8E;
+            }
+
+            .border{
+                padding: 80px 50px;
+                width: 400px;
+                height: 450px;
+                border: 1px solid #236B8E;
+                border-radius: 0px;
+                background-color: #9AC0CD;
+            }
+
+            .btn {
+                padding: 10px 40px;
+                background-color: #236B8E;
+                color: #FFFFFF;
+                font-style: oblique;
+                font-weight: bold;
+                border-radius: 10px;
+            }
+
+            .textbox{
+                padding: 10px 40px;
+                background-color: #236B8E;
+                text-color: #FFFFFF;
+                border-radius: 10px;
+            }
+
+            ::placeholder {
+                color: #FFFFFF;
+                opacity: 1;
+                font-style: oblique;
+                font-weight: bold;
+            }
+
+            .word{
+                color: #FFFFFF;
+                font-style: oblique;
+                font-weight: bold;
+            }
+
+            .bottom{
+                color: #236B8E;
+                font-style: oblique;
+                font-weight: bold;
+            }
