@@ -1,48 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="column is-4 is-offset-4">
-    <h3 class="title">Sign Up</h3>
-    <div class="box">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="notification is-danger">
-                {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
-            </div>
-        {% endif %}
-        {% endwith %}
-        <form method="POST" action="/signup">
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
-                </div>
-            </div>
 
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="name" placeholder="Name" autofocus="">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="Password">
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="city" placeholder="City">
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <input class="input" type="checkbox" name="is_gmah" value="true">
-                    <label for="is_gmah">I'm a GMAH</label>
-                </div>
-            </div>
-
-            <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
-        </form>
-    </div>
+<body>
+    <div class="split left">
+  <div class="centered12">
+    <p class="description">I am here to give</p>
+    <a href="/gmah_signup"> <img src="https://i.ibb.co/jfV6M0n/gmahsignup-modified.png" alt="GmahSignUp" width="80%" height="80%" style="margin-top:15%"></a>
+    <br>
+  </div>
 </div>
+<div class="split right">
+  <div class="centered12">
+       <p class="description">I am here to borrow</p>
+   <a href="/user_signup"><img src="https://i.ibb.co/gRv8Yw8/user.png" alt="UserSignUp" width="80%" height="80%" style="margin-top:8%;"></a>
+  </div>
+</div>
+</div>
+</body>
+
 {% endblock %}
+
+/* changed original file full*/

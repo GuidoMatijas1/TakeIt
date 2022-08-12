@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for item in items %}
+    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ item.email }}</h5>
+            <p class="card-text">{{ item.name }}</p>
+            <a class="btn btn-primary" href={{ url_for('main.user_profile', email=item.email)}}>Go somewhere</a>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+
+
+
+{% endblock %}

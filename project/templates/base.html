@@ -4,15 +4,17 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height">
     <title>Flask Auth Example</title>
 {#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"/>#}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel= "stylesheet" type= "text/css" href="/static/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
+
 </head>
 
 <body>
-<section class="hero is-primary is-fullheight">
+<section class="hero is-primary is-fullheight sticky">
 
     <div class="hero-head">
         <div class="navbar navbar-inverse">
@@ -83,14 +85,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </div>
-
-    <div class="hero-body">
-        <div class="container has-text-centered">
-            {% block content %}
-            {% endblock %}
-        </div>
-    </div>
 </section>
+    {% block content %}
+            {% endblock %}
 </body>
 
 </html>
