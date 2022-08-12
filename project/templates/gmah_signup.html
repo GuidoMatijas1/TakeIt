@@ -3,44 +3,51 @@
 {% block content %}
 
     <body>
-    <form method="POST" action="/gmah_signup" style="border:1px solid #ccc ;width:100%;">
+    <form method="POST" action="/gmah_signup" class="centerform" >
         <div id="hidden_div">
-            <h1>Sign Up</h1>
-            <p>Please fill in this form to create an account.</p>
+            <br>
+            <h1 class="textcenter">רישום גמ״ח חדש</h1>
+            <p class="textcenter"> שדות חובה *</p>
             <hr>
-            <label for="email"><b>Email</b></label>
-            <input type="email" placeholder="name@domain.co" name="Email"
+
+            <label name="id" for="id"><br>תעודת זהות <p class="hova">*</p></b></label>
+            <input type="text" placeholder="1234556789" name="id" required
+                      oninvalid="this.setCustomValidity('Enter Your ID Here')"
+                    oninput="this.setCustomValidity('')" >
+
+            <label for="email"><b>כתובת אימייל <p class="hova">*</p></b></label>
+            <input type="email" placeholder="name@domain.co" name="email"
                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$" required>
 
-            <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Password" name="password" required>
+            <label for="password"><b> <p class="hova">*</p>סיסמא</b></label>
+            <input type="password" placeholder="*********" name="password" required>
 
-            <label for="name"><b>GMAH Name</b></label>
-            <input type="text" placeholder="GMAH name" name="name" required>
+            <label for="name"><b>שם הגמ״ח <p class="hova">*</p></b></label>
+            <input type="text" placeholder="שם הגמ״ח" name="name" required>
 
-            <label for="owner_first_name"><b>GMAH Name</b></label>
-            <input type="text" placeholder="owner name" name="owner_first_name" required>
+            <label for="owner_first_name"><b>שם פרטי <p class="hova">*</p></b></label>
+            <input type="text" placeholder="מרדכי" name="owner_first_name" required>
 
-            <label for="owner_last_name"><b>GMAH Name</b></label>
-            <input type="text" placeholder="owner name" name="owner_last_name" required>
+            <label for="owner_last_name"><b>שם משפחה <p class="hova">*</p></b></label>
+            <input type="text" placeholder="לוי" name="owner_last_name" required>
 
-            <label for="profilepicture"><b>Profile Picture</b></label>
-            <input type="file" id="myFile" name="profilepicture">
-
-            <label for="phone"><b>Phone Number</b></label>
+            <label for="phone"><b>מספר טלפון <p class="hova">*</p></b></label>
             <input type="text" placeholder="05x-xxxxxxx" name="phone" pattern="[0][0-9]{2}-[0-9]{7}" required>
 
-            <label for="city"><b>City</b></label>
-            <input type="text" placeholder="City" name="city" required>
+            <label for="city"><b>עיר <p class="hova">*</p></b></label>
+            <input type="text" placeholder="נתניה" name="city" required>
 
-            <label for="street"><b>Street</b></label>
-            <input type="text" placeholder="Rotchild" name="street" required>
+            <label for="street"><b>רחוב <p class="hova">*</p></b></label>
+            <input type="text" placeholder="רוטשילד" name="street" required>
 
-            <label for="street_number"><b>Street Number</b></label>
+            <label for="street_number"><b>מספר בית</b></label>
             <input type="number" name="street_number" required>
 
-            <label for="category"><b>category</b></label>
-            <input type="text" name="category" required>
+            <label for="category"><b>קטגוריה</b></label>
+            <input type="text" name="ביגוד" required>
+
+            <label for="profilepicture"><b>תמונת <פרופיל></פרופיל></b></label>
+            <input type="file" id="myFile" name="profilepicture">
 
             <div class="clearfix">
                 <button type="button" class="cancelbtn">Cancel</button>
