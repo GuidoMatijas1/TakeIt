@@ -1,36 +1,83 @@
+
 {% extends "base.html" %}
 
 {% block content %}
 <div class="column is-4 is-offset-4">
-    <h3 class="title">Login</h3>
     <div class="box">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             <div class="notification is-danger">
-                {{ messages[0] }}
+                {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
             </div>
         {% endif %}
         {% endwith %}
-        <form method="POST" action="/login">
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="email" name="email" placeholder="Your Email" autofocus="">
-                </div>
-            </div>
+        <div class="container">
+  <form class="centerform" method="POST" action="/login">
+    <p class="centertext description" style="font-size:100px">Welcome</p>
+    <input type="email" placeholder="Email"><br>
+    <input type="password" placeholder="Password"><br>
+      <button class="pushable">
+  <span class="front">
+    Sign in
+  </span>
+</button>
+     <a  href="/forget" ><p class="centertext description" style="margin-top:30px;font-size:20px"> forget password </p>  </a>
+  </form>
 
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="Your Password">
-                </div>
-            </div>
-            <div class="field">
-                <label class="checkbox">
-                    <input type="checkbox" name="remember">
-                    Remember me
-                </label>
-            </div>
-            <button class="button is-block is-info is-large is-fullwidth">Login</button>
-        </form>
+  <div class="drops">
+    <div class="drop drop-1"></div>
+    <div class="drop drop-2"></div>
+    <div class="drop drop-3"></div>
+    <div class="drop drop-4"></div>
+    <div class="drop drop-5"></div>
+  </div>
+</div>
+<!--       <form method="POST" action="/gmah_signup" style="border:1px solid #ccc ;width:100%;">-->
+<!--        <div id="hidden_div">-->
+<!--            <h4 style="font-size:60px"> need to change and add user or gmah ssign in</h4>-->
+<!--            <h1>Sign Up</h1>-->
+<!--            <p>Please fill in this form to create an account.</p>-->
+<!--            <hr>-->
+<!--            <label for="email"><b>Email</b></label>-->
+<!--            <input type="email" placeholder="name@domain.co" name="Email"-->
+<!--                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$" required>-->
+
+<!--            <label for="password"><b>Password</b></label>-->
+<!--            <input type="password" placeholder="Password" name="password" required>-->
+
+<!--            <label for="name"><b>GMAH Name</b></label>-->
+<!--            <input type="text" placeholder="GMAH name" name="name" required>-->
+
+<!--            <label for="owner_first_name"><b>GMAH Name</b></label>-->
+<!--            <input type="text" placeholder="owner name" name="owner_first_name" required>-->
+
+<!--            <label for="owner_last_name"><b>GMAH Name</b></label>-->
+<!--            <input type="text" placeholder="owner name" name="owner_last_name" required>-->
+
+<!--            <label for="profilepicture"><b>Profile Picture</b></label>-->
+<!--            <input type="file" id="myFile" name="profilepicture">-->
+
+<!--            <label for="phone"><b>Phone Number</b></label>-->
+<!--            <input type="text" placeholder="05x-xxxxxxx" name="phone" pattern="[0][0-9]{2}-[0-9]{7}" required>-->
+
+<!--            <label for="city"><b>City</b></label>-->
+<!--            <input type="text" placeholder="City" name="city" required>-->
+
+<!--            <label for="street"><b>Street</b></label>-->
+<!--            <input type="text" placeholder="Rotchild" name="street" required>-->
+
+<!--            <label for="street_number"><b>Street Number</b></label>-->
+<!--            <input type="number" name="street_number" required>-->
+
+<!--            <label for="category"><b>category</b></label>-->
+<!--            <input type="text" name="category" required>-->
+
+<!--            <div class="clearfix">-->
+<!--                <button type="button" class="cancelbtn">Cancel</button>-->
+<!--                <button type="submit" class="signupbtn">Sign Up</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
     </div>
 </div>
 {% endblock %}
