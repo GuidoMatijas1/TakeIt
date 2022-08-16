@@ -5,8 +5,7 @@
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             {% set imagename = item.email %}
-            <h5 class="card-title">{{ item.email }}</h5>
-            <p class="card-text">{{ item.name }}</p>
+            <h5 class="card-title">{{ item.name }}</h5>
             <img src={{url_for('static',filename='images/{}.jpeg'.format(imagename))}} width="200px" height="100px">
 
             <a class="btn btn-primary" href={{url_for('main.user_profile', email=item.email)}}>Go somewhere</a>

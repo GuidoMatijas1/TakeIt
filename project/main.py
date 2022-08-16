@@ -43,9 +43,5 @@ def profile():
 
 @main.route('/test_page')
 def test_page():
-    user_list = User.query.filter_by(name="Guy")
-    # this_name=str(current_user.name)
-    # product_test = User.query.filter_by(name=current_user.name).first()
-    # user_list = User.query.filter_by(name=product_test.name)
-
-    return render_template('test_page.html', items=user_list)
+    gmah_list = Gmah.query.all()
+    return render_template('test_page.html', items=gmah_list)
