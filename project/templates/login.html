@@ -4,24 +4,33 @@
 {% block content %}
 <div class="column is-4 is-offset-4">
     <div class="box">
-        {% with messages = get_flashed_messages() %}
+
+        <div class="container">
+  <form class="centerform" method="POST" action="/login">
+  <img src="https://serving.photos.photobox.com/72054942a5f7229f153c8e9cb50e5bbdbb45962bd598da27903cd3d8577d2d0b477d6e0c.jpg" alt="Removal-963"
+       width="90%" height="90%" style="margin:5% 0 0 5%">
+             {% with messages = get_flashed_messages() %}
         {% if messages %}
-            <div class="notification is-danger">
-                {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+            <div class="notification is-danger" style="color:red; font-size:120%; margin:5% 0 0 20%;">
+                {{ messages[0] }}
             </div>
         {% endif %}
         {% endwith %}
-        <div class="container">
-  <form class="centerform" method="POST" action="/login">
-    <p class="centertext description" style="font-size:100px">Welcome</p>
-    <input type="email" placeholder="Email" name="email"><br>
+<!--    <p class="centertext description" style="font-size:100px">Welcome</p>-->
+    <label name="email" for="email"><br> <p class="hova"> *</p> Email</label>
+    <input type="email" placeholder="Email" name="email">
+    <label name="password" for="email"><p class="hova"> *</p> Password</label>
     <input type="password" placeholder="Password" name="password"><br>
-      <button class="pushable">
-  <span class="front">
-    Sign in
-  </span>
-</button>
-     <a  href="/forget" ><p class="centertext description" style="margin-top:30px;font-size:20px"> forget password </p>  </a>
+          <button class="pushable" >
+              <span class="front raise shadowed" >
+                  Sign in
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="artdeco-icon lazy-loaded" focusable="false" >
+                    <path d="M14 12L8 3.06 9.55 2l6.19 9.15a1.5 1.5 0 010 1.69L9.55 22 8 20.94z" fill="rgba(0, 0, 0, 0.6)"></path></svg>
+              </span>
+          </button>
+            <br><br>
+            <a  href="/forget" ><p class="description" style="margin-left:5%;font-size:100%"> forget password </p>  </a>
+
   </form>
 
   <div class="drops">

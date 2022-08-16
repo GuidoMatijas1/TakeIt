@@ -16,15 +16,26 @@ class User(UserMixin, db.Model):
     is_blocked = db.Column(db.Boolean)
 
 
-class Gmah(db.Model):
+class Gmah(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(1000))
     email = db.Column(db.String(1000))
     password = db.Column(db.String(100))
     owner_first_name = db.Column(db.String(50))
-    owner_last_name = db.column(db.String(50))
+    owner_last_name = db.Column(db.String(50))
     phone = db.Column(db.String(10))
     category = db.Column(db.String(50))
     city = db.Column(db.String(200))
     street = db.Column(db.String(200))
     street_number = db.Column(db.Integer)
+
+class Item(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(1000))
+    category = db.Column(db.String(50))
+    description = db.Column(db.String(1000))
+    idle = db.Column(db.Boolean)
+    gmah_id = db.Column(db.Integer, db.ForeignKey('Gmah.id'))
+
+
+

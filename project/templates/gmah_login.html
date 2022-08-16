@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <div class="box">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+            </div>
+        {% endif %}
+        {% endwith %}
+        <div class="container">
+  <form class="centerform" method="POST" action="/login_gmah">
+    <p class="centertext description" style="font-size:100px">Welcome</p>
+    <input type="email" placeholder="Email" name="email"><br>
+    <input type="password" placeholder="Password" name="password"><br>
+      <button class="pushable">
+  <span class="front">
+    Sign in
+  </span>
+</button>
+     <a  href="/forget" ><p class="centertext description" style="margin-top:30px;font-size:20px"> forget password </p>  </a>
+  </form>
+
+  <div class="drops">
+    <div class="drop drop-1"></div>
+    <div class="drop drop-2"></div>
+    <div class="drop drop-3"></div>
+    <div class="drop drop-4"></div>
+    <div class="drop drop-5"></div>
+  </div>
+</div>
+    </div>
+</div>
+{% endblock %}

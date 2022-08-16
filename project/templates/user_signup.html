@@ -14,68 +14,66 @@
       <form name="myForm" action="/signup" method="post" class="centerform">
 <div id="hidden_div">
     <br>
-    <h1 class="textcenter">רישום משתמש חדש</h1>
-    <p class="textcenter"> שדות חובה *</p>
+    <h1 class="textcenter">Sign Up as User</h1>
+    <p class="textcenter"> Mandatory Fields *</p>
     <hr>
-        <label name="id" for="id"><br>תעודת זהות <p class="hova">*</p></b></label>
+        <label name="id" for="id"><br> <p class="hova"> *</p> id</b></label>
     <input type="text" placeholder="1234556789" name="id" required
                       oninvalid="this.setCustomValidity('Enter Your ID Here')"
     oninput="this.setCustomValidity('')" >
 
-      <label for="firstname"><b>שם פרטי <p class="hova">*</p></b></label>
-    <input type="text" placeholder="אבי" name="firstname" >
+      <label for="firstname"><b><p class="hova">*</p> First Name</b></label>
+    <input type="text" placeholder="Avi" name="firstname" >
 <!--           required-->
 <!--           oninvalid="this.setCustomValidity('Enter User First Name Here')"-->
 <!--    oninput="this.setCustomValidity('')" >-->
 
-      <label for="lastname"><b>שם משפחה <p class="hova">*</p></b></label>
+      <label for="lastname"><b><p class="hova">*</p> Last Name</p></b></label>
     <input type="text" placeholder="כהן" name="lastname" >
 <!--           required-->
 <!--           oninvalid="this.setCustomValidity('Enter User Last Name Here')"-->
 <!--    oninput="this.setCustomValidity('')" >-->
 
-       <label  for="profilepicture"><b>תמונת פרופיל</b></label>
-      <input type="file" id="myFile" name="profilepicture">
-
-      <label for="phone"><b>מספר טלפון</b></label>
+      <label for="phone"><b>Phone Number</b></label>
     <input type="text" placeholder="05x-xxxxxxx" name="phone" pattern="[0][0-9]{2}-[0-9]{7}">
 <!--           required-->
 <!--               oninvalid="this.setCustomValidity('Enter User Phone number This Format: 055-1234567')"-->
 <!--    oninput="this.setCustomValidity('')" >-->
 
-      <label for="city"><b>עיר פעילות <p class="hova">*</p></b></label>
+      <label for="city"> <p class="hova">*</p> <b> City </b></label>
     <input type="text" placeholder="אשדוד" name="city" >
 <!--    required-->
 <!--                      oninvalid="this.setCustomValidity('Enter User City Here')"-->
 <!--    oninput="this.setCustomValidity('')" >-->
 
-      <label for="street"><b> רחוב <p class="hova">*</p></b></label>
+      <label for="street"><b> <p class="hova">*</p> Street </b></label>
     <input type="text" placeholder="הנופך" name="street" >
 <!--    required-->
 <!--                      oninvalid="this.setCustomValidity('Enter User Street Here')"-->
 <!--    oninput="this.setCustomValidity('')" >-->
 
-      <label for="streetnum"><b>מספר בית</b></label>
+      <label for="streetnum"><b>Street Number </b></label>
     <input id="streetnum" type="12" name="streetnum" value="0">
 
-    <label for="email"><b>כתובת אימייל <p class="hova">*</p></b></label>
+    <label for="email"><b> <p class="hova">*</p> Email Address </b></label>
     <input type="email" placeholder="name@domain.co" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$">
 <!--    required-->
 <!--                      oninvalid="this.setCustomValidity('Enter User Email Here')"-->
 <!--    oninput="this.setCustomValidity('')" >-->
 <!--    &lt;!&ndash;    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"&ndash;&gt;-->
 
-    <label for="password"><b>סיסמא <p class="hova">*</p></b></label>
+    <label for="password"><b> <p class="hova">*</p> Password </b></label>
     <input type="password" placeholder="********" name="password">
 <!--    required oninvalid="this.setCustomValidity('Enter Your Password Here')" oninput="this.setCustomValidity('')" >-->
 
-    <label for="password-repeat"><b>סיסמא <p class="hova">*</p></b></label>
+    <label for="password-repeat"><b> <p class="hova">*</p> Repeat Password</b></label>
     <input type="password" placeholder="********" name="password-repeat" >
 <!--    required-->
 <!--                      oninvalid="this.setCustomValidity('Enter Your Password Here')"-->
 <!--    oninput="this.setCustomValidity('')" >-->
 
-
+       <label  for="profilepicture"><b>Profile Picture</b></label>
+      <input type="file" id="myFile" name="profilepicture" style="height:50px;">
     <div class="clearfix">
       <button type="button" class="cancelbtn">Cancel</button>
       <button type="submit" class="signupbtn" >Sign Up</button>

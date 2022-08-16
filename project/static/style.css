@@ -1,22 +1,23 @@
-/* Login Test */
+/* Login Page */
   .pushable {
-    background: #2AA29C;
     border-radius: 12px;
     border: none;
     padding: 0;
     cursor: pointer;
     outline-offset: 4px;
     width:40%;
-    margin-left:30%;
+    margin: 5% 0 0 30%;
+    background:white;
   }
   .front {
-    display: block;
-    padding: 12px 42px;
+   display: block;
+    padding: 4px 42px;
     border-radius: 12px;
-    font-size: 1.25rem;
-    background: #2EB2AC;
-    color: white;
+    font-size: 2.25rem;
+    color: black;
+    font-family: 'Optima';
     transform: translateY(-6px);
+    border: 0.5px solid black;
   }
 
   .pushable:active .front {
@@ -39,23 +40,75 @@ text-align:center;
   color:53599A;
 
 }
-/* index */
-.mapcentered{
-    margin:5% 0 0 30%;
 
+.loginlabel{
+    padding:0px;
+    margin:0px;
+}
+
+/* index */
+.homeleft{
+    left:5%;
+    margin-top:2%;
+}
+.homeright{
+    right:1%;
+    margin-top:2%;
+}
+.marginleft{
+    margin-left:5%;
+}
+.mapcentered{
+    margin-top:10%;
+}
+.homedesc{
+    float:left;
+    font-family: 'Optima';
+    font-size:30px;
+    max-width: 80%;
 }
 .subtitle{
     text-align:center;
 }
+.homewelcome{
+    font-family: 'Optima';
+    font-size:50px;
+}
+  .homepushable {
+    border-radius: 12px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    width:120%;
+    margin:10% 0 0 5%;
+    background:white;
+  }
+  .homefront {
+    display: block;
+    padding: 1% 10%;
+    border-radius: 12px;
+    font-size: 2.25rem;
+    color: black;
+    font-family: 'Optima';
+    transform: translateY(-6px);
+    border: 0.5px solid black;
+  }
+  .homepushable:active .front {
+    transform: translateY(-2px);
 
+  }
+.floatleft{
+    float:left;
+    width:50%;
+}
 /* forms*/
 .centerform{
-  box-shadow: inset 0 3px 6px rgba(0,0,0,0.16), 0 4px 60px rgba(0,0,0,0.45);
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.16), 0 4px 60px rgba(0,0,0,0.1);
   border-radius: 50px;
-  width:60%;
+  width:50%;
   margin:auto;
   margin-top:90px;
-  background-color:#8DE2DE;
   padding-bottom:10px;
 }
 .hova{
@@ -77,12 +130,10 @@ text-align:center;
 
 .left {
   left: 0;
-  background-color: #6D9DC5;
 }
 
 .right {
   right: 0;
-  background-color: #AEECEF;
 }
 
 .centered12 {
@@ -115,36 +166,35 @@ font-family: Arial, Helvetica, sans-serif;
 
 .textcenter{
     text-align:center;
-    font-family:Corsiva;
+    font-family: 'Optima';
 }
 /* file upload center */
-
 input[type=file] {
 color:black;
 width: auto;
 }
 
 label{
-    width: 40%;
     padding: 15px;
-    text-align:center;
+    text-align:left;
     display: block;
     margin:auto;
+    margin-left:13%;
 }
 
 input{
-    width: 30%;
+    width: 70%;
     padding: 15px;
     margin: 5px 0 22px 0;
     display: block;
     border: none;
     margin:auto;
     margin-bottom:10px;
-    background: #f1f1f1;
-    box-shadow: 0 2px 3px black;
-    border-bottom: 0.25em solid #0f5177;
+    background: #FFFFFF;
+    border: 1px solid black;
+    border-radius: 5px;
+    height:12px;
     top:-2px;
-    border-radius: 15px;
     }
 
 input[type=text]:focus, input[type=password]:focus {
@@ -182,11 +232,13 @@ button:hover {
 
 .cancelbtn {
   padding: 14px 20px;
-
-  background-color: #f44336;
+  background-color: #CBCBCB;
 }
 
-
+.signupbtn{
+    padding: 14px 20px;
+    background-color: #000000;
+}
 /* Float cancel and signup buttons and add an equal width */
 
 .cancelbtn, .signupbtn {
@@ -194,7 +246,7 @@ button:hover {
     width: 30%;
 }
 input::placeholder {
-    text-align: center;
+    text-align: left;
     opacity:0.4;
 }
 
@@ -275,3 +327,51 @@ input::placeholder {
                 font-style: oblique;
                 font-weight: bold;
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*testcase*/
+.raise:hover,
+.raise:focus {
+   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+  transform: translateY(-0.25em);
+}
+.shadowed {
+  background: white;
+  position: relative;
+}
+
+.shadowed::after {
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.25);
+  content: '';
+  display: block;
+  height:100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
