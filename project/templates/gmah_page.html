@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Gmah page of : {{gmah.name }} </h2>
+
+    {% set imagename = gmah.profile_picture %}
+    <div class="productphoto">
+    <img src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="220px" height="220px"></br>
+    </div>
+<div class="productdesc">
+    <p>Name:        {{ gmah.name }}</p>
+    <p>Gmah That this product belongs to:  {{gmah.name}}</p>
+    <p>the Gmah : {{gmah.name}} located in:  {{gmah.city}} on street: {{gmah.street}} {{gmah.street_number}}</p>
+    <p>the contact person is: {{gmah.owner_first_name}} {{gmah.owner_last_name}}</p>
+    <p>the contact detailes: {{gmah.phone}}</p>
+</div>
+<br><br>
+
+{% endblock %}
+

@@ -14,7 +14,7 @@ class User(UserMixin, db.Model):
     street_number = db.Column(db.Integer)
     is_gmah = db.Column(db.Boolean)
     is_blocked = db.Column(db.Boolean)
-
+    profile_picture = db.Column(db.String(200))
 
 class Gmah(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -28,6 +28,7 @@ class Gmah(UserMixin, db.Model):
     city = db.Column(db.String(200))
     street = db.Column(db.String(200))
     street_number = db.Column(db.Integer)
+    profile_picture = db.Column(db.String(200))
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -37,5 +38,12 @@ class Item(db.Model):
     idle = db.Column(db.Boolean)
     gmah_id = db.Column(db.Integer, db.ForeignKey('Gmah.id'))
 
-
+class Products(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(1000))
+    category = db.Column(db.String(50))
+    description = db.Column(db.String(1000))
+    idle = db.Column(db.Boolean)
+    gmah_id = db.Column(db.Integer, db.ForeignKey('Gmah.id'))
+    pic_name = db.Column(db.String(50))
 

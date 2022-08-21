@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="homewelcome" style="text-align:center;">Products Result Page</h2>
+    {% for result in results %}
+    <div class="eachproduct">
+        {% set imagename = result.pic_name %}
+        <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="150px" height="150px"><br><br>
+        <p>Product Name: {{ result.name }}</p>
+        <p>Gmah City: {{ func(result.id) }}</p>
+        {% if result.idle %}
+        <p style="color: green;">This Product is available</p>
+       {% else %}
+        <p style="color: red;" >This Product isnt available</p>
+       {% endif %}
+        <a href="{{ url_for('main.product_page', id=result.id) }}">Product Page</a><br>
+        <br><br>
+    </div>
+    {% endfor %}
+
+
+
+{% endblock %}
+

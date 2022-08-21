@@ -3,11 +3,18 @@
 {% block content %}
 
     <body>
-    <form method="POST" action="/gmah_signup" class="centerform" >
+    <form method="POST" action="/gmah_signup" class="centerform" enctype="multipart/form-data">
         <div id="hidden_div">
             <br>
             <h1 class="textcenter">Sign Up as Gmah</h1>
             <p class="textcenter">Mandatory Fields *</p>
+            {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger " style="color:red; font-size:120%; margin:5% 0 5% 37%;">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
             <hr>
 
         <label name="id" for="id"><br> <p class="hova"> *</p> id</b></label>
@@ -44,17 +51,17 @@
             <input type="text" name="ביגוד" required>
 
     <label for="password"><b> <p class="hova">*</p> Password </b></label>
-            <input type="password" placeholder="********" name="password">
-<!--    required oninvalid="this.setCustomValidity('Enter Your Password Here')" oninput="this.setCustomValidity('')" >-->
+            <input type="password" placeholder="********" name="password"
+    required oninvalid="this.setCustomValidity('Enter Your Password Here')" oninput="this.setCustomValidity('')" >
 
     <label for="password-repeat"><b> <p class="hova">*</p> Repeat Password</b></label>
-            <input type="password" placeholder="********" name="password-repeat" style="height:50px;">
-<!--    required-->
-<!--                      oninvalid="this.setCustomValidity('Enter Your Password Here')"-->
-<!--    oninput="this.setCustomValidity('')" >-->
+            <input type="password" placeholder="********" name="password-repeat" style="height:50px;"
+    required
+                      oninvalid="this.setCustomValidity('Enter Your Password Here')"
+    oninput="this.setCustomValidity('')" >
 
-            <label for="profilepicture"><b>תמונת <פרופיל></פרופיל></b></label>
-            <input type="file" id="myFile" name="profilepicture">
+            <label for="profile"><b>Profile Picture</label>
+            <input type="file" id="file" name="file">
 
             <div class="clearfix">
                 <button type="button" class="cancelbtn">Cancel</button>
