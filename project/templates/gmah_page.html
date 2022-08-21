@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Gmah page of : {{gmah.name }} </h2>
+<h2 class="homewelcome" style="text-align:center;">Gmah page of : {{gmah.name }} </h2>
 
     {% set imagename = gmah.profile_picture %}
     <div class="productphoto">
@@ -12,7 +12,27 @@
     <p>Gmah That this product belongs to:  {{gmah.name}}</p>
     <p>the Gmah : {{gmah.name}} located in:  {{gmah.city}} on street: {{gmah.street}} {{gmah.street_number}}</p>
     <p>the contact person is: {{gmah.owner_first_name}} {{gmah.owner_last_name}}</p>
+    {% if current_user.is_authenticated%}
     <p>the contact detailes: {{gmah.phone}}</p>
+    {% else %}
+    <p>For contact detailes please <a href="/login">Login</a></p>
+     {% endif %}
+
+    <h2 class="homewelcome" style="text-align:center;">My Product List</h2>
+    <div class="eachproduct">
+    {% for product in products %}
+        <p>Product Name: {{ product.name }}</p>
+        {% set imagename = product.pic_name %}
+        <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="150px" height="150px"><br><br>
+        {% if product.idle %}
+        <p style="color: green;">This Product is available</p>
+       {% else %}
+        <p style="color: red;" >This Product isnt available</p>
+       {% endif %}
+        <button action="/"> Borrow </button>
+    {% endfor %}
+        </div>
+
 </div>
 <br><br>
 

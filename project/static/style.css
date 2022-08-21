@@ -1,3 +1,38 @@
+body{
+    margin-top:5%;
+    overflow-y: scroll;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+footer{
+    background-color:black;
+    width:100%;
+    bottom:-2px;
+    position:fixed;
+}
+
+/*about*/
+.partners{
+  display: flex;
+  flex-wrap: wrap;
+  width:80%;
+  margin:auto;
+  margin-bottom:15%;
+}
+.teamMember{
+    width:25%;
+  font-family: 'Open Sans Hebrew Condensed', serif;
+    font-size:22px;
+}
+.aboutDesc{
+float:right;
+    font-family: 'Optima';
+    font-size:18px;
+    max-width: 70%;
+    text-align:right;
+    line-height: 2 ;
+}
 /* Login Page */
   .pushable {
     border-radius: 12px;
@@ -24,13 +59,7 @@
     transform: translateY(-2px);
   }
 
-body{
-    margin-top:5%;
-    overflow-y: scroll;
-    height: 100%;
-    overflow-x: hidden;
-    font-family: Arial, Helvetica, sans-serif;
-}
+
 .centertext{
 text-align:center;
 }
@@ -63,16 +92,17 @@ text-align:center;
 
 /*profile*/
 .profileline{
-    border-style: dotted;
     float:left;
     height:100%;
     margin:1% 0 0 10%;
-
+    overflow: auto;
 }
 
 .profilephoto{
     float:left;
-    margin:1% 0 0 10%;}
+    max-width:250px;
+    max-height:250px;
+    }
 
 
 /*product*/
@@ -82,6 +112,7 @@ text-align:center;
     height:100%;
     margin:auto;
     margin-bottom:2%;
+    overflow: auto;
 }
 .resultProductPhoto{
     float:left;

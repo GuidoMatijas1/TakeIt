@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div style="display:inline;">
+    <img src={{url_for('static',filename='images/BigLogo.jpeg')}} width="350px" height="350px">
+        <div class="aboutDesc"> <br>
+            <p>.מערכת פותחה במסגרת פרוייקט גמר במסלול תואר ראשון בניהול מערכות מידע במכללה האקדמית תל אביב-יפו</p>
+            <p>:מטרת הפרוייקט</p>
+            <p>
+                העלאת המודעות על קיומם של גמ"חים בתחומים שונים ברחבי הארץ ולעודד את
+                .השימוש בהם ובכך הפחתה של רכישת מוצרים לטובת שימוש חד פעמי. כמו כן, שינוי התפיסה  המוטעית אודות גמ"ח וקהל היעד שלו
+                <br>
+                 מטרה נוספת הינה לתמוך בבעלי הגמ"ח אשר פועלים בהתנדבות ולחזק את יציבות הגמ"ח.
+            </p>
+        </div>
+    <iframe  style="margin-left:35%;" width="560" height="315" src="https://www.youtube.com/embed/ij6y4tEGviQ"
+        allowfullscreen></iframe>
+    </div>
+<h1 class="homewelcome" style="text-align:center; margin:5% 0 5% 0 ;" > OUR TEAM</h1>
+    <div class="partners" >
+        <div class="teamMember">
+            <p style="margin-left:30%;">Guy Shmuel </p>
+            <img style="margin:0 0 0 10%; border-radius:50%;" src={{url_for('static',filename='images/guy.jpeg')}} width="60%" height="60%" ><br>
+            <a style="margin-left:20%;" href="https://www.linkedin.com/in/guy-shmuel-0a7240213/">
+            <img src={{url_for('static',filename='images/linkedin.png')}} style="width:42px;height:42px; border-radius:50%;"></a><br>
+            <a style="margin-left:20%;" href="mailto:guyse@mta.ac.il">
+            <img src={{url_for('static',filename='images/mailto.webp')}} style="width:42px;height:42px; border-radius:50%;"></a>
+        </div>
+        <div class="teamMember">
+            <p style="margin-left:30%;">Guido Matijas </p>
+            <img style="margin:0 0 0 10%; border-radius:50%;" src={{url_for('static',filename='images/guido.jpeg')}} width="60%" height="60%">
+            <a style="margin-left:20%;" href="https://www.linkedin.com/in/guido-matijas-a3a110193/">
+            <img src={{url_for('static',filename='images/linkedin.png')}} style="width:42px;height:42px; border-radius:50%;"></a><br>
+            <a style="margin-left:20%;" href="mailto:guidoma@mta.ac.il">
+            <img src={{url_for('static',filename='images/mailto.webp')}} style="width:42px;height:42px; border-radius:50%;"></a>
+        </div>
+        <div class="teamMember">
+            <p style="margin-left:30%;">Nofar Vishengrad </p>
+    <img style="margin:0 0 0 10%; border-radius:50%;" src={{url_for('static',filename='images/nofar.jpeg')}} width="60%" height="60%">
+            <a style="margin-left:20%;" href="https://www.linkedin.com/in/nofar-vishengrad-1137201b8/">
+            <img src={{url_for('static',filename='images/linkedin.png')}} style="width:42px;height:42px; border-radius:50%;"></a><br>
+            <a style="margin-left:20%;" href="mailto:nofarv@mta.ac.il">
+            <img src={{url_for('static',filename='images/mailto.webp')}} style="width:42px;height:42px; border-radius:50%;"></a>
+        </div>
+        <div class="teamMember" >
+            <p style="margin-left:30%;">Adi Ben Ezra </p>
+    <img style="margin:0 0 0 10%; border-radius:50%;" src={{url_for('static',filename='images/adi.jpeg')}} width="60%" height="60%">
+            <a style="margin-left:20%;" href="https://www.linkedin.com/in/adi-ben-ezra/">
+            <img src={{url_for('static',filename='images/linkedin.png')}} style="width:42px;height:42px; border-radius:50%;"></a><br>
+            <a style="margin-left:20%;" href="mailto:adibe@mta.ac.il">
+            <img src={{url_for('static',filename='images/mailto.webp')}} style="width:42px;height:42px; border-radius:50%;"></a>
+        </div>
+    </div>
+{% endblock %}
