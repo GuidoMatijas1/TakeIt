@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Custom Search Page</h2>
+<h2 class="headersearch">Search Gmah By City</h2>
+<form action="/searchgmahbycity" method="POST" class="customesearch">
+    <input type="search" name="search" id="search" placeholder="Search Anything Here..." class="form-control">
+</form>
+<h2 class="headersearch">Search Gmah By Category</h2>
+<form action="/searchgmahbycategory" method="POST" class="customesearch">
+    <input type="search" name="search" id="search" placeholder="Search Anything Here..." class="form-control">
+</form>
+<h2 class="headersearch">Search Product</h2>
+<form action="/search" method="POST" class="customesearch">
+    <input type="search" name="search" id="search" placeholder="Search Anything Here..." class="form-control">
+</form>
+
+
+
+{% endblock %}
+

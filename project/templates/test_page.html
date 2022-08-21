@@ -4,11 +4,9 @@
     {% for item in items %}
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            {% set imagename = item.email %}
-            <h5 class="card-title">{{ item.name }}</h5>
+            <h5 class="card-title">{{ current_user.name }}</h5>
             <img src={{url_for('static',filename='images/{}.jpeg'.format(imagename))}} width="200px" height="100px">
-
-            <a class="btn btn-primary" href={{url_for('main.user_profile', email=item.email)}}>Go somewhere</a>
+            <a class="btn btn-primary" href={{url_for('main.user_profile', email=current_user.email)}}>Go somewhere</a>
         </div>
     </div>
     {% endfor %}

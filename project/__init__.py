@@ -2,9 +2,12 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 import os
+from flask_mail import Mail, Message
+
+
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
-
+mail = Mail()
 
 def create_app():
     app = Flask(__name__)
@@ -13,6 +16,17 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
     db.init_app(app)
+
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 465
+    app.config['MAIL_USERNAME'] = 'takeitapp0@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'jhoznewwarrylbws'
+    app.config['MAIL_USE_TLS'] = False
+    app.config['MAIL_USE_SSL'] = True
+
+    mail = Mail(app)
+
+    uploads_dir = os.path.join('project/static/images')
 
     # blueprint for auth routes in our app
     from .auth import auth as auth_blueprint
@@ -28,6 +42,7 @@ def create_app():
 
     from .models import User
     from .models import Gmah
+    from .models import Products
 
     @login_manager.user_loader
     def load_user(user_id):

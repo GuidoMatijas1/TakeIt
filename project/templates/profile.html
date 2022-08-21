@@ -1,7 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
+<body>
+
+  {% if  current_user.category %}
+<!--  Gmah-->
+  {% set imagename = current_user.profile_picture %}
+  <img src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="150px" height="150px"
+       style="border-radius:50%">
+
+  {% else %}
+<!--  User-->
+      <div class="profileline">
+          {% set imagename = current_user.profile_picture %}
+          <img class="profilephoto" src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="200px" height="200px"
+          style="border-radius:50%">
+      </div>
+      <div class="productdesc">
 <h1 class="title">
-  this is the page of Gmah: {{ user.name }}!
+
+    This is the page of User: {{ current_user.name }}!
+
+  {% endif %}
+    <div>
 </h1>
+</body>
 {% endblock %}

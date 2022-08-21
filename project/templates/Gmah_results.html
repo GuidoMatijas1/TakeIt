@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="homewelcome" style="text-align:center;">Result Page</h2>
+    {% for result in results %}
+    <div class="eachproduct">
+        {% set imagename = result.profile_picture %}
+        <img class="resultProductPhoto" src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="150px" height="150px" style="border-radius:50%"><br><br>
+        <p>Gmah Name: {{ result.name }}</p>
+        <p>Gmah City: {{ result.city }}</p>
+        <p>Gmah Category: {{ result.category }}</p>
+        <p>Gmah Owner: {{ result.owner_first_name }} {{ result.owner_last_name }}</p>
+        <a href="{{ url_for('main.gmah_page', id=result.id) }}">Gmah Profile</a>
+        <br><br>
+    </div>
+    {% endfor %}
+
+
+{% endblock %}
+
