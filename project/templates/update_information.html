@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p> update</p>
+{% if current_user.is_authenticated %}
+
+<div class="column is-4 is-offset-4">
+    <div class="box">
+      <form name="myForm" action="/update_information" method="post" class="centerform" enctype="multipart/form-data"
+      style="margin-bottom:10%;">
+<div id="hidden_div">
+    <br>
+    <h1 class="textcenter">Update Personal Information</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger " style="color:red; font-size:120%; margin:5% 0 5% 37%;">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+    <hr>
+
+      <label for="firstname"><b><p class="hova">*</p> First Name</b></label>
+    <input type="text" placeholder="Avi" name="firstname"
+           oninvalid="this.setCustomValidity('Enter User First Name Here')"
+    oninput="this.setCustomValidity('')" >
+
+      <label for="lastname"><b><p class="hova">*</p> Last Name</p></b></label>
+    <input type="text" placeholder="כהן" name="lastname"
+           oninvalid="this.setCustomValidity('Enter User Last Name Here')"
+    oninput="this.setCustomValidity('')" >
+
+      <label for="phone"><b>Phone Number</b></label>
+    <input type="text" placeholder="05x-xxxxxxx" name="phone" pattern="[0][0-9]{2}-[0-9]{7}"
+               oninvalid="this.setCustomValidity('Enter User Phone number This Format: 055-1234567')"
+    oninput="this.setCustomValidity('')" >
+
+      <label for="city"> <p class="hova">*</p> <b> City </b></label>
+    <input type="text" placeholder="אשדוד" name="city" >
+<!--    required-->
+<!--                      oninvalid="this.setCustomValidity('Enter User City Here')"-->
+<!--    oninput="this.setCustomValidity('')" >-->
+
+      <label for="street"><b> <p class="hova">*</p> Street </b></label>
+    <input type="text" placeholder="הנופך" name="street" >
+<!--    required-->
+<!--                      oninvalid="this.setCustomValidity('Enter User Street Here')"-->
+<!--    oninput="this.setCustomValidity('')" >-->
+
+      <label for="streetnum"><b>Street Number </b></label>
+    <input id="streetnum" type="12" name="streetnum" value="0">
+
+    <label for="email"><b> <p class="hova">*</p> Email Address </b></label>
+    <input type="email" placeholder="name@domain.co" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"
+                      oninvalid="this.setCustomValidity('Enter User Email Here')"
+    oninput="this.setCustomValidity('')" >
+    <!--    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"-->
+
+    <div class="clearfix">
+      <button type="button" class="cancelbtn">Cancel</button>
+      <button type="submit" class="signupbtn" >Update</button>
+    </div>
+  </div>
+</form>
+    </div>
+</div>
+
+
+{% endif %}
+{% endblock %}
+

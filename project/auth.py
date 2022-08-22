@@ -1,8 +1,9 @@
+import flask_login
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User, Gmah, Products
 from . import db, mail
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 import sqlite3 , string, random
 from flask_mail import Mail, Message
 from werkzeug.utils import secure_filename
@@ -73,6 +74,94 @@ def login_post():
 @auth.route('/signup')
 def signup():
     return render_template('signup.html')
+
+
+@auth.route('/update_information/')
+def update_information():
+    return render_template('update_information.html')
+
+
+@auth.route('/update_information/', methods=['POST'])
+def update_information_post():
+    firstname = request.form.get('firstname')
+    lastname = request.form.get('lastname')
+    phone = request.form.get('phone')
+    city = request.form.get('city')
+    street = request.form.get('street')
+    streetnum = request.form.get('streetnum')
+    email = request.form.get('email')
+    users =  User.query.filter_by(id=current_user.id).first()
+    gmahs = Gmah.query.filter_by(id=current_user.id).first()
+    if users:
+        if firstname:
+            user = User.query.filter_by(id=current_user.id).first()
+            user.name=firstname
+            db.session.commit()
+        if lastname:
+            user = User.query.filter_by(id=current_user.id).first()
+            user.last_name=lastname
+            db.session.commit()
+        if phone:
+            user = User.query.filter_by(id=current_user.id).first()
+            user.phone=phone
+            db.session.commit()
+        if city:
+            user = User.query.filter_by(id=current_user.id).first()
+            user.city=city
+            db.session.commit()
+        if street:
+            user = User.query.filter_by(id=current_user.id).first()
+            user.street=street
+            db.session.commit()
+        if streetnum:
+            user = User.query.filter_by(id=current_user.id).first()
+            user.streetn_number=streetnum
+            db.session.commit()
+        if email:
+            # gmah_email = Gmah.query.filter_by(email=email).first()
+            user_email = User.query.filter_by(email=email).first()
+            if user_email:
+                flash('This Email addresses allready exist.')
+                return render_template('/update_information.html')
+            else:
+                user = User.query.filter_by(id=current_user.id).first()
+                user.email=email
+                db.session.commit()
+    if gmahs:
+        if firstname:
+            user = Gmah.query.filter_by(id=current_user.id).first()
+            user.name = firstname
+            db.session.commit()
+        if lastname:
+            user = Gmah.query.filter_by(id=current_user.id).first()
+            user.last_name = lastname
+            db.session.commit()
+        if phone:
+            user = Gmah.query.filter_by(id=current_user.id).first()
+            user.phone = phone
+            db.session.commit()
+        if city:
+            user = Gmah.query.filter_by(id=current_user.id).first()
+            user.city = city
+            db.session.commit()
+        if street:
+            user = Gmah.query.filter_by(id=current_user.id).first()
+            user.street = street
+            db.session.commit()
+        if streetnum:
+            user = Gmah.query.filter_by(id=current_user.id).first()
+            user.streetn_number = streetnum
+            db.session.commit()
+        if email:
+            gmah_email = Gmah.query.filter_by(email=email).first()
+            if gmah_email:
+                flash('This Email addresses allready exist.')
+                return render_template('/update_information.html')
+            else:
+                user = Gmah.query.filter_by(id=current_user.id).first()
+                user.email = email
+                db.session.commit()
+    return render_template('index.html')
 
 
 @auth.route('/user_signup')
@@ -269,6 +358,8 @@ def my_products():
 
 @auth.route('/tests/')
 def tests():
+    return str(first)
     # result = Products.query.with_entities(Products.category).distinct()
-    result = db.session.query(Products.category).distinct(Products.category)
-    return render_template("custom_search.html",products=result)
+    # result = db.session.query(Products.category).distinct(Products.category)
+    # return "test"
+    # return render_template("custom_search.html")

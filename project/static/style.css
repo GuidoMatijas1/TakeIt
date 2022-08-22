@@ -321,8 +321,8 @@ button:hover {
 /* Float cancel and signup buttons and add an equal width */
 
 .cancelbtn, .signupbtn {
-    margin-left:11%;
-    width: 30%;
+    margin-left:15%;
+    width: 20%;
 }
 input::placeholder {
     text-align: left;

@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22b599f4-8866-4965-94c3-ac610ebf57e5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/project/templates/about.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/templates/update_information.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/project/db.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/project/static/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/custom_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/custom_search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/gmah_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/gmah_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/my_products.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/my_products.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/test_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/test_page.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
