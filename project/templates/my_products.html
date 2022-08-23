@@ -8,7 +8,6 @@
         <p>Product Name: {{ product.name }}</p>
         {% set imagename = product.pic_name %}
         <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="150px" height="150px"><br><br>
-
         {% if product.idle %}
         <p style="color: green;">This Product is available</p>
        {% else %}

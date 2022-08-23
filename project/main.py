@@ -29,6 +29,10 @@ def index():
 def index1():
     return render_template('newindex.html')
 
+@main.route('/about')
+def about():
+    return render_template('about.html')
+
 
 @main.route('/test')
 def test():
@@ -63,11 +67,13 @@ def product_page(id):
 @main.route('/gmah_page/<id>')
 def gmah_page(id):
     gmah = Gmah.query.filter_by(id=id).first()
-    return render_template('gmah_page.html',gmah=gmah)
+    products = Products.query.filter_by(gmah_id=id).all()
+    return render_template('gmah_page.html',gmah=gmah,products=products)
 
 
 @main.route('/gmah_search/<id>')
 def gmah_search(id):
     gmah = Gmah.query.filter_by(id=id).first()
-    return str(gmah.name)
     return render_template('product_page.html', gmah=gmah)
+
+

@@ -1,14 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% for item in items %}
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">{{ current_user.name }}</h5>
-            <img src={{url_for('static',filename='images/{}.jpeg'.format(imagename))}} width="200px" height="100px">
-            <a class="btn btn-primary" href={{url_for('main.user_profile', email=current_user.email)}}>Go somewhere</a>
-        </div>
-    </div>
+    {% for product in products %}
+       {{product.category}}
     {% endfor %}
 
 {% endblock %}
