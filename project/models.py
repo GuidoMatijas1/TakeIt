@@ -47,3 +47,12 @@ class Products(db.Model):
     gmah_id = db.Column(db.Integer, db.ForeignKey('Gmah.id'))
     pic_name = db.Column(db.String(50))
 
+class Borrows(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    borrower_id = db.Column(db.Integer)
+    gmah_id = db.Column(db.Integer)
+    product_id = db.Column(db.Integer)
+    start_date = db.Column(db.Date)
+    end_date = db.Column(db.Date)
+    approved = db.Column(db.Boolean)
+    is_active = db.Column(db.Boolean)

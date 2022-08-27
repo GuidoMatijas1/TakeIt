@@ -1,13 +1,15 @@
 import flask_login
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User, Gmah, Products
+from .models import User, Gmah, Products, Borrows
 from . import db, mail
 from flask_login import login_user, login_required, logout_user, current_user
 import sqlite3 , string, random
 from flask_mail import Mail, Message
 from werkzeug.utils import secure_filename
 import os
+import pandas as pd
+
 
 auth = Blueprint('auth', __name__)
 
@@ -356,6 +358,8 @@ def my_products():
     return render_template("my_products.html",products=products)
 
 
+# <<<<<<< HEAD
+#
 @auth.route('/tests/')
 def tests():
     return str(first)
@@ -363,3 +367,25 @@ def tests():
     # result = db.session.query(Products.category).distinct(Products.category)
     # return "test"
     # return render_template("custom_search.html")
+# =======
+@auth.route('/borrow_item', methods=['POST'])
+@login_required
+def borrow_item():
+    start_date = request.form.get('start_date')
+    end_date = request.form.get('end_date')
+    gmah_id = request.form.get('gmah_id')
+    product_id = request.form.get('product_id')
+    borrower_id = current_user.id
+
+    new_borrow = Borrows(product_id=product_id,
+                         gmah_id=gmah_id,
+                         borrower_id=borrower_id,
+                         start_date=pd.to_datetime(start_date),
+                         end_date=pd.to_datetime(end_date),
+                         approved=False,
+                         is_active=False)
+    db.session.add(new_borrow)
+    db.session.commit()
+
+    return 'success'
+# >>>>>>> 13f1879 (borrow)
