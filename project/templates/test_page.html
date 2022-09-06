@@ -1,8 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% for product in products %}
-       {{product.category}}
-    {% endfor %}
+<div class="gridcontainer">
+  <div class="griditem1">
+    <img src="https://dummyimage.com/100x100/000000/fff">
+    <p>Grid Item 1</p>
+  </div>
+  <div class="griditem2">
+    <img src="https://dummyimage.com/100x100/000000/fff">
+    <p>Grid Item 2</p>
+  </div>
+  <div class="griditem3">
+    <img src="https://dummyimage.com/100x100/000000/fff">
+    <p>Grid Item 3</p>
+  </div>
+  <div class="griditem4">
+    <img src="https://dummyimage.com/100x100/000000/fff">
+    <p>Grid Item 4</p>
+  </div>
+</div>
 
 {% endblock %}

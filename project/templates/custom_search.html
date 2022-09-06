@@ -1,23 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<h2>Custom Search Page</h2>
+<div class="container">
+<h2 style="text-align:center;">Custom Search Page</h2>
 <h2 class="headersearch">Search Gmah By City</h2>
 <form action="/searchgmahbycity" method="POST" class="customesearch">
     <input type="search" name="search" id="search" placeholder="Search Anything Here..." class="form-control">
 </form>
 
-
 <h2 class="headersearch">Search Gmah By Category</h2>
 <form action="/searchgmahbycategory" method="POST" class="customesearch">
-  <label for="search">Choose a category:</label>
-  <select id="search" name="search" size="1">
+  <label style="margin-left:35%;" for="search">Choose a category:</label>
+  <select id="search" name="search" size="1" style="margin-left:40%;">
      {% for category in categories %}
     <option name="search" value={{category.category}}>{{category.category}}</option>
     {% endfor %}
   </select><br><br>
-  <input type="submit">
+  <input style="width:30%;" type="submit" class="form-control">
 </form>
 
 <h2 class="headersearch">Search Product</h2>
@@ -25,7 +24,7 @@
     <input type="search" name="search" id="search" placeholder="Search Anything Here..." class="form-control">
 </form>
 
-
+</div>
 
 {% endblock %}
 

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height">
-    <title>Flask Auth Example</title>
+    <title>TakeItApp</title>
 {#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"/>#}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel= "stylesheet" type= "text/css" href="/static/style.css">
@@ -39,12 +39,13 @@
                                         class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Donate Money</a></li>
-                                        <li><a href="#">Donate Items</a></li>
+                                        <li><a href="/donate_items">Donate Items</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="/search">Custom Search</a></li>
                                 {% if current_user.owner_first_name %}
                                 <li><a href="/my_products">My Products</a></li>
+                                <li><a href="/borrows">My Borrows</a></li>
                                 {% endif %}
                             </ul>
                             <ul class="nav navbar-nav">

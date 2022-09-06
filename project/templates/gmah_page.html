@@ -29,9 +29,10 @@
        {% else %}
         <p style="color: red;" >This Product isnt available</p>
        {% endif %}
-        <button action="/"> Borrow </button>
+        <a class="btn btn-primary" href="{{ url_for('main.product_page', id=product.id) }}">Product Page</a> <br>
+
     {% endfor %}
-        </div>
+        </div><br>
 
 </div>
 <br><br>

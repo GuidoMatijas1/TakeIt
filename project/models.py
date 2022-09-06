@@ -43,8 +43,8 @@ class Products(db.Model):
     name = db.Column(db.String(1000))
     category = db.Column(db.String(50))
     description = db.Column(db.String(1000))
-    idle = db.Column(db.Boolean)
-    gmah_id = db.Column(db.Integer, db.ForeignKey('Gmah.id'))
+    idle = db.Column(db.Integer)
+    gmah_id = db.Column(db.Integer, db.ForeignKey('gmah.id'))
     pic_name = db.Column(db.String(50))
 
 class Borrows(db.Model):
@@ -54,5 +54,5 @@ class Borrows(db.Model):
     product_id = db.Column(db.Integer)
     start_date = db.Column(db.Date)
     end_date = db.Column(db.Date)
-    approved = db.Column(db.Boolean)
-    is_active = db.Column(db.Boolean)
+    approved = db.Column(db.Integer)
+    is_active = db.Column(db.Integer)

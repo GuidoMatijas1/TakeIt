@@ -61,7 +61,7 @@ def product_page(id):
     product = Products.query.filter_by(id=id).all()
     product_gmah = Products.query.filter_by(id=id).first()
     gmah = Gmah.query.filter_by(id=str(product_gmah.gmah_id)).first()
-    return render_template('product_page.html', product=product,gmah=gmah)
+    return render_template('product_page.html', product=product, gmah=gmah,)
 
 
 @main.route('/gmah_page/<id>')

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="homewelcome" style="font-size:30px;text-align:center;">Waiting for approve Borrows</h1>
+        {% for borrow in borrows %}
+            {% if borrow.approved==0 and borrow.is_active==1 %}
+                <div class="col-sm-6" style="border: 1px solid black;">
+                   <div style="float:left">
+                       <p>Start Date:{{ borrow.start_date }}</p>
+                       <p>End Date:{{ borrow.end_date }}</p>
+                       <p>Borrower Name: {{ (func(borrow.borrower_id)).name }}</p>
+                       <p>Product Name: {{ (func2(borrow.product_id)).name }}</p>
+                   </div>
+                   <div style="float:right;">
+                       {% set imagename = (func2(borrow.product_id)).pic_name %}
+                        <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">
+                   </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+{% endblock %}
