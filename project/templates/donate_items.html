@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 style="text-align:center;">Donate Items</h2>
+    <form action="/donate_items" method="POST" class="customesearch" enctype="multipart/form-data">
+        <input type="text" name="user_id" value="{{ current_user.id }}" hidden>
+    <!--    <input type="text" name="category" value="{{ current_user.category }}" hidden>-->
+        <label for="name" ><b>Product name</label>
+        <input type="name" name="name" id="name" placeholder="Search Anything Here..." class="form-control" style="width:70%">
+        <label for="description" ><b>Description</label>
+        <input type="name" name="description" id="description" placeholder="Search Anything Here..." class="form-control" style="width:70%">
+        <label for="upload_product" ><b>Product Photo</label>
+        <input type="file" id="file" name="file" class="form-control" >
+        <input style="width:30%;" type="submit" class="form-control">
+
+    </form>
+
+<br><br><br><br><br><br><br>
+
+{% endblock %}

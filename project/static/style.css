@@ -106,6 +106,22 @@ text-align:center;
 
 
 /*product*/
+.flex-container {
+    display: flex;
+    flex-wrap:wrap;
+    width:80%;
+    margin:auto;
+}
+
+.flex-container > div {
+    background-color: #f1f1f1;
+    height:250px;
+    width:250px;
+    margin:3%;
+    border: 1px solid black;
+    text-align:center;
+}
+
 .eachproduct{
     border-style: dotted;
     width:70%;
@@ -115,13 +131,12 @@ text-align:center;
     overflow: auto;
 }
 .resultProductPhoto{
-    float:left;
-    margin:2% 5% 0 5%;
+    margin:5% 0 0 0;
 
 }
 .productphoto{
     float:left;
-    margin:10% 0 0 25%;
+    margin:10% 0 0 20%;
     border-style: dotted;
 }
 .productdesc{

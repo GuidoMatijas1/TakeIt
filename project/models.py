@@ -43,7 +43,25 @@ class Products(db.Model):
     name = db.Column(db.String(1000))
     category = db.Column(db.String(50))
     description = db.Column(db.String(1000))
-    idle = db.Column(db.Boolean)
-    gmah_id = db.Column(db.Integer, db.ForeignKey('Gmah.id'))
+    idle = db.Column(db.Integer)
+    gmah_id = db.Column(db.Integer, db.ForeignKey('gmah.id'))
     pic_name = db.Column(db.String(50))
+
+class Borrows(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    borrower_id = db.Column(db.Integer)
+    gmah_id = db.Column(db.Integer)
+    product_id = db.Column(db.Integer)
+    start_date = db.Column(db.Date)
+    end_date = db.Column(db.Date)
+    approved = db.Column(db.Integer)
+    is_active = db.Column(db.Integer)
+
+class Donations(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(1000))
+    upload_date = db.Column(db.Date)
+    is_available = db.Column(db.Integer)
+    pic_name = db.Column(db.String(50))
+    description = db.Column(db.String(1000))
 

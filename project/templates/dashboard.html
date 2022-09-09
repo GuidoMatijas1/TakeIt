@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="homewelcome" style="text-align:center;">My Dashboard</h2>
+<div class="container">
+    <div class="row">
+         <h1 class="homewelcome" style="font-size:30px;text-align:center;"> Total Borrows</h1>
+        {% for borrow in borrows %}
+            {% if borrow.approved==1 %}
+                    <h1 class="homewelcome" style="font-size:25px;text-align:left;">Active & Upcoming Borrows</h1>
+                    <div class="col-lg-6" style="border: 1px solid black;">
+                         <div  style="margin:0 0 0 30%;">
+                            {% set imagename = (func2(borrow.product_id)).pic_name %}
+                            <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">
+                         </div>
+                       <div style="margin:0 0 0 30%;">
+                           <p>Start Date:{{ borrow.start_date }}</p>
+                           <p>End Date:{{ borrow.end_date }}</p>
+                       </div>
+                            <a class="btn btn-primary" href="{{ url_for('auth.approved_borrow_post', id=borrow.id) }}" style="margin:0 0 0 30%;">Approve</a> <br>
+                    </div>
+            {% endif %}
+        {% endfor %}
+        <br style="clear:both;">
+        <h1 class="homewelcome" style="font-size:30px;text-align:center;"> Active Borrows</h1>
+        <br style="clear:both;">
+    </div>
+</div>
+{% endblock %}

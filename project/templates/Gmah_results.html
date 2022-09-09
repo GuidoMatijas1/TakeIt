@@ -3,18 +3,25 @@
 {% block content %}
 
 <h2 class="homewelcome" style="text-align:center;">Result Page</h2>
+<div class="container">
+    <div class="row">
     {% for result in results %}
-    <div class="eachproduct">
+        <div class="col-lg-6" style="border: 1px solid black; float:left;">
+            <div style="float:right">
         {% set imagename = result.profile_picture %}
-        <img class="resultProductPhoto" src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="150px" height="150px" style="border-radius:50%"><br><br>
-        <p>Gmah Name: {{ result.name }}</p>
-        <p>Gmah City: {{ result.city }}</p>
-        <p>Gmah Category: {{ result.category }}</p>
-        <p>Gmah Owner: {{ result.owner_first_name }} {{ result.owner_last_name }}</p>
-        <a href="{{ url_for('main.gmah_page', id=result.id) }}">Gmah Profile</a>
-        <br><br>
-    </div>
+            <img class="resultProductPhoto" src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="150px" height="150px" style="border-radius:50%"><br><br>
+            </div>
+            <div style="float:left">
+            <p>Gmah Name: {{ result.name }}</p>
+            <p>Gmah City: {{ result.city }}</p>
+            <p>Gmah Category: {{ result.category }}</p>
+            <p>Gmah Owner: {{ result.owner_first_name }} {{ result.owner_last_name }}</p>
+            <a href="{{ url_for('main.gmah_page', id=result.id) }}">Gmah Profile</a>
+            </div>
+        </div>
     {% endfor %}
+    </div>
+</div>
 
 
 {% endblock %}

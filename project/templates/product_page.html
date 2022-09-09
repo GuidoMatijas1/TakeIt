@@ -18,6 +18,19 @@
 </p>
 
 </div>
+{% if gmah.id!=current_user.id %}
+    <div>
+        <form action="/borrow_item" method="POST">
+            <input type="date" name="start_date">
+            <label for="start_date">Start Date</label>
+            <input type="date" name="end_date">
+            <label for="end_date">End Date</label>
+            <input type="text" name="gmah_id" value="{{ gmah.id }}" hidden>
+            <input type="text" name="product_id" value="{{ product.id }}" hidden>
+            <input type="submit">
+{% endif %}
+        </form>
+    </div>
 <br><br>
 
     {% endfor %}
