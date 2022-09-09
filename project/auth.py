@@ -1,7 +1,7 @@
 import flask_login
 from flask import Blueprint, render_template, redirect, url_for, request, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User, Gmah, Products, Borrows
+from .models import User, Gmah, Products, Borrows, Donations
 from . import db, mail
 from flask_login import login_user, login_required, logout_user, current_user
 import sqlite3 , string, random
@@ -407,7 +407,7 @@ def borrow_item():
                          id=borrow_id)
     db.session.add(new_borrow)
     db.session.commit()
-    return check_dates(Borrows.query.filter_by(id=borrow_id).first())
+    # return check_dates(Borrows.query.filter_by(id=borrow_id).first())
     product = Products.query.filter_by(id=product_id).first()
     product_name=product.name;
     user = User.query.filter_by(id=borrower_id).first()
@@ -495,6 +495,12 @@ def approved_borrow_post(id):
     product = Products.query.filter_by(id=product_id).first()
     product.idle=0
     db.session.commit()
+    user_id = borrows.borrower_id
+    user = User.query.filter_by(id=user_id).first()
+    user_mail = user.email
+    msg = Message('New Borrow Request', sender="'TakeIt'<#{takeitapp0@gmail.com}>", recipients=[user_mail])
+    msg.body = "Your borrow request hab been accetpted!! \n The borrow of the product " + product.name + " for the dates: " + str(borrows.start_date) + " to " + str(borrows.end_date)
+    mail.send(msg)
     return redirect(url_for('auth.borrows'))
 
 
@@ -585,6 +591,29 @@ def donate_items():
 
 @auth.route('/donate_items/', methods=["POST"])
 def donate_items_post():
+    name = request.form.get('name')
+    user_id = request.form.get('user_id')
+    description = request.form.get('description')
+    f = request.files['file']
+    profile_picture = f.filename
+    f.save(os.path.join('project/static/images/products/', secure_filename(f.filename)))
+    today = datetime.now()
+    id = 1;
+    check_id = Donations.query.filter_by(id=id).first()
+    while check_id:
+        id = id + 1
+        check_id = Donations.query.filter_by(id=id).first()
+
+    new_product = Donations(id=id,
+                           name=name,
+                           description=description,
+                           upload_date=today,
+                           is_available=1,
+                           pic_name=f.filename,
+                           )
+    db.session.add(new_product)
+    db.session.commit()
+    # return "secce"
     return render_template('donate_items.html')
 
 
@@ -601,3 +630,8 @@ def dashboard_borrows():
     # render_template('donate_items.html',borrows=borrows)
 
 
+@auth.route('/donations')
+def donations():
+    results = Donations.query.all()
+    # result = Products.query.filter_by(name=serched)
+    return render_template("donations.html", results=results,func=searchgmahforprod,header="Results Page")

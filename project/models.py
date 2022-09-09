@@ -56,3 +56,12 @@ class Borrows(db.Model):
     end_date = db.Column(db.Date)
     approved = db.Column(db.Integer)
     is_active = db.Column(db.Integer)
+
+class Donations(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(1000))
+    upload_date = db.Column(db.Date)
+    is_available = db.Column(db.Integer)
+    pic_name = db.Column(db.String(50))
+    description = db.Column(db.String(1000))
+
