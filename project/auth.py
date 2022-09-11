@@ -10,6 +10,7 @@ from werkzeug.utils import secure_filename
 import os
 import pandas as pd
 from datetime import datetime, timedelta
+import geopy
 
 
 auth = Blueprint('auth', __name__)
@@ -235,26 +236,33 @@ def gmah_signup_post():
     password = request.form.get('password')
     f = request.files['file']
     password_repeat = request.form.get('password-repeat')
-    if password != password_repeat:
-        flash('passwords dont match')
+    locator = geopy.Nominatim(user_agent="MyGeocoder")
+    gmah_adress = str(street + ' ' + str(street_number) + ', ' + city + ', Israel')
+    location = locator.geocode(gmah_adress)
+    if not location:
+        flash('Your address has spelling error, please check the correct city/street name so you will appear in the map')
         return render_template('gmah_signup.html')
-    gmah_id = Gmah.query.filter_by(id=id).first()
-    gmah_email = Gmah.query.filter_by(email=email).first()
-    if gmah_id:  # if a user is found, we want to redirect back to signup page so user can try again
-        flash('ID already exists - Try forget password')
-        return redirect(url_for('auth.login'))
-    if gmah_email:
-        flash('Email already exists - Try forget password')
-        return redirect(url_for('auth.login'))
-    f.filename = id + "profile_picture.jpeg"
-    f.save(os.path.join('project/static/images/profile/', secure_filename(f.filename)))
-    new_gmah = Gmah(id=id, email=email, name=name, password=generate_password_hash(password, method='sha256'),
-                    owner_first_name=owner_first_name, owner_last_name=owner_last_name, phone=phone, city=city,
-                    street=street, street_number=street_number, category=category,profile_picture= f.filename)
+    else:
+        if password != password_repeat:
+            flash('passwords dont match')
+            return render_template('gmah_signup.html')
+        gmah_id = Gmah.query.filter_by(id=id).first()
+        gmah_email = Gmah.query.filter_by(email=email).first()
+        if gmah_id:  # if a user is found, we want to redirect back to signup page so user can try again
+            flash('ID already exists - Try forget password')
+            return redirect(url_for('auth.login'))
+        if gmah_email:
+            flash('Email already exists - Try forget password')
+            return redirect(url_for('auth.login'))
+        f.filename = id + "profile_picture.jpeg"
+        f.save(os.path.join('project/static/images/profile/', secure_filename(f.filename)))
+        new_gmah = Gmah(id=id, email=email, name=name, password=generate_password_hash(password, method='sha256'),
+                        owner_first_name=owner_first_name, owner_last_name=owner_last_name, phone=phone, city=city,
+                        street=street, street_number=street_number, category=category,profile_picture= f.filename)
 
-    db.session.add(new_gmah)
-    db.session.commit()
-    return redirect(url_for('auth.login'))
+        db.session.add(new_gmah)
+        db.session.commit()
+        return redirect(url_for('auth.login'))
 
 
 @auth.route('/logout')
