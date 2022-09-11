@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22b599f4-8866-4965-94c3-ac610ebf57e5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/project/templates/donations.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/713e73f8-34d9-42b7-8d16-b229273723f4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/713e73f8-34d9-42b7-8d16-b229273723f4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/templates/map_popup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/project/db.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/donate_items.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/donate_items.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/templates/product_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/product_results.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

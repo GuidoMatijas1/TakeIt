@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ff07e690aed9adf076ce30d6d85149d7 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_ff07e690aed9adf076ce30d6d85149d7" ></div>
+        
+</body>
+<script>    
+    
+            var map_ff07e690aed9adf076ce30d6d85149d7 = L.map(
+                "map_ff07e690aed9adf076ce30d6d85149d7",
+                {
+                    center: [32.0852997, 34.7818064],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 8,
+                    zoomControl: true,
+                    preferCanvas: true,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_265e661d69bc6ccdba585f46466452bc = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_ff07e690aed9adf076ce30d6d85149d7);
+        
+    
+            var marker_c91c8d12a23bc665fc28e91f310b5690 = L.marker(
+                [31.2649018, 35.2283002],
+                {}
+            ).addTo(map_ff07e690aed9adf076ce30d6d85149d7);
+        
+    
+        var popup_51176736e7201d81b39fd22d169a1bef = L.popup({"maxWidth": "100%"});
+
+        
+            var html_171b96482d8f1953d4b5e805b0641a79 = $(`<div id="html_171b96482d8f1953d4b5e805b0641a79" style="width: 100.0%; height: 100.0%;">  <div class="card" style="width: 18rem;">   <img src=/static/images/BigLogo.jpeg width="30px" height="30px" class="card-img-top" alt="...">   <div class="card-body">     <h5 class="card-title">fistuk</h5>     <p class="card-text">beer sheva</p>     <a href="/gmah_page/1" class="btn btn-primary" target="_blank">Go somewhere</a>   </div> </div> </div>`)[0];
+            popup_51176736e7201d81b39fd22d169a1bef.setContent(html_171b96482d8f1953d4b5e805b0641a79);
+        
+
+        marker_c91c8d12a23bc665fc28e91f310b5690.bindPopup(popup_51176736e7201d81b39fd22d169a1bef)
+        ;
+
+        
+    
+    
+            var marker_02c204ae7741d1f2ace35b7cec3f8335 = L.marker(
+                [31.9443532, 34.8398648],
+                {}
+            ).addTo(map_ff07e690aed9adf076ce30d6d85149d7);
+        
+    
+        var popup_220d238858dfa99263ca3380d3b3c368 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_899ee75cdc0f3e5a6cc2abab370301aa = $(`<div id="html_899ee75cdc0f3e5a6cc2abab370301aa" style="width: 100.0%; height: 100.0%;">  <div class="card" style="width: 18rem;">   <img src=/static/images/BigLogo.jpeg width="30px" height="30px" class="card-img-top" alt="...">   <div class="card-body">     <h5 class="card-title">123</h5>     <p class="card-text">beer yaakov</p>     <a href="/gmah_page/123" class="btn btn-primary" target="_blank">Go somewhere</a>   </div> </div> </div>`)[0];
+            popup_220d238858dfa99263ca3380d3b3c368.setContent(html_899ee75cdc0f3e5a6cc2abab370301aa);
+        
+
+        marker_02c204ae7741d1f2ace35b7cec3f8335.bindPopup(popup_220d238858dfa99263ca3380d3b3c368)
+        ;
+
+        
+    
+    
+            var marker_ed02c5f674a131dd7931db40e68338c4 = L.marker(
+                [32.8191218, 34.9983856],
+                {}
+            ).addTo(map_ff07e690aed9adf076ce30d6d85149d7);
+        
+    
+        var popup_cf866784f24b1e3c299de9e36b9f1ad7 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b0d097035fcba6609f73ce9a1af6d548 = $(`<div id="html_b0d097035fcba6609f73ce9a1af6d548" style="width: 100.0%; height: 100.0%;">  <div class="card" style="width: 18rem;">   <img src=/static/images/BigLogo.jpeg width="30px" height="30px" class="card-img-top" alt="...">   <div class="card-body">     <h5 class="card-title">8888</h5>     <p class="card-text">Haifa</p>     <a href="/gmah_page/8888" class="btn btn-primary" target="_blank">Go somewhere</a>   </div> </div> </div>`)[0];
+            popup_cf866784f24b1e3c299de9e36b9f1ad7.setContent(html_b0d097035fcba6609f73ce9a1af6d548);
+        
+
+        marker_ed02c5f674a131dd7931db40e68338c4.bindPopup(popup_cf866784f24b1e3c299de9e36b9f1ad7)
+        ;
+
+        
+    
+    
+            var marker_8b506cc05460c709f16eef963e5f41db = L.marker(
+                [32.0075432, 34.8013108],
+                {}
+            ).addTo(map_ff07e690aed9adf076ce30d6d85149d7);
+        
+    
+        var popup_109ee341cb7fec173d136d04b43c3159 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_f1528bdad0a07e3b409cd57142c5a8a4 = $(`<div id="html_f1528bdad0a07e3b409cd57142c5a8a4" style="width: 100.0%; height: 100.0%;">  <div class="card" style="width: 18rem;">   <img src=/static/images/BigLogo.jpeg width="30px" height="30px" class="card-img-top" alt="...">   <div class="card-body">     <h5 class="card-title">Computer Gmah</h5>     <p class="card-text">Holon</p>     <a href="/gmah_page/311528558" class="btn btn-primary" target="_blank">Go somewhere</a>   </div> </div> </div>`)[0];
+            popup_109ee341cb7fec173d136d04b43c3159.setContent(html_f1528bdad0a07e3b409cd57142c5a8a4);
+        
+
+        marker_8b506cc05460c709f16eef963e5f41db.bindPopup(popup_109ee341cb7fec173d136d04b43c3159)
+        ;
+
+        
+    
+</script>

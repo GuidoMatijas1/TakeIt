@@ -1,0 +1,11 @@
+{% block content %}
+
+<div class="card" style="width: 18rem;">
+  <img src={{url_for('static',filename='images/BigLogo.jpeg')}} width="30px" height="30px" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ name }}</h5>
+    <p class="card-text">{{ city }}</p>
+    <a href="{{url_for('main.gmah_page', id=id) }}" class="btn btn-primary" target="_blank">Go somewhere</a>
+  </div>
+</div>
+{% endblock %}

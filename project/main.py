@@ -5,6 +5,8 @@ import flask_sqlalchemy as fs
 from . import db
 import sqlite3
 import os
+import geopy
+import folium
 
 main = Blueprint('main', __name__)
 
@@ -76,4 +78,25 @@ def gmah_search(id):
     gmah = Gmah.query.filter_by(id=id).first()
     return render_template('product_page.html', gmah=gmah)
 
+@main.route('/test_map')
+def test_map():
+    gmah_list = Gmah.query.all()
+    locator = geopy.Nominatim(user_agent="MyGeocoder")
+    israel_location = locator.geocode('Tel Aviv')
+    map1 = folium.Map(zoom_start=8, location=[israel_location.latitude,israel_location.longitude],prefer_canvas=True        )
+    for gmah in gmah_list:
+        gmah_adress = str(gmah.street + ' ' + str(gmah.street_number) + ', ' + gmah.city + ', Israel')
+        location = locator.geocode(gmah_adress)
+        if location:
+            folium.Marker([location.latitude, location.longitude], popup=popup(gmah)).add_to(map1)
+            map1.save('test_map.html')
 
+    return map1._repr_html_()
+
+@main.route('/popup')
+def popup(gmah):
+    return render_template('map_popup.html', name=gmah.name, city=gmah.city, id=gmah.id)
+
+# @main.route('/iframe')
+# def iframe(gmah):
+#     return flask.send_file('templates/popup_iframe.html', gmah=gmah)
