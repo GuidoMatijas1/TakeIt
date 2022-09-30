@@ -1,4 +1,4 @@
-from .models import User, Gmah, Products
+from .models import User, Gmah, Products, Borrows
 from flask import Blueprint, render_template, url_for
 from flask_login import login_required, current_user
 import flask_sqlalchemy as fs
@@ -7,6 +7,7 @@ import sqlite3
 import os
 import geopy
 import folium
+from .auth import searchgmahforprod
 
 main = Blueprint('main', __name__)
 
@@ -50,7 +51,11 @@ def user_profile(email):
 @login_required
 def profile():
     gmah_list = Gmah.query.all()
-    return render_template('profile.html', items=gmah_list)
+    gmah_id = current_user.id
+    gmah = Gmah.query.filter_by(id=gmah_id).first()
+    results = Products.query.filter_by(gmah_id=gmah_id).all()
+    # return render_template("my_products.html",products=products)
+    return render_template('profile.html', items=gmah_list,results=results,func=searchgmahforprod,header="My Products")
 
 
 @main.route('/test_page')
@@ -96,6 +101,7 @@ def test_map():
 @main.route('/popup')
 def popup(gmah):
     return render_template('map_popup.html', name=gmah.name, city=gmah.city, id=gmah.id)
+
 
 # @main.route('/iframe')
 # def iframe(gmah):

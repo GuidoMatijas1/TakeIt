@@ -1,29 +1,50 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
 {% block content %}
-<h2 class="homewelcome" style="text-align:center;">My Dashboard</h2>
-<div class="container">
-    <div class="row">
-         <h1 class="homewelcome" style="font-size:30px;text-align:center;"> Total Borrows</h1>
-        {% for borrow in borrows %}
-            {% if borrow.approved==1 %}
-                    <h1 class="homewelcome" style="font-size:25px;text-align:left;">Active & Upcoming Borrows</h1>
-                    <div class="col-lg-6" style="border: 1px solid black;">
-                         <div  style="margin:0 0 0 30%;">
-                            {% set imagename = (func2(borrow.product_id)).pic_name %}
-                            <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">
-                         </div>
-                       <div style="margin:0 0 0 30%;">
-                           <p>Start Date:{{ borrow.start_date }}</p>
-                           <p>End Date:{{ borrow.end_date }}</p>
-                       </div>
-                            <a class="btn btn-primary" href="{{ url_for('auth.approved_borrow_post', id=borrow.id) }}" style="margin:0 0 0 30%;">Approve</a> <br>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+ <div class="site-panel"style="margin-top:110px">
+    <div class="container">
+        <div class="row">
+                <div class="col-md-3 well">
+                    <div class= "sidebar">
+                        <div class="list-group">
+  <a href="#" class="list-group-item active">My Profile</a>
+  <a href="#" class="list-group-item">Borrows Starting Today</a>
+  <a href="#" class="list-group-item">Borrows Returning Today</a>
+  <a href="#" class="list-group-item">Active Borrows</a>
+  <a href="#" class="list-group-item">Waiting for approve Borrows</a>
+  <a href="#" class="list-group-item">Approved And Future Borrows</a>
+<!--  <a href="#" class="list-group-item">Bidding History</a>-->
+<!--  <a href="#" class="list-group-item">My Payments</a>-->
+</div>
                     </div>
-            {% endif %}
-        {% endfor %}
-        <br style="clear:both;">
-        <h1 class="homewelcome" style="font-size:30px;text-align:center;"> Active Borrows</h1>
-        <br style="clear:both;">
+                </div>
+                <div class="col-md-9 ">
+                    <div class= "content-box well">
+                     <legend>{{ gmah.name }} </legend>
+                     <div class="row">
+                     {% for product in products %}
+                         <div>{{  product.name}}</div>
+                        {% set imagename = product.pic_name %}
+                        <div>
+                        <img src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="220px" height="220px"></br>
+                        </div>
+                                 <br style="clear:both;">
+
+                     {% endfor %}
+
+	                 </div>
+                </div>
+    </div>
+        </div>
+    </div>
+ </div>
     </div>
 </div>
+
 {% endblock %}
