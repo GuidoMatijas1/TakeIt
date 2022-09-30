@@ -1,28 +1,54 @@
 {% extends "base.html" %}
 
 {% block content %}
-<body>
+<!--  {% if  current_user.category %}-->
+<!--&lt;!&ndash;  Gmah&ndash;&gt;-->
+<!--  {% set imagename = current_user.profile_picture %}-->
+<!--  <img src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="150px" height="150px"-->
+<!--       style="border-radius:50%">-->
 
-  {% if  current_user.category %}
-<!--  Gmah-->
-  {% set imagename = current_user.profile_picture %}
-  <img src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="150px" height="150px"
-       style="border-radius:50%">
+<!--  {% else %}-->
+<!--&lt;!&ndash;  User&ndash;&gt;-->
+<!--      <div class="profileline">-->
+<!--          {% set imagename = current_user.profile_picture %}-->
+<!--          <img class="profilephoto" src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="200px" height="200px"-->
+<!--          style="border-radius:50%">-->
+<!--      </div>-->
+<!--      <div class="productdesc">-->
+<!--    <h1 class="title">-->
 
-  {% else %}
-<!--  User-->
-      <div class="profileline">
+<!--        !-->
+<!--    </h1>-->
+<!--  {% endif %}-->
+<!--        </div>-->
+<h2 class="homewelcome" style="text-align:center;">Profile Page: {{ current_user.name }} </h2>
+      <div class="profileline" style="display:block; margin-left:40%;">
           {% set imagename = current_user.profile_picture %}
           <img class="profilephoto" src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="200px" height="200px"
           style="border-radius:50%">
       </div>
-      <div class="productdesc">
-    <h1 class="title">
-
-        This is the page of User: {{ current_user.name }}!
-    </h1>
-  {% endif %}
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<h2 class="homewelcome" style="text-align:center;">Product List </h2>
+<div class="container">
+    <div class="row space">
+    {% for result in results %}
+<!--        -->
+        <div class="col-xs-4" style="border: 1px solid black;">
+          {% set imagename = result.pic_name %}
+          <div style="float:left;">
+              <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">
+                <p>Product Name: {{ result.name }}</p>
+          </div>
+            <div style="float:right; margin:10% 0 0 0">
+                {% if result.idle %}
+                <p style="color: green;">This Product is available</p>
+                <a class="btn btn-primary" href="{{ url_for('main.product_page', id=result.id) }}">Borrow</a> <br>
+               {% else %}
+                <p style="color: red;" >This Product isnt available</p>
+              {% endif %}
+            </div>
         </div>
-
-</body>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

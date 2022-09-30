@@ -627,8 +627,11 @@ def donate_items_post():
 
 @auth.route('/dashboard/')
 def dashboard():
-    borrows = Borrows.query.filter_by(gmah_id=current_user.id).all()
-    return render_template('dashboard.html', borrows=borrows, func2=return_product)
+    gmah_id = current_user.id
+    gmah = Gmah.query.filter_by(id=gmah_id).first()
+    borrows_list = Borrows.query.filter_by(gmah_id=gmah_id).all()
+    product_list = Products.query.filter_by(gmah_id=gmah_id).all()
+    return render_template('dashboard.html', gmah=gmah, id=gmah_id, borrows=borrows_list, products=product_list)
 
 
 @auth.route('/dashboard_borrows/', methods=["POST"])
@@ -642,4 +645,4 @@ def dashboard_borrows():
 def donations():
     results = Donations.query.all()
     # result = Products.query.filter_by(name=serched)
-    return render_template("donations.html", results=results,func=searchgmahforprod,header="Results Page")
+    return render_template("donations.html", results=results,func=searchgmahforprod,header="Item For Donations")

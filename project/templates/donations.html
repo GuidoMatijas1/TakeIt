@@ -9,7 +9,6 @@
       {% set imagename = result.pic_name %}
       <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">
       <br class=”blank” />
-      {% if header=="Results Page" %}
         <p>Product Name: {{ result.name }}</p>
        {% if result.is_available %}
         <p style="color: green;">This Product is available</p>
@@ -17,7 +16,6 @@
        {% else %}
         <p style="color: red;" >This Product isnt available</p>
        {% endif %}
-      {% endif %}
   </div>
     {% endfor %}
 </div>
