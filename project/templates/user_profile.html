@@ -1,14 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2 class="homewelcome" style="text-align:center;">Profile Page: {{ current_user.name }} </h2>
+<h2 class="homewelcome" style="text-align:center;">Profile Page: {{ user.name }} </h2>
       <div class="profileline" style="display:block; margin-left:40%;">
-          {% set imagename = current_user.profile_picture %}
+          {% set imagename = user.profile_picture %}
           <img class="profilephoto" src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="200px" height="200px"
           style="border-radius:50%">
       </div>
     <br style="clear:both;">
-
+    <div style="margin: 2% 0 0 20%;">
+        {% if user.owner_first_name %}<!-- if the object is gmah print full name-->
+        <p class="profiledesc">Name: {{ user.owner_first_name }} {{user.owner_last_name}} </p>
+        {% else %} <!-- else print full name-->
+        <p class="profiledesc">Name: {{ user.name }} {{user.last_name}} </p>
+        {% endif %}
+        <p class="profiledesc">Address: {{ user.city }},{{ user.street }}  {{ user.street_number }}</p>
+        <p class="profiledesc">Phone: {{ user.phone }} </p>
+    </div>
+    {% if gmah %}<!-- dont print header product list if object is not gmah-->
 <h2 class="homewelcome" style="text-align:center;">Product List </h2>
     <div class="container">
     <div class="row space">
@@ -28,7 +37,9 @@
               {% endif %}
             </div>
         </div>
-        {% endfor %}
+         {% endfor %}
+        {% endif %}
+
     </div>
 </div>
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block content %}
 <h2 class="homewelcome" style="text-align:center;">{{header}}</h2>
 
-<div class="flex-container">
+    <div class="flex-container" >
     {% for result in results %}
   <div>
       {% set imagename = result.pic_name %}
@@ -12,7 +12,43 @@
       {% if header=="Results Page" %}
         <p>Product Name: {{ result.name }}</p>
         <p>Gmah City: {{ func(result.id) }}</p>
-      <a class="btn btn-primary" href="{{ url_for('main.product_page', id=result.id) }}">Borrow</a> <br>
+      <a class="btn btn-primary" href="{{ url_for('main.product_page', id=result.id) }}">Borrow</a>
+      {% endif %}
+  </div>
+    {% endfor %}
+        {% for result in results2 %}
+  <div>
+      {% set imagename = result.profile_picture %}
+      <img class="resultProductPhoto" src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="180px" height="150px">
+      <br class=”blank” />
+      {% if header=="Results Page" %}
+        <p>Gmah Name: {{ result.name }}</p>
+        <p>Gmah City: {{ result.city }}</p>
+      <a class="btn btn-primary" href="{{ url_for('main.profile', email=result.email) }}">Gmah Profile</a> <br>
+      {% endif %}
+  </div>
+    {% endfor %}
+           {% for result in results3 %}
+  <div>
+      {% set imagename = result.profile_picture %}
+      <img class="resultProductPhoto" src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="180px" height="150px">
+      <br class=”blank” />
+      {% if header=="Results Page" %}
+        <p>Gmah Name: {{ result.name }}</p>
+        <p>Gmah Category: {{ result.category }}</p>
+      <a class="btn btn-primary" href="{{ url_for('main.profile', email=result.email) }}">Gmah Profile</a> <br>
+      {% endif %}
+  </div>
+    {% endfor %}
+    {% for result in results4 %}
+  <div>
+      {% set imagename = result.profile_picture %}
+      <img class="resultProductPhoto" src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="180px" height="150px">
+      <br class=”blank” />
+      {% if header=="Results Page" %}
+        <p>Gmah Name: {{ result.name }}</p>
+        <p>Gmah City: {{ result.city }}</p>
+      <a class="btn btn-primary" href="{{ url_for('main.profile', email=result.email) }}">Gmah Profile</a> <br>
       {% endif %}
   </div>
     {% endfor %}

@@ -3,8 +3,8 @@
 {% block content %}
 <div class="column is-4 is-offset-4">
     <div class="box">
-<h2 style="text-align:center;">Donate Items</h2>
-    <form action="/donate_items" method="POST" class="customesearch" enctype="multipart/form-data">
+    <form action="/donate_items" method="POST" class="centerform" enctype="multipart/form-data">
+        <h1 class="textcenter">Donate Items</h1>
         <input type="text" name="user_id" value="{{ current_user.id }}" hidden>
     <!--    <input type="text" name="category" value="{{ current_user.category }}" hidden>-->
         <label for="name" ><b>Product name</label>
@@ -13,6 +13,14 @@
         <input type="name" name="description" id="description" placeholder="Search Anything Here..." class="form-control" style="width:70%">
         <label for="upload_product" ><b>Product Photo</label>
         <input type="file" id="file" name="file" class="form-control" >
+        {% if not current_user.is_authenticated %}
+            <label for="donate_name" ><b>Your Name</label>
+            <input type="donate_name" name="donate_name" id="donate_name" placeholder="Search Anything Here..." class="form-control" style="width:70%">
+            <label for="donate_phone" ><b>Your Phone number</label>
+            <input type="donate_phone" name="donate_phone" id="donate_phone" placeholder="Search Anything Here..." class="form-control" style="width:70%">
+        {% else %}
+
+        {% endif %}
         <input style="width:30%;" type="submit" class="form-control">
 
     </form>

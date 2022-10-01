@@ -38,7 +38,7 @@
                                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Donations <span
                                         class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Donate Money</a></li>
+<!--                                        <li><a href="#">Donate Money</a></li>-->
                                         <li><a href="/donate_items">Donate Items</a></li>
                                     </ul>
                                 </li>
@@ -66,7 +66,9 @@
 
                             <ul class="nav navbar-nav navbar-right">
                                 {% if current_user.is_authenticated %}
-                                <li><a href="{{ url_for('main.profile') }}">
+                                <li><a>
+                                <span class="glyphicon"></span> Connected as : {{ current_user.name }} <name></name></a></li>
+                                <li><a href="{{ url_for('main.profile', email=current_user.email) }}">
                                     <span class="glyphicon glyphicon-user"></span> Profile</a></li>
                                 <li><a href="{{ url_for('auth.logout') }}">
                                     <span class="glyphicon glyphicon-user"></span> Logout</a></li>

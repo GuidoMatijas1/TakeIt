@@ -1,4 +1,4 @@
-from .models import User, Gmah, Products, Borrows
+from .models import User, Gmah, Products, Borrows, Donations
 from flask import Blueprint, render_template, url_for
 from flask_login import login_required, current_user
 import flask_sqlalchemy as fs
@@ -42,20 +42,36 @@ def test():
     return render_template('test.html')
 
 
-@main.route('/user_profile/<email>')
-def user_profile(email):
-    user = User.query.filter_by(email=email).first()
-    return render_template('profile.html', user=user)
+# @main.route('/user_profile/<email>')
+# def user_profile(email):
+#     user = User.query.filter_by(email=email).first()
+#     gmah=False
+#     if not user:
+#         gmah=True
+#         user = Gmah.query.filter_by(email=email).first()
+#     user_id=user.id
+#     results = Products.query.filter_by(gmah_id=user_id).all()
+#     return render_template('user_profile.html', user=user,results=results, gmah=gmah)
 
-@main.route('/profile')
-@login_required
-def profile():
-    gmah_list = Gmah.query.all()
-    gmah_id = current_user.id
-    gmah = Gmah.query.filter_by(id=gmah_id).first()
-    results = Products.query.filter_by(gmah_id=gmah_id).all()
-    # return render_template("my_products.html",products=products)
-    return render_template('profile.html', items=gmah_list,results=results,func=searchgmahforprod,header="My Products")
+
+@main.route('/profile/<email>')
+def profile(email):
+    user = User.query.filter_by(email=email).first()
+    gmah=False
+    if not user:
+        gmah=True
+        user = Gmah.query.filter_by(email=email).first()
+    user_id=user.id
+    results = Products.query.filter_by(gmah_id=user_id).all()
+    return render_template('user_profile.html', user=user,results=results, gmah=gmah)
+
+
+# @main.route('/profile')
+# @login_required
+# def profile():
+#     gmah_id = current_user.id
+#     results = Products.query.filter_by(gmah_id=gmah_id).all()
+#     return render_template('profile.html',results=results)
 
 
 @main.route('/test_page')
@@ -71,6 +87,21 @@ def product_page(id):
     return render_template('product_page.html', product=product, gmah=gmah,)
 
 
+@main.route('/donate_product_page/<id>')
+@login_required
+def donate_product_page(id):
+    product = Donations.query.filter_by(id=id).first()
+    owner =None
+    if product.user_id:
+        gmah = Gmah.query.filter_by(id=str(product.user_id)).first()
+        if not gmah:
+            user = User.query.filter_by(id=str(product.user_id)).first()
+            owner = user
+        else:
+            owner = gmah
+    return render_template('donate_product_page.html', product=product,owner=owner)
+
+
 @main.route('/gmah_page/<id>')
 def gmah_page(id):
     gmah = Gmah.query.filter_by(id=id).first()
@@ -78,10 +109,10 @@ def gmah_page(id):
     return render_template('gmah_page.html',gmah=gmah,products=products)
 
 
-@main.route('/gmah_search/<id>')
-def gmah_search(id):
-    gmah = Gmah.query.filter_by(id=id).first()
-    return render_template('product_page.html', gmah=gmah)
+# @main.route('/gmah_search/<id>')
+# def gmah_search(id):
+#     gmah = Gmah.query.filter_by(id=id).first()
+#     return render_template('product_page.html', gmah=gmah)
 
 @main.route('/test_map')
 def test_map():
@@ -95,6 +126,25 @@ def test_map():
         if location:
             folium.Marker([location.latitude, location.longitude], popup=popup(gmah)).add_to(map1)
             map1.save('test_map.html')
+
+    return map1._repr_html_()
+
+
+@main.route('/test_map_profile/<email>')
+def test_map_profile(email):
+    gmah = Gmah.query.filter_by(email=email).first()
+    locator = geopy.Nominatim(user_agent="MyGeocoder")
+    israel_location = locator.geocode('Tel Aviv')
+    gmah_adress = str(gmah.street + ' ' + str(gmah.street_number) + ', ' + gmah.city + ', Israel')
+    location = locator.geocode(gmah_adress)
+    if not location:
+        map1 = folium.Map(zoom_start=9, location=[israel_location.latitude, israel_location.longitude],
+                          prefer_canvas=True)
+    else:
+        map1 = folium.Map(zoom_start=15, location=[location.latitude, location.longitude], prefer_canvas=True)
+    if location:
+        folium.Marker([location.latitude, location.longitude], popup=popup(gmah)).add_to(map1)
+        map1.save('test_map.html')
 
     return map1._repr_html_()
 

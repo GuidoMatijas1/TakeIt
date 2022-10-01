@@ -24,11 +24,11 @@
                 Here you can borrow items from the closest place to your home
             </p>
             <div class="floatleft" >
-                  <button class="homepushable ">
-                      <a href="/donate_money" class="homefront raise shadowed" style="text-decoration:none">
-                        Donate Money
-                      </a>
-                   </button>
+<!--                  <button class="homepushable ">-->
+<!--                      <a href="/donate_money" class="homefront raise shadowed" style="text-decoration:none">-->
+<!--                        Donate Money-->
+<!--                      </a>-->
+<!--                   </button>-->
                   <button class="homepushable ">
                       <a href="/donate_money" class="homefront raise shadowed" style="text-decoration:none">
                         Donate item
@@ -36,12 +36,22 @@
                   </button>
             </div>
         </div>
+        {% if not current_user.is_authenticated %}
         <div class="split homeright">
       <iframe class="mapcentered"
               src="{{ url_for('main.test_map') }}"
                 width="690" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
+        {% else %}
+                <div class="split homeright">
+      <iframe class="mapcentered"
+              src="{{ url_for('main.test_map_profile' , email=current_user.email) }}"
+
+                width="690" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+        {% endif %}
 
     </div>
 
