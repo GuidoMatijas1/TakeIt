@@ -12,7 +12,7 @@
         <p>Product Name: {{ result.name }}</p>
        {% if result.is_available %}
         <p style="color: green;">This Product is available</p>
-      <a class="btn btn-primary" href="{{ url_for('main.product_page', id=result.id) }}">Contact</a> <br>
+      <a class="btn btn-primary" href="{{ url_for('main.donate_product_page', id=result.id) }}">Contact</a> <br>
        {% else %}
         <p style="color: red;" >This Product isnt available</p>
        {% endif %}

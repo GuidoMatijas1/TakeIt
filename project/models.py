@@ -64,4 +64,7 @@ class Donations(db.Model):
     is_available = db.Column(db.Integer)
     pic_name = db.Column(db.String(50))
     description = db.Column(db.String(1000))
+    donate_name = db.Column(db.String(1000))
+    donate_phone = db.Column(db.String(10))
+    user_id = db.Column(db.Integer)
 

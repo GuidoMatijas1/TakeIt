@@ -17,14 +17,24 @@ def create_app():
 
     db.init_app(app)
 
-    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-    app.config['MAIL_PORT'] = 465
-    app.config['MAIL_USERNAME'] = 'takeitapp0@gmail.com'
-    app.config['MAIL_PASSWORD'] = 'jhoznewwarrylbws'
-    app.config['MAIL_USE_TLS'] = False
-    app.config['MAIL_USE_SSL'] = True
-
+    app.config['SECRET_KEY'] = 'top-secret!'
+    app.config['MAIL_SERVER'] = 'smtp.sendgrid.net'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USERNAME'] = 'apikey'
+    # app.config['MAIL_PASSWORD'] = os.environ.get('SENDGRID_API_KEY')
+    app.config['MAIL_PASSWORD'] = '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'
+    # app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER')
+    app.config['MAIL_DEFAULT_SENDER'] ='info@takeit.lol'
     mail = Mail(app)
+    # app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    # app.config['MAIL_PORT'] = 465
+    # app.config['MAIL_USERNAME'] = 'takeitapp0@gmail.com'
+    # app.config['MAIL_PASSWORD'] = 'jhoznewwarrylbws'
+    # app.config['MAIL_USE_TLS'] = False
+    # app.config['MAIL_USE_SSL'] = True
+    #
+    # mail = Mail(app)
 
     uploads_dir = os.path.join('project/static/images')
 

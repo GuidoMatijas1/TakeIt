@@ -312,14 +312,21 @@ def forget_send_mail(user_id):
         password=generate_password_hash(randomstr, method='sha256')
         user_query.password = password
         db.session.commit()
+        recipient = user_query.email
    else:
         randomstr = ''.join(random.choices(string.ascii_letters + string.digits, k=9))
         password = generate_password_hash(randomstr, method='sha256')
         gmah_query.password = password
         db.session.commit()
-   msg = Message('Hello', sender = "'TakeIt'<#{takeitapp0@gmail.com}>", recipients = ['guyshmuel93@gmail.com'])
-   msg.body = "Your new password is: " +str(randomstr)
+        recipient = gmah_query.email
+
+   msg = Message('Hello', recipients = [recipient])
+   msg.body = 'Your new password is: ' +str(randomstr)
+   # msg.html = '<p>This is a test email!</p>'
    mail.send(msg)
+   # msg = Message('Hello', sender = "'TakeIt'<#{takeitapp0@gmail.com}>", recipients = ['guyshmuel93@gmail.com'])
+   # msg.body = "Your new password is: " +str(randomstr)
+   # mail.send(msg)
    return redirect(url_for('auth.login'))
 
 # /*
@@ -352,14 +359,22 @@ def searchgmahbycity():
 #     result2 = Gmah.query.filter(Gmah.name.like('%' + serched + '%')).order_by(Gmah.name)
 #     return render_template("search_all.html", results=result,func=searchgmahforprod,header="Results Page", results2 = result2)
 
+@auth.route('/searchforproduct', methods=["POST"])
+def searchforproduct():
+    serched = request.form.get('search')
+    result = Products.query.filter(Products.name.like('%'+serched+'%')).order_by(Products.name)
+    return render_template("product_results.html", results=result,func=searchgmahforprod,header="Results Page")
+
 
 # Create Search Function
 @auth.route('/search', methods=["POST"])
 def search():
     serched = request.form.get('search')
-    # result = Products.query.filter_by(name=serched)
+    gmah = Gmah.query.filter(Gmah.name.like('%'+serched+'%')).order_by(Gmah.name)
     result = Products.query.filter(Products.name.like('%'+serched+'%')).order_by(Products.name)
-    return render_template("product_results.html", results=result,func=searchgmahforprod,header="Results Page")
+    categories =  Gmah.query.filter(Gmah.category.like('%'+serched+'%')).order_by(Gmah.category)
+    cities =  Gmah.query.filter(Gmah.city.like('%'+serched+'%')).order_by(Gmah.city )
+    return render_template("product_results.html", results=result,results2=gmah,results3=categories,results4=cities,func=searchgmahforprod,header="Results Page")
 
 @auth.route('/searchgmahforprod/<id>')
 def searchgmahforprod(id):
@@ -423,9 +438,13 @@ def borrow_item():
     gmah = Gmah.query.filter_by(id=gmah_id).first()
     gmah_mail = gmah.email
     # link = url_for('auth.gmah_approve', id=borrow_id, external=True)
-    msg = Message('New Borrow Request', sender="'TakeIt'<#{takeitapp0@gmail.com}>", recipients=[gmah_mail])
-    msg.body = "You've just got request for Item:" + str(product.name) + " for the dates: " + start_date + " to " + end_date+ ". \n By the user " + user_name
+    msg = Message('Hello', recipients=[gmah_mail])
+    msg.body = "You've just got request for Item:" + str(product.name) + " for the dates: " + start_date + " to " + end_date+ ". \n By the user " + user_name + "for approve: http://takeit.lol/borrows/"
+    # msg.  html = '<p>This is a test email!</p>'
     mail.send(msg)
+    # msg = Message('New Borrow Request', sender="'TakeIt'<#{takeitapp0@gmail.com}>", recipients=[gmah_mail])
+    # msg.body = "You've just got request for Item:" + str(product.name) + " for the dates: " + start_date + " to " + end_date+ ". \n By the user " + user_name
+    # mail.send(msg)
     return render_template('index.html')
 
 @auth.route('/add_product/')
@@ -496,7 +515,6 @@ def borrows():
 @auth.route('/approved_borrow/<id>')
 @login_required
 def approved_borrow_post(id):
-
     borrows = Borrows.query.filter_by(id=id).first()
     borrows.approved=1
     product_id = borrows.product_id
@@ -506,7 +524,7 @@ def approved_borrow_post(id):
     user_id = borrows.borrower_id
     user = User.query.filter_by(id=user_id).first()
     user_mail = user.email
-    msg = Message('New Borrow Request', sender="'TakeIt'<#{takeitapp0@gmail.com}>", recipients=[user_mail])
+    msg = Message('Hello', recipients=[user_mail])
     msg.body = "Your borrow request hab been accetpted!! \n The borrow of the product " + product.name + " for the dates: " + str(borrows.start_date) + " to " + str(borrows.end_date)
     mail.send(msg)
     return redirect(url_for('auth.borrows'))
@@ -602,6 +620,8 @@ def donate_items_post():
     name = request.form.get('name')
     user_id = request.form.get('user_id')
     description = request.form.get('description')
+    donate_name = request.form.get('donate_name')
+    donate_phone = request.form.get('donate_phone')
     f = request.files['file']
     profile_picture = f.filename
     f.save(os.path.join('project/static/images/products/', secure_filename(f.filename)))
@@ -611,17 +631,29 @@ def donate_items_post():
     while check_id:
         id = id + 1
         check_id = Donations.query.filter_by(id=id).first()
+    if donate_phone:
+        new_product = Donations(id=id,
+                                name=name,
+                                description=description,
+                                upload_date=today,
+                                is_available=1,
+                                pic_name=f.filename,
+                                donate_name=donate_name,
+                                donate_phone=donate_phone,
+                                )
 
-    new_product = Donations(id=id,
-                           name=name,
-                           description=description,
-                           upload_date=today,
-                           is_available=1,
-                           pic_name=f.filename,
-                           )
+    else:
+        new_product = Donations(id=id,
+                               name=name,
+                               description=description,
+                               upload_date=today,
+                               is_available=1,
+                               pic_name=f.filename,
+                               user_id=user_id,
+                               )
+
     db.session.add(new_product)
     db.session.commit()
-    # return "secce"
     return render_template('donate_items.html')
 
 

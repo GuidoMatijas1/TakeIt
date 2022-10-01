@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Product page of product : {{product.name }} </h2>
+
+    {% set imagename = product.pic_name %}
+    <div class="productphoto">
+    <img src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="220px" height="220px"></br>
+    </div>
+    {% if product.user_id %}
+    <div class="productdesc">
+    <p>Name: {{ product.name }}</p>
+    <p>Gmah That want to donate this item: {{owner.name}}</p>
+    <p>the Gmah : {{owner.name}} located in: {{owner.city}} on street: {{owner.street}} {{owner.street_number}}</p>
+    <p>the contact person is: {{owner.owner_first_name}} {{owner.owner_last_name}}</p>
+    <p>the contact detailes: {{owner.phone}}</p>
+</div>
+
+    {% else %}
+    <div class="productdesc">
+        <p>Name:        {{ product.name }}</p>
+        <p>This product belongs to:  {{product.donate_name}}</p>
+        <p>To contact donate: {{product.donate_phone}}</p>
+    </p>
+        {% endif %}
+</div>
+        </form>
+    </div>
+<br><br>
+
+
+{% endblock %}
+
