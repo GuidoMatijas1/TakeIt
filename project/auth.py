@@ -476,7 +476,11 @@ def add_product_post():
                         id=check_id)
     db.session.add(new_product)
     db.session.commit()
-    return render_template("profile.html")
+    gmah = Gmah.query.filter_by(id=gmah_id).first()
+    user = gmah
+    results = Products.query.filter_by(id=gmah_id).all()
+    return render_template('user_profile.html', user=user,results=results, gmah=gmah)
+    # return render_template("profile.html")
 
 
 @auth.route('/borrows/')
@@ -623,7 +627,10 @@ def donate_items_post():
     donate_name = request.form.get('donate_name')
     donate_phone = request.form.get('donate_phone')
     f = request.files['file']
-    profile_picture = f.filename
+
+
+
+    _picture = f.filename
     f.save(os.path.join('project/static/images/products/', secure_filename(f.filename)))
     today = datetime.now()
     id = 1;
