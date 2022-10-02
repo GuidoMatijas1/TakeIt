@@ -15,7 +15,6 @@
             <div style="float:right; margin:10% 0 0 0">
                 {% if result.idle %}
                 <p style="color: green;">This Product is available</p>
-                <a class="btn btn-primary" href="{{ url_for('main.product_page', id=result.id) }}">Borrow</a> <br>
                {% else %}
                 <p style="color: red;" >This Product isnt available</p>
               {% endif %}
