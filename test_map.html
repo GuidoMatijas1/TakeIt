@@ -23,7 +23,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_9c5417a22c200cf2fd65e6ecf1a21bd7 {
+                #map_8aa4a99fde86367c3d2d1083dab1e422 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -35,17 +35,17 @@
 </head>
 <body>    
     
-            <div class="folium-map" id="map_9c5417a22c200cf2fd65e6ecf1a21bd7" ></div>
+            <div class="folium-map" id="map_8aa4a99fde86367c3d2d1083dab1e422" ></div>
         
 </body>
 <script>    
     
-            var map_9c5417a22c200cf2fd65e6ecf1a21bd7 = L.map(
-                "map_9c5417a22c200cf2fd65e6ecf1a21bd7",
+            var map_8aa4a99fde86367c3d2d1083dab1e422 = L.map(
+                "map_8aa4a99fde86367c3d2d1083dab1e422",
                 {
-                    center: [32.066504, 34.7860355],
+                    center: [32.0852997, 34.7818064],
                     crs: L.CRS.EPSG3857,
-                    zoom: 15,
+                    zoom: 8,
                     zoomControl: true,
                     preferCanvas: true,
                 }
@@ -55,26 +55,102 @@
 
         
     
-            var tile_layer_b31f5e54ab60d42090fe6997b985ddde = L.tileLayer(
+            var tile_layer_eb61b817549419b28800b86b0fe55db9 = L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            ).addTo(map_9c5417a22c200cf2fd65e6ecf1a21bd7);
+            ).addTo(map_8aa4a99fde86367c3d2d1083dab1e422);
         
     
-            var marker_40fba19f7762b2068e264f8304462b86 = L.marker(
+            var marker_81cc240bbaa9e195d315116f04df4741 = L.marker(
+                [31.2649018, 35.2283002],
+                {}
+            ).addTo(map_8aa4a99fde86367c3d2d1083dab1e422);
+        
+    
+        var popup_d8e7290fa38067a0ba29f9684d53aa7e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_f5ab0475d35800d6e92f23c8f45183c9 = $(`<div id="html_f5ab0475d35800d6e92f23c8f45183c9" style="width: 100.0%; height: 100.0%;">  <div class="card" style="width: 18rem;">   <img src=/static/images/BigLogo.jpeg width="30px" height="30px" class="card-img-top" alt="...">   <div class="card-body">     <h5 class="card-title">fistuk</h5>     <p class="card-text">beer sheva</p>     <a href="/gmah_page/1" class="btn btn-primary" target="_blank">Go somewhere</a>   </div> </div> </div>`)[0];
+            popup_d8e7290fa38067a0ba29f9684d53aa7e.setContent(html_f5ab0475d35800d6e92f23c8f45183c9);
+        
+
+        marker_81cc240bbaa9e195d315116f04df4741.bindPopup(popup_d8e7290fa38067a0ba29f9684d53aa7e)
+        ;
+
+        
+    
+    
+            var marker_58c0c54cecf25cc101ab4a9aacbde943 = L.marker(
                 [32.066504, 34.7860355],
                 {}
-            ).addTo(map_9c5417a22c200cf2fd65e6ecf1a21bd7);
+            ).addTo(map_8aa4a99fde86367c3d2d1083dab1e422);
         
     
-        var popup_08b20c6d4c76c72db663fd506fa6da92 = L.popup({"maxWidth": "100%"});
+        var popup_81a4180247d929ba1990a878c5f3a59f = L.popup({"maxWidth": "100%"});
 
         
-            var html_29666b8cc345dfdb4f0d2ba7e16091a5 = $(`<div id="html_29666b8cc345dfdb4f0d2ba7e16091a5" style="width: 100.0%; height: 100.0%;">  <div class="card" style="width: 18rem;">   <img src=/static/images/BigLogo.jpeg width="30px" height="30px" class="card-img-top" alt="...">   <div class="card-body">     <h5 class="card-title">Baby Gmah</h5>     <p class="card-text">Tel-Aviv</p>     <a href="/gmah_page/12" class="btn btn-primary" target="_blank">Go somewhere</a>   </div> </div> </div>`)[0];
-            popup_08b20c6d4c76c72db663fd506fa6da92.setContent(html_29666b8cc345dfdb4f0d2ba7e16091a5);
+            var html_f3dcb464b6616b54025ee21e0cd5775c = $(`<div id="html_f3dcb464b6616b54025ee21e0cd5775c" style="width: 100.0%; height: 100.0%;">  <div class="card" style="width: 18rem;">   <img src=/static/images/BigLogo.jpeg width="30px" height="30px" class="card-img-top" alt="...">   <div class="card-body">     <h5 class="card-title">Baby Gmah</h5>     <p class="card-text">Tel-Aviv</p>     <a href="/gmah_page/12" class="btn btn-primary" target="_blank">Go somewhere</a>   </div> </div> </div>`)[0];
+            popup_81a4180247d929ba1990a878c5f3a59f.setContent(html_f3dcb464b6616b54025ee21e0cd5775c);
         
 
-        marker_40fba19f7762b2068e264f8304462b86.bindPopup(popup_08b20c6d4c76c72db663fd506fa6da92)
+        marker_58c0c54cecf25cc101ab4a9aacbde943.bindPopup(popup_81a4180247d929ba1990a878c5f3a59f)
+        ;
+
+        
+    
+    
+            var marker_1d11d5e3e61c728709a69088940c1c91 = L.marker(
+                [31.9443532, 34.8398648],
+                {}
+            ).addTo(map_8aa4a99fde86367c3d2d1083dab1e422);
+        
+    
+        var popup_0354e67582cd73156f22a688cddf3bad = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ca0736f2d432d91028d6a9ae93be3873 = $(`<div id="html_ca0736f2d432d91028d6a9ae93be3873" style="width: 100.0%; height: 100.0%;">  <div class="card" style="width: 18rem;">   <img src=/static/images/BigLogo.jpeg width="30px" height="30px" class="card-img-top" alt="...">   <div class="card-body">     <h5 class="card-title">123</h5>     <p class="card-text">beer yaakov</p>     <a href="/gmah_page/123" class="btn btn-primary" target="_blank">Go somewhere</a>   </div> </div> </div>`)[0];
+            popup_0354e67582cd73156f22a688cddf3bad.setContent(html_ca0736f2d432d91028d6a9ae93be3873);
+        
+
+        marker_1d11d5e3e61c728709a69088940c1c91.bindPopup(popup_0354e67582cd73156f22a688cddf3bad)
+        ;
+
+        
+    
+    
+            var marker_e125ac99f006beb1d3bb1767394f0ef3 = L.marker(
+                [32.8191218, 34.9983856],
+                {}
+            ).addTo(map_8aa4a99fde86367c3d2d1083dab1e422);
+        
+    
+        var popup_5433b9632f1bb493b7709b0e5b853f20 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_00dc6a6729782f7f971780e8ebec1746 = $(`<div id="html_00dc6a6729782f7f971780e8ebec1746" style="width: 100.0%; height: 100.0%;">  <div class="card" style="width: 18rem;">   <img src=/static/images/BigLogo.jpeg width="30px" height="30px" class="card-img-top" alt="...">   <div class="card-body">     <h5 class="card-title">8888</h5>     <p class="card-text">Haifa</p>     <a href="/gmah_page/8888" class="btn btn-primary" target="_blank">Go somewhere</a>   </div> </div> </div>`)[0];
+            popup_5433b9632f1bb493b7709b0e5b853f20.setContent(html_00dc6a6729782f7f971780e8ebec1746);
+        
+
+        marker_e125ac99f006beb1d3bb1767394f0ef3.bindPopup(popup_5433b9632f1bb493b7709b0e5b853f20)
+        ;
+
+        
+    
+    
+            var marker_b31c1af074bf188d185ad08c35f6c697 = L.marker(
+                [32.0075432, 34.8013108],
+                {}
+            ).addTo(map_8aa4a99fde86367c3d2d1083dab1e422);
+        
+    
+        var popup_8b3910bebcefb1e7ca332f98d7463e22 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_311c36cd36320f5811c46e72b83314d7 = $(`<div id="html_311c36cd36320f5811c46e72b83314d7" style="width: 100.0%; height: 100.0%;">  <div class="card" style="width: 18rem;">   <img src=/static/images/BigLogo.jpeg width="30px" height="30px" class="card-img-top" alt="...">   <div class="card-body">     <h5 class="card-title">Computer Gmah</h5>     <p class="card-text">Holon</p>     <a href="/gmah_page/311528558" class="btn btn-primary" target="_blank">Go somewhere</a>   </div> </div> </div>`)[0];
+            popup_8b3910bebcefb1e7ca332f98d7463e22.setContent(html_311c36cd36320f5811c46e72b83314d7);
+        
+
+        marker_b31c1af074bf188d185ad08c35f6c697.bindPopup(popup_8b3910bebcefb1e7ca332f98d7463e22)
         ;
 
         

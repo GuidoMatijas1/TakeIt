@@ -462,11 +462,10 @@ def add_product_post():
     f = request.files['file']
     profile_picture = f.filename
     f.save(os.path.join('project/static/images/products/', secure_filename(f.filename)))
-
     check_id = Products.query.filter_by(id=gmah_id).first()
     while check_id:
-        check_id = check_id + 1
-        check_id = Products.query.filter_by(id=check_id).first()
+            new_id = check_id.id + 1
+            check_id = Products.query.filter_by(id=new_id).first()
     new_product = Products(name=name,
                          category=category,
                          description=description,
@@ -478,7 +477,7 @@ def add_product_post():
     db.session.commit()
     gmah = Gmah.query.filter_by(id=gmah_id).first()
     user = gmah
-    results = Products.query.filter_by(id=gmah_id).all()
+    results = Products.query.filter_by(gmah_id=gmah_id).all()
     return render_template('user_profile.html', user=user,results=results, gmah=gmah)
     # return render_template("profile.html")
 
