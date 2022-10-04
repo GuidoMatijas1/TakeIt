@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User, Gmah, Products, Borrows, Donations
 from . import db, mail
 from flask_login import login_user, login_required, logout_user, current_user
-import sqlite3 , string, random
+import sqlite3, string, random
 from flask_mail import Mail, Message
 from werkzeug.utils import secure_filename
 import os
@@ -12,34 +12,20 @@ import pandas as pd
 from datetime import datetime, timedelta
 import geopy
 
-
 auth = Blueprint('auth', __name__)
 
-msg=""
+msg = ""
+
 
 @auth.route('/donate_money')
 def donate_money():
     return render_template('donate_money.html')
 
 
-# @auth.route('/donate_money/<id>', methods=['POST'])
-# def upload_file(id):
-#     user = User.query.filter_by(id=id).first()
-#     gmah = Gmah.query.filter_by(id=id).first()
-#     if user and request.method == 'POST':
-#         f = request.files['file']
-#         f.save(os.path.join('project/static/images',secure_filename(f.filename)))
-#         user.profile_picture = f.filename
-#         db.session.commit()
-#         return "gooda"
-#     else:
-#
-#         return "gooda"
-
-
 @auth.route('/login')
 def login():
     return render_template('login.html')
+
 
 @auth.route('/login_gmah')
 def login_gmah():
@@ -94,32 +80,32 @@ def update_information_post():
     street = request.form.get('street')
     streetnum = request.form.get('streetnum')
     email = request.form.get('email')
-    users =  User.query.filter_by(id=current_user.id).first()
+    users = User.query.filter_by(id=current_user.id).first()
     gmahs = Gmah.query.filter_by(id=current_user.id).first()
     if users:
         if firstname:
             user = User.query.filter_by(id=current_user.id).first()
-            user.name=firstname
+            user.name = firstname
             db.session.commit()
         if lastname:
             user = User.query.filter_by(id=current_user.id).first()
-            user.last_name=lastname
+            user.last_name = lastname
             db.session.commit()
         if phone:
             user = User.query.filter_by(id=current_user.id).first()
-            user.phone=phone
+            user.phone = phone
             db.session.commit()
         if city:
             user = User.query.filter_by(id=current_user.id).first()
-            user.city=city
+            user.city = city
             db.session.commit()
         if street:
             user = User.query.filter_by(id=current_user.id).first()
-            user.street=street
+            user.street = street
             db.session.commit()
         if streetnum:
             user = User.query.filter_by(id=current_user.id).first()
-            user.streetn_number=streetnum
+            user.streetn_number = streetnum
             db.session.commit()
         if email:
             # gmah_email = Gmah.query.filter_by(email=email).first()
@@ -129,7 +115,7 @@ def update_information_post():
                 return render_template('/update_information.html')
             else:
                 user = User.query.filter_by(id=current_user.id).first()
-                user.email=email
+                user.email = email
                 db.session.commit()
     if gmahs:
         if firstname:
@@ -186,14 +172,17 @@ def signup_post():
     email = request.form.get('email')
     password = request.form.get('password')
     password_repeat = request.form.get('password-repeat')
-    if password!=password_repeat:
+    if password != password_repeat:
         flash('passwords dont match')
         return render_template('user_signup.html')
     f = request.files['file']
     user_id = User.query.filter_by(id=id).first()  # if this returns a user, then the email already exists in
     # database
     user_email = User.query.filter_by(email=email).first()  # if this returns a user, then the email already exists in
-
+    gmah_email =  Gmah.query.filter_by(email=email).first()
+    if gmah_email:
+        flash('Email related to Gmah - please sign up with different email')
+        return redirect(url_for('auth.login'))
     if user_id or user_email:  # if a user is found, we want to redirect back to signup page so user can try again
         flash('User already exists - Try forget password')
         return redirect(url_for('auth.login'))
@@ -201,9 +190,11 @@ def signup_post():
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
     f.filename = id + "profile_picture.jpeg"
     f.save(os.path.join('project/static/images/profile/', secure_filename(f.filename)))
-    new_user = User(id=id, email=email, password=generate_password_hash(password, method='sha256'), name=firstname, last_name=lastname,
-                    city=city, phone=phone, street=street, street_number=streetnum, is_blocked=0, profile_picture= f.filename)
-                    # is_gmah=is_gmah)
+    new_user = User(id=id, email=email, password=generate_password_hash(password, method='sha256'), name=firstname,
+                    last_name=lastname,
+                    city=city, phone=phone, street=street, street_number=streetnum, is_blocked=0,
+                    profile_picture=f.filename)
+    # is_gmah=is_gmah)
 
     # add the new user to the database
     db.session.add(new_user)
@@ -240,7 +231,8 @@ def gmah_signup_post():
     gmah_adress = str(street + ' ' + str(street_number) + ', ' + city + ', Israel')
     location = locator.geocode(gmah_adress)
     if not location:
-        flash('Your address has spelling error, please check the correct city/street name so you will appear in the map')
+        flash(
+            'Your address has spelling error, please check the correct city/street name so you will appear in the map')
         return render_template('gmah_signup.html')
     else:
         if password != password_repeat:
@@ -258,7 +250,7 @@ def gmah_signup_post():
         f.save(os.path.join('project/static/images/profile/', secure_filename(f.filename)))
         new_gmah = Gmah(id=id, email=email, name=name, password=generate_password_hash(password, method='sha256'),
                         owner_first_name=owner_first_name, owner_last_name=owner_last_name, phone=phone, city=city,
-                        street=street, street_number=street_number, category=category,profile_picture= f.filename)
+                        street=street, street_number=street_number, category=category, profile_picture=f.filename)
 
         db.session.add(new_gmah)
         db.session.commit()
@@ -270,6 +262,7 @@ def gmah_signup_post():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
 
 @auth.route('/forget')
 def forget():
@@ -286,7 +279,7 @@ def reset_password():
         user_query = User.query.filter_by(email=email).first()
         user_id = str(user_query.id)
         if user_id == id:
-            return redirect(url_for('auth.forget_send_mail',user_id=str(user_id)))
+            return redirect(url_for('auth.forget_send_mail', user_id=str(user_id)))
         else:
             flash('Please check your login details and try again.')
             return redirect(url_for('auth.forget'))
@@ -294,40 +287,40 @@ def reset_password():
         gmah_query = Gmah.query.filter_by(email=email).first()
         gmah_id = str(gmah_query.id)
         if gmah_id == id:
-            return redirect(url_for('auth.forget_send_mail',user_id=str(gmah_id)))
+            return redirect(url_for('auth.forget_send_mail', user_id=str(gmah_id)))
         else:
             flash('Please check your login details and try again.')
             return redirect(url_for('auth.forget'))
 
 
-
-@auth.route("/forget_send_mail/<user_id>" )
+@auth.route("/forget_send_mail/<user_id>")
 def forget_send_mail(user_id):
-   # msg = Message('Hello', sender = 'takeitapp0@gmail.com', recipients = ['guyshmuel93@gmail.com','adiben@mta.ac.il',
-   #                                                                       'nofarvi@mta.ac.il','guidoma@mta.ac.il'])
-   user_query = User.query.filter_by(id=user_id).first()
-   gmah_query = Gmah.query.filter_by(id=user_id).first()
-   if user_query:
+    # msg = Message('Hello', sender = 'takeitapp0@gmail.com', recipients = ['guyshmuel93@gmail.com','adiben@mta.ac.il',
+    #                                                                       'nofarvi@mta.ac.il','guidoma@mta.ac.il'])
+    user_query = User.query.filter_by(id=user_id).first()
+    gmah_query = Gmah.query.filter_by(id=user_id).first()
+    if user_query:
         randomstr = ''.join(random.choices(string.ascii_letters + string.digits, k=9))
-        password=generate_password_hash(randomstr, method='sha256')
+        password = generate_password_hash(randomstr, method='sha256')
         user_query.password = password
         db.session.commit()
         recipient = user_query.email
-   else:
+    else:
         randomstr = ''.join(random.choices(string.ascii_letters + string.digits, k=9))
         password = generate_password_hash(randomstr, method='sha256')
         gmah_query.password = password
         db.session.commit()
         recipient = gmah_query.email
 
-   msg = Message('Hello', recipients = [recipient])
-   msg.body = 'Your new password is: ' +str(randomstr)
-   # msg.html = '<p>This is a test email!</p>'
-   mail.send(msg)
-   # msg = Message('Hello', sender = "'TakeIt'<#{takeitapp0@gmail.com}>", recipients = ['guyshmuel93@gmail.com'])
-   # msg.body = "Your new password is: " +str(randomstr)
-   # mail.send(msg)
-   return redirect(url_for('auth.login'))
+    msg = Message('Hello', recipients=[recipient])
+    msg.body = 'Your new password is: ' + str(randomstr)
+    # msg.html = '<p>This is a test email!</p>'
+    mail.send(msg)
+    # msg = Message('Hello', sender = "'TakeIt'<#{takeitapp0@gmail.com}>", recipients = ['guyshmuel93@gmail.com'])
+    # msg.body = "Your new password is: " +str(randomstr)
+    # mail.send(msg)
+    return redirect(url_for('auth.login'))
+
 
 # /*
 # */
@@ -335,7 +328,8 @@ def forget_send_mail(user_id):
 def custom_search():
     categories = db.session.query(Gmah.category).distinct(Gmah.category)
 
-    return render_template("custom_search.html",categories=categories)
+    return render_template("custom_search.html", categories=categories)
+
 
 @auth.route('/searchgmahbycategory', methods=["POST"])
 def searchgmahbycategory():
@@ -343,11 +337,12 @@ def searchgmahbycategory():
     result = Gmah.query.filter_by(category=serched)
     return render_template("gmah_results.html", results=result)
 
+
 @auth.route('/searchgmahbycity', methods=["POST"])
 def searchgmahbycity():
     serched = request.form.get('search')
     # result = Gmah.query.filter_by(city=serched)
-    result = Gmah.query.filter(Gmah.city.like('%'+serched+'%')).order_by(Gmah.city)
+    result = Gmah.query.filter(Gmah.city.like('%' + serched + '%')).order_by(Gmah.city)
     return render_template("gmah_results.html", results=result)
 
 
@@ -362,19 +357,21 @@ def searchgmahbycity():
 @auth.route('/searchforproduct', methods=["POST"])
 def searchforproduct():
     serched = request.form.get('search')
-    result = Products.query.filter(Products.name.like('%'+serched+'%')).order_by(Products.name)
-    return render_template("product_results.html", results=result,func=searchgmahforprod,header="Results Page")
+    result = Products.query.filter(Products.name.like('%' + serched + '%')).order_by(Products.name)
+    return render_template("product_results.html", results=result, func=searchgmahforprod, header="Results Page")
 
 
 # Create Search Function
 @auth.route('/search', methods=["POST"])
 def search():
     serched = request.form.get('search')
-    gmah = Gmah.query.filter(Gmah.name.like('%'+serched+'%')).order_by(Gmah.name)
-    result = Products.query.filter(Products.name.like('%'+serched+'%')).order_by(Products.name)
-    categories =  Gmah.query.filter(Gmah.category.like('%'+serched+'%')).order_by(Gmah.category)
-    cities =  Gmah.query.filter(Gmah.city.like('%'+serched+'%')).order_by(Gmah.city )
-    return render_template("product_results.html", results=result,results2=gmah,results3=categories,results4=cities,func=searchgmahforprod,header="Results Page")
+    gmah = Gmah.query.filter(Gmah.name.like('%' + serched + '%')).order_by(Gmah.name)
+    result = Products.query.filter(Products.name.like('%' + serched + '%')).order_by(Products.name)
+    categories = Gmah.query.filter(Gmah.category.like('%' + serched + '%')).order_by(Gmah.category)
+    cities = Gmah.query.filter(Gmah.city.like('%' + serched + '%')).order_by(Gmah.city)
+    return render_template("product_results.html", results=result, results2=gmah, results3=categories, results4=cities,
+                           func=searchgmahforprod, header="Results Page")
+
 
 @auth.route('/searchgmahforprod/<id>')
 def searchgmahforprod(id):
@@ -382,9 +379,10 @@ def searchgmahforprod(id):
     gmah_id = product_id.gmah_id
     gmah = Gmah.query.filter_by(id=gmah_id).first()
     if gmah_id:
-        return (str(gmah.city)+" "+ str(gmah.street)+" "+str(gmah.street_number))
+        return (str(gmah.city) + " " + str(gmah.street) + " " + str(gmah.street_number))
     else:
         return ""
+
 
 @auth.route('/my_products/')
 def my_products():
@@ -392,19 +390,21 @@ def my_products():
     gmah = Gmah.query.filter_by(id=gmah_id).first()
     results = Products.query.filter_by(gmah_id=gmah_id).all()
     # return render_template("my_products.html",products=products)
-    return render_template("my_products.html",results=results,func=searchgmahforprod,header="My Products")
+    return render_template("my_products.html", results=results, func=searchgmahforprod, header="My Products")
 
 
 @auth.route('/tests/')
 def tests():
-    date="2023-01-01"
-    now =  datetime.now()
+    date = "2023-01-01"
+    now = datetime.now()
     now = now.strftime("%Y-%m-%d")
-    result = now>date
+    result = now > date
     if result:
         return "1"
     else:
         return "0"
+
+
 # =======
 @auth.route('/borrow_item', methods=['POST'])
 @login_required
@@ -414,7 +414,7 @@ def borrow_item():
     gmah_id = request.form.get('gmah_id')
     product_id = request.form.get('product_id')
     borrower_id = current_user.id
-    borrow_id=str(borrower_id)+str(product_id)+str(gmah_id)
+    borrow_id = str(borrower_id) + str(product_id) + str(gmah_id)
     borrow_id = int(borrow_id)
     check_id = Borrows.query.filter_by(id=borrow_id).first()
     while check_id:
@@ -427,30 +427,33 @@ def borrow_item():
                          end_date=pd.to_datetime(end_date),
                          approved=0,
                          is_active=1,
+                         declined =  0,
                          id=borrow_id)
+    if not check_dates(new_borrow):
+        borrow = Borrows.query.filter_by(product_id=product_id).first()
+        flash('This product isnt available between the dates.' + str(borrow.start_date) + ' and ' + str(borrow.end_date))
+        return redirect(url_for('main.product_page', id=product_id))
     db.session.add(new_borrow)
     db.session.commit()
-    # return check_dates(Borrows.query.filter_by(id=borrow_id).first())
     product = Products.query.filter_by(id=product_id).first()
-    product_name=product.name;
     user = User.query.filter_by(id=borrower_id).first()
     user_name = user.name
     gmah = Gmah.query.filter_by(id=gmah_id).first()
     gmah_mail = gmah.email
-    # link = url_for('auth.gmah_approve', id=borrow_id, external=True)
+
     msg = Message('Hello', recipients=[gmah_mail])
-    msg.body = "You've just got request for Item:" + str(product.name) + " for the dates: " + start_date + " to " + end_date+ ". \n By the user " + user_name + "for approve: http://takeit.lol/borrows/"
-    # msg.  html = '<p>This is a test email!</p>'
+    msg.body = "You've just got request for Item:" + str(
+        product.name) + " for the dates: " + start_date + " to " + end_date + ". \n By the user " + user_name + "for approve: http://takeit.lol/borrows/"
     mail.send(msg)
-    # msg = Message('New Borrow Request', sender="'TakeIt'<#{takeitapp0@gmail.com}>", recipients=[gmah_mail])
-    # msg.body = "You've just got request for Item:" + str(product.name) + " for the dates: " + start_date + " to " + end_date+ ". \n By the user " + user_name
-    # mail.send(msg)
+    flash('Borrow request send to Gmah owner.We send you email as soon as he reply')
     return render_template('index.html')
+
 
 @auth.route('/add_product/')
 @login_required
 def add_product():
     return render_template("add_product.html")
+
 
 @auth.route('/add_product/', methods=["POST"])
 @login_required
@@ -464,21 +467,21 @@ def add_product_post():
     f.save(os.path.join('project/static/images/products/', secure_filename(f.filename)))
     check_id = Products.query.filter_by(id=gmah_id).first()
     while check_id:
-            new_id = check_id.id + 1
-            check_id = Products.query.filter_by(id=new_id).first()
+        new_id = check_id.id + 1
+        check_id = Products.query.filter_by(id=new_id).first()
     new_product = Products(name=name,
-                         category=category,
-                         description=description,
-                         gmah_id=gmah_id,
-                         idle=1,
-                        pic_name=f.filename,
-                        id=check_id)
+                           category=category,
+                           description=description,
+                           gmah_id=gmah_id,
+                           idle=1,
+                           pic_name=f.filename,
+                           id=check_id)
     db.session.add(new_product)
     db.session.commit()
     gmah = Gmah.query.filter_by(id=gmah_id).first()
     user = gmah
     results = Products.query.filter_by(gmah_id=gmah_id).all()
-    return render_template('user_profile.html', user=user,results=results, gmah=gmah)
+    return render_template('user_profile.html', user=user, results=results, gmah=gmah)
     # return render_template("profile.html")
 
 
@@ -495,7 +498,8 @@ def borrows():
         # borrows = Borrows.query.all()
         date = datetime.now()
         date = date.strftime("%Y-%m-%d")
-        return render_template("my_borrows.htm", gmah=gmah, borrows=borrows, func=return_user, func2=return_product, date=date,
+        return render_template("my_borrows.htm", gmah=gmah, borrows=borrows, func=return_user, func2=return_product,
+                               date=date,
                                func3=compare_dates)
 
 
@@ -519,18 +523,39 @@ def borrows():
 @login_required
 def approved_borrow_post(id):
     borrows = Borrows.query.filter_by(id=id).first()
-    borrows.approved=1
+    borrows.approved = 1
     product_id = borrows.product_id
     product = Products.query.filter_by(id=product_id).first()
-    product.idle=0
+    product.idle = 0
     db.session.commit()
     user_id = borrows.borrower_id
     user = User.query.filter_by(id=user_id).first()
     user_mail = user.email
     msg = Message('Hello', recipients=[user_mail])
-    msg.body = "Your borrow request hab been accetpted!! \n The borrow of the product " + product.name + " for the dates: " + str(borrows.start_date) + " to " + str(borrows.end_date)
+    msg.body = "Your borrow request hab been accetpted!! \n The borrow of the product " + product.name + " for the dates: " + str(
+        borrows.start_date) + " to " + str(borrows.end_date)
     mail.send(msg)
     return redirect(url_for('auth.borrows'))
+
+
+@auth.route('/decline_borrow_post/<id>')
+@login_required
+def decline_borrow_post(id):
+    borrows = Borrows.query.filter_by(id=id).first()
+    borrows.declined = 1
+    db.session.commit()
+    product_id = borrows.product_id
+    product = Products.query.filter_by(id=product_id).first()
+    user_id = borrows.borrower_id
+    user = User.query.filter_by(id=user_id).first()
+    user_mail = user.email
+    msg = Message('Hello', recipients=[user_mail])
+    msg.body = "Your borrow request hab been rejected!! \n The borrow of the product " + product.name + " for the dates: " + str(
+        borrows.start_date) + " to " + str(borrows.end_date)
+    mail.send(msg)
+    return redirect(url_for('auth.borrows'))
+
+
 
 
 @auth.route('/return_user/<id>')
@@ -563,59 +588,37 @@ def return_product(id):
 @auth.route('/compare_dates/<date>')
 def compare_dates(date):
     date = date.strftime("%Y-%m-%d")
-    now =  datetime.now()
+    now = datetime.now()
     now = now.strftime("%Y-%m-%d")
     result = now < date
     if result:
         return False
     else:
-        if now==date:
+        if now == date:
             return True
         else:
             return False
 
 
-@auth.route('/check_dates/<borrow>')
 def check_dates(borrow):
-    TODAY_CHECK = borrow.start_date
-    check_start_time = borrow.start_date
-    check_end_time = borrow.end_date
-    borrow_product_id = borrow.query.filter_by(product_id=borrow.product_id).first()
-    product_id = borrow_product_id.id
-    all_borrows = Borrows.query.filter_by(product_id=10).all()
-    for borrow in all_borrows:
-        while TODAY_CHECK < borrow.end_date:
-            if check_start_time <= TODAY_CHECK <= check_end_time:
-                return str(check_start_time) +" <= " + str(TODAY_CHECK) + " <= " + str(check_end_time)
-            else:
-                TODAY_CHECK+= datetime.timedelta(days=1)
-    return "okay"
-        # date += datetime.timedelta(days=1)
-    # # borrow= Borrows.query.filter_by(product_id=borrow).first()
-    # my_start_day = borrow.start_date
-    # my_end_date = borrow.end_date
-    # product_id = borrow.query.filter_by(product_id=borrow.product_id).first()
-    # all_borrows = Borrows.query.filter_by(product_id=10).all()
-    # for borrow in all_borrows:
-    #     check_end_time = borrow.end_date
-    #     # check_end_time = datetime.strftime("%Y-%m-%d")
-    #     check_start_time = borrow.start_date
-    #     # check_start_time = datetime.strftime("%Y-%m-%d")
-    #     if my_end_date > check_start_time:
-    #         # if my_end_date < check_end_time:
-    #         return "False"
-    #     else:
-    #             break
-        # elif my_end_date == check_start_time:
-        #         break
-        # elif my_start_day > check_end_time:
-        #         break
-  # date += datetime.timedelta(days=1)
+    product_id = borrow.product_id
+    existing_borrow = Borrows.query.filter_by(product_id=product_id,approved=1).first()
+    if existing_borrow:
+        current_start = pd.to_datetime(existing_borrow.start_date)
+        current_end = pd.to_datetime(existing_borrow.end_date)
+        requested_start = pd.to_datetime(borrow.start_date)
+        requested_end = pd.to_datetime(borrow.end_date)
+        if (current_start < requested_start and current_end > requested_start) or (
+                current_start < requested_end and current_end > requested_end) or (
+                current_start > requested_start and current_end < requested_end):
+            return False
+    return True
 
 
 @auth.route('/donate_items/')
 def donate_items():
-    return render_template('donate_items.html')
+    gmah_list = Gmah.query.all()
+    return render_template('donate_items.html', gmah_list=gmah_list)
 
 
 @auth.route('/donate_items/', methods=["POST"])
@@ -625,9 +628,8 @@ def donate_items_post():
     description = request.form.get('description')
     donate_name = request.form.get('donate_name')
     donate_phone = request.form.get('donate_phone')
+    gmah_id = request.form.get('gmah_id')
     f = request.files['file']
-
-
 
     _picture = f.filename
     f.save(os.path.join('project/static/images/products/', secure_filename(f.filename)))
@@ -646,17 +648,18 @@ def donate_items_post():
                                 pic_name=f.filename,
                                 donate_name=donate_name,
                                 donate_phone=donate_phone,
+                                donate_for = gmah_id,
                                 )
 
     else:
         new_product = Donations(id=id,
-                               name=name,
-                               description=description,
-                               upload_date=today,
-                               is_available=1,
-                               pic_name=f.filename,
-                               user_id=user_id,
-                               )
+                                name=name,
+                                description=description,
+                                upload_date=today,
+                                is_available=1,
+                                pic_name=f.filename,
+                                user_id=user_id,
+                                )
 
     db.session.add(new_product)
     db.session.commit()
@@ -681,6 +684,64 @@ def dashboard_borrows():
 
 @auth.route('/donations')
 def donations():
-    results = Donations.query.all()
+    id = current_user.id
+    results = Donations.query.filter_by(donate_for=id,accepted=0)
     # result = Products.query.filter_by(name=serched)
-    return render_template("donations.html", results=results,func=searchgmahforprod,header="Item For Donations")
+    return render_template("donations.html", results=results, func=searchgmahforprod, header="Item For Donations")
+
+
+@auth.route('/accept_donation/<id>')
+def accept_donation(id):
+    donation = Donations.query.filter_by(id=id).first()
+    donation.accepted = 1
+    db.session.commit()
+    # result = Products.query.filter_by(name=serched)
+    return redirect(url_for('auth.donations'))
+
+
+@auth.route('/end_borrow/<id>')
+def end_borrow(id):
+    borrows = Borrows.query.filter_by(id=id).first()
+    borrows.approved = 0
+    borrows.is_active = 0
+    product_id = borrows.product_id
+    product = Products.query.filter_by(id=product_id).first()
+    product.idle = 1
+    db.session.commit()
+    user_id = borrows.borrower_id
+    user = User.query.filter_by(id=user_id).first()
+    user_mail = user.email
+    gmah_id = borrows.gmah_id
+    gmah = Gmah.query.filter_by(id=gmah_id).first()
+    gmah_mail = gmah.email
+    msg = Message('Hello', recipients=[user_mail])
+    msg.body = "Your borrow has ended!! \n for product " + product.name + "\nYou can see this mail as returning confirmation\n we like to see you aggin."
+    mail.send(msg)
+    msg = Message('Hello', recipients=[gmah_mail])
+    msg.body = "The borrow of item: " + product.name + " has been ended.\n the product is back to inventory"
+    mail.send(msg)
+    return redirect(url_for('auth.borrows'))
+
+
+@auth.route('/start_borrow/<id>')
+def start_borrow(id):
+    borrows = Borrows.query.filter_by(id=id).first()
+    borrows.approved = 1
+    borrows.is_active = 1
+    product_id = borrows.product_id
+    product = Products.query.filter_by(id=product_id).first()
+    product.idle = 0
+    db.session.commit()
+    user_id = borrows.borrower_id
+    user = User.query.filter_by(id=user_id).first()
+    user_mail = user.email
+    gmah_id = borrows.gmah_id
+    gmah = Gmah.query.filter_by(id=gmah_id).first()
+    gmah_mail = gmah.email
+    msg = Message('Hello', recipients=[user_mail])
+    msg.body = "Your borrow has started!! \n for product " + product.name + "\nwe remined you that the borrow approved until to: "+ str(borrows.end_date)
+    mail.send(msg)
+    msg = Message('Hello!', recipients=[gmah_mail])
+    msg.body = "The borrow of item: " + product.name +" number "+str(product.id)+ " has been started.\n the product is out of stock until "+str(borrows.end_date)
+    mail.send(msg)
+    return redirect(url_for('auth.borrows'))
