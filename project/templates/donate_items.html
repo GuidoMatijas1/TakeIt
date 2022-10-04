@@ -13,6 +13,13 @@
         <input type="name" name="description" id="description" placeholder="Search Anything Here..." class="form-control" style="width:70%">
         <label for="upload_product" ><b>Product Photo</label>
         <input type="file" id="file" name="file" class="form-control" >
+        <label style="margin-left:35%;" for="search">Choose gmah to donate:</label>
+        <select id="gmah_id" name="gmah_id" size="1" style="margin-left:40%;">
+        {% for gmah in gmah_list %}
+            <option name="gmah_id" value={{gmah.id}}>{{gmah.id}}</option>
+        {% endfor %}
+          <label style="margin-left:35%;" for="search">Choose a category:</label>
+        </select><br><br>
         {% if not current_user.is_authenticated %}
             <label for="donate_name" ><b>Your Name</label>
             <input type="donate_name" name="donate_name" id="donate_name" placeholder="Search Anything Here..." class="form-control" style="width:70%">

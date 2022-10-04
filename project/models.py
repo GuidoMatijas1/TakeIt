@@ -56,6 +56,7 @@ class Borrows(db.Model):
     end_date = db.Column(db.Date)
     approved = db.Column(db.Integer)
     is_active = db.Column(db.Integer)
+    declined = db.Column(db.Integer)
 
 class Donations(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -67,4 +68,6 @@ class Donations(db.Model):
     donate_name = db.Column(db.String(1000))
     donate_phone = db.Column(db.String(10))
     user_id = db.Column(db.Integer)
+    donate_for = db.Column(db.Integer)
+    accepted = db.Column(db.Integer)
 

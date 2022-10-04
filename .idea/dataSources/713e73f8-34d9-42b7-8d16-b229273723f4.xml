@@ -1354,255 +1354,267 @@
       <DataType>INT|0s</DataType>
       <Position>8</Position>
     </column>
-    <index id="497" parent="482" name="sqlite_autoindex_Borrows_1">
+    <column id="497" parent="482" name="declined">
+      <DataType>INTEGER|0s</DataType>
+      <Position>9</Position>
+    </column>
+    <index id="498" parent="482" name="sqlite_autoindex_Borrows_1">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="498" parent="482">
+    <key id="499" parent="482">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_Borrows_1</UnderlyingIndexName>
     </key>
-    <column id="499" parent="483" name="id">
+    <column id="500" parent="483" name="id">
       <DataType>INT|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="500" parent="483" name="name">
+    <column id="501" parent="483" name="name">
       <DataType>varchar(255)|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="501" parent="483" name="upload_date">
+    <column id="502" parent="483" name="upload_date">
       <DataType>varchar(255)|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="502" parent="483" name="is_available">
+    <column id="503" parent="483" name="is_available">
       <DataType>INT|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="503" parent="483" name="pic_name">
+    <column id="504" parent="483" name="pic_name">
       <DataType>varchar(255)|0s</DataType>
       <Position>5</Position>
     </column>
-    <column id="504" parent="483" name="description">
+    <column id="505" parent="483" name="description">
       <DataType>varchar(255)|0s</DataType>
       <Position>6</Position>
     </column>
-    <column id="505" parent="483" name="donate_name">
+    <column id="506" parent="483" name="donate_name">
       <DataType>varchar(255)|0s</DataType>
       <Position>7</Position>
     </column>
-    <column id="506" parent="483" name="donate_phone">
+    <column id="507" parent="483" name="donate_phone">
       <DataType>varchar(255)|0s</DataType>
       <Position>8</Position>
     </column>
-    <column id="507" parent="483" name="user_id">
+    <column id="508" parent="483" name="user_id">
       <DataType>varchar(255)|0s</DataType>
       <Position>9</Position>
     </column>
-    <index id="508" parent="483" name="sqlite_autoindex_Donations_1">
+    <column id="509" parent="483" name="donate_for">
+      <DataType>INTEGER|0s</DataType>
+      <Position>10</Position>
+    </column>
+    <column id="510" parent="483" name="accepted">
+      <DataType>INTEGER|0s</DataType>
+      <Position>11</Position>
+    </column>
+    <index id="511" parent="483" name="sqlite_autoindex_Donations_1">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="509" parent="483">
+    <key id="512" parent="483">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_Donations_1</UnderlyingIndexName>
     </key>
-    <column id="510" parent="484" name="id">
+    <column id="513" parent="484" name="id">
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="511" parent="484" name="name">
+    <column id="514" parent="484" name="name">
       <DataType>TEXT|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="512" parent="484" name="email">
+    <column id="515" parent="484" name="email">
       <DataType>TEXT|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="513" parent="484" name="owner_first_name">
+    <column id="516" parent="484" name="owner_first_name">
       <DataType>TEXT|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="514" parent="484" name="owner_last_name">
+    <column id="517" parent="484" name="owner_last_name">
       <DataType>TEXT|0s</DataType>
       <Position>5</Position>
     </column>
-    <column id="515" parent="484" name="phone">
+    <column id="518" parent="484" name="phone">
       <DataType>TEXT|0s</DataType>
       <Position>6</Position>
     </column>
-    <column id="516" parent="484" name="category">
+    <column id="519" parent="484" name="category">
       <DataType>TEXT|0s</DataType>
       <Position>7</Position>
     </column>
-    <column id="517" parent="484" name="city">
+    <column id="520" parent="484" name="city">
       <DataType>TEXT|0s</DataType>
       <Position>8</Position>
     </column>
-    <column id="518" parent="484" name="street">
+    <column id="521" parent="484" name="street">
       <DataType>TEXT|0s</DataType>
       <Position>9</Position>
     </column>
-    <column id="519" parent="484" name="street_number">
+    <column id="522" parent="484" name="street_number">
       <DataType>INTEGER|0s</DataType>
       <Position>10</Position>
     </column>
-    <column id="520" parent="484" name="password">
+    <column id="523" parent="484" name="password">
       <DataType>TEXT|0s</DataType>
       <Position>11</Position>
     </column>
-    <column id="521" parent="484" name="profile_picture">
+    <column id="524" parent="484" name="profile_picture">
       <DataType>TEXT|0s</DataType>
       <Position>12</Position>
     </column>
-    <key id="522" parent="484">
+    <key id="525" parent="484">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="523" parent="485" name="name">
+    <column id="526" parent="485" name="name">
       <DataType>TEXT|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="524" parent="485" name="category">
+    <column id="527" parent="485" name="category">
       <DataType>TEXT|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="525" parent="485" name="description">
+    <column id="528" parent="485" name="description">
       <DataType>TEXT|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="526" parent="485" name="idle">
+    <column id="529" parent="485" name="idle">
       <DataType>INTEGER|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="527" parent="485" name="gmah_id">
+    <column id="530" parent="485" name="gmah_id">
       <DataType>INTEGER|0s</DataType>
       <Position>5</Position>
     </column>
-    <foreign-key id="528" parent="485">
+    <foreign-key id="531" parent="485">
       <ColNames>gmah_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>gmah</RefTableName>
     </foreign-key>
-    <column id="529" parent="486" name="id">
+    <column id="532" parent="486" name="id">
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="530" parent="486" name="name">
+    <column id="533" parent="486" name="name">
       <DataType>TEXT|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="531" parent="486" name="category">
+    <column id="534" parent="486" name="category">
       <DataType>TEXT|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="532" parent="486" name="description">
+    <column id="535" parent="486" name="description">
       <DataType>TEXT|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="533" parent="486" name="idle">
+    <column id="536" parent="486" name="idle">
       <DataType>INTEGER|0s</DataType>
       <Position>5</Position>
     </column>
-    <column id="534" parent="486" name="gmah_id">
+    <column id="537" parent="486" name="gmah_id">
       <DataType>INTEGER|0s</DataType>
       <Position>6</Position>
     </column>
-    <column id="535" parent="486" name="pic_name">
+    <column id="538" parent="486" name="pic_name">
       <DataType>TEXT|0s</DataType>
       <Position>7</Position>
     </column>
-    <foreign-key id="536" parent="486">
+    <foreign-key id="539" parent="486">
       <ColNames>gmah_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>gmah</RefTableName>
     </foreign-key>
-    <key id="537" parent="486">
+    <key id="540" parent="486">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="538" parent="487" name="type">
+    <column id="541" parent="487" name="type">
       <DataType>TEXT|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="539" parent="487" name="name">
+    <column id="542" parent="487" name="name">
       <DataType>TEXT|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="540" parent="487" name="tbl_name">
+    <column id="543" parent="487" name="tbl_name">
       <DataType>TEXT|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="541" parent="487" name="rootpage">
+    <column id="544" parent="487" name="rootpage">
       <DataType>INT|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="542" parent="487" name="sql">
+    <column id="545" parent="487" name="sql">
       <DataType>TEXT|0s</DataType>
       <Position>5</Position>
     </column>
-    <column id="543" parent="488" name="id">
+    <column id="546" parent="488" name="id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="544" parent="488" name="email">
+    <column id="547" parent="488" name="email">
       <DataType>VARCHAR(100)|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="545" parent="488" name="password">
+    <column id="548" parent="488" name="password">
       <DataType>VARCHAR(100)|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="546" parent="488" name="name">
+    <column id="549" parent="488" name="name">
       <DataType>VARCHAR(1000)|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="547" parent="488" name="city">
+    <column id="550" parent="488" name="city">
       <DataType>varchar(200)|0s</DataType>
       <Position>5</Position>
     </column>
-    <column id="548" parent="488" name="is_gmah">
+    <column id="551" parent="488" name="is_gmah">
       <DataType>BOOLEAN|0s</DataType>
       <Position>6</Position>
     </column>
-    <column id="549" parent="488" name="last_name">
+    <column id="552" parent="488" name="last_name">
       <DataType>TEXT|0s</DataType>
       <Position>7</Position>
     </column>
-    <column id="550" parent="488" name="phone">
+    <column id="553" parent="488" name="phone">
       <DataType>TEXT|0s</DataType>
       <Position>8</Position>
     </column>
-    <column id="551" parent="488" name="street">
+    <column id="554" parent="488" name="street">
       <DataType>TEXT|0s</DataType>
       <Position>9</Position>
     </column>
-    <column id="552" parent="488" name="street_number">
+    <column id="555" parent="488" name="street_number">
       <DataType>INTEGER|0s</DataType>
       <Position>10</Position>
     </column>
-    <column id="553" parent="488" name="is_blocked">
+    <column id="556" parent="488" name="is_blocked">
       <DataType>boolean|0s</DataType>
       <Position>11</Position>
     </column>
-    <column id="554" parent="488" name="profile_picture">
+    <column id="557" parent="488" name="profile_picture">
       <DataType>TEXT|0s</DataType>
       <Position>12</Position>
     </column>
-    <index id="555" parent="488" name="sqlite_autoindex_user_1">
+    <index id="558" parent="488" name="sqlite_autoindex_user_1">
       <ColNames>email</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="556" parent="488">
+    <key id="559" parent="488">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="557" parent="488">
+    <key id="560" parent="488">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_user_1</UnderlyingIndexName>
     </key>

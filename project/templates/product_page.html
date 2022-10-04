@@ -1,9 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for product in product %}
-<h2>Product page of product : {{product.name }} </h2>
 
+{% for product in product %}
+<h2 style="text-align:center;">Product page of product : {{product.name }} </h2>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="notification is-danger" style="color:red;margin: 1% 0 0 0 ; font-size:120%;text-align:center">
+                    {{ messages[0] }}
+                </div>
+                {% endif %}
+            {% endwith %}
+
+        {% if not current_user.is_authenticated %}
+        <p style="font-size:20px;text-align:center;color:red;">You need to login for borrow items</p>
+        {% endif %}
     {% set imagename = product.pic_name %}
     <div class="productphoto">
     <img src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="220px" height="220px"></br>
@@ -20,7 +31,7 @@
 </div>
 {% if gmah.id!=current_user.id %}
     <div>
-        <form action="/borrow_item" method="POST">
+        <form action="/borrow_item" method="POST" class="centerform">
             <input type="date" name="start_date">
             <label for="start_date">Start Date</label>
             <input type="date" name="end_date">

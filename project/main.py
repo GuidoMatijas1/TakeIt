@@ -8,6 +8,8 @@ import os
 import geopy
 import folium
 from .auth import searchgmahforprod
+from folium.plugins import FastMarkerCluster
+
 
 main = Blueprint('main', __name__)
 
@@ -130,23 +132,23 @@ def test_map():
     return map1._repr_html_()
 
 
-@main.route('/test_map_profile/<email>')
-def test_map_profile(email):
-    gmah = Gmah.query.filter_by(email=email).first()
-    locator = geopy.Nominatim(user_agent="MyGeocoder")
-    israel_location = locator.geocode('Tel Aviv')
-    gmah_adress = str(gmah.street + ' ' + str(gmah.street_number) + ', ' + gmah.city + ', Israel')
-    location = locator.geocode(gmah_adress)
-    if not location:
-        map1 = folium.Map(zoom_start=9, location=[israel_location.latitude, israel_location.longitude],
-                          prefer_canvas=True)
-    else:
-        map1 = folium.Map(zoom_start=15, location=[location.latitude, location.longitude], prefer_canvas=True)
-    if location:
-        folium.Marker([location.latitude, location.longitude], popup=popup(gmah)).add_to(map1)
-        map1.save('test_map.html')
-
-    return map1._repr_html_()
+# @main.route('/test_map_profile/<email>')
+# def test_map_profile(email):
+#     test_map_profile    gmah = Gmah.query.filter_by(email=email).first()
+#     locator = geopy.Nominatim(user_agent="MyGeocoder")
+#     israel_location = locator.geocode('Tel Aviv')
+#     gmah_adress = str(gmah.street + ' ' + str(gmah.street_number) + ', ' + gmah.city + ', Israel')
+#     location = locator.geocode(gmah_adress)
+#     if not location:
+#         map1 = folium.Map(zoom_start=9, location=[israel_location.latitude, israel_location.longitude],
+#                           prefer_canvas=True)
+#     else:
+#         map1 = folium.Map(zoom_start=15, location=[location.latitude, location.longitude], prefer_canvas=True)
+#     if location:
+#         folium.Marker([location.latitude, location.longitude], popup=popup(gmah)).add_to(map1)
+#         map1.save('test_map.html')
+#
+#     return map1._repr_html_()
 
 @main.route('/popup')
 def popup(gmah):
