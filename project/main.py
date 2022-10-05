@@ -104,11 +104,11 @@ def donate_product_page(id):
     return render_template('donate_product_page.html', product=product,owner=owner)
 
 
-@main.route('/gmah_page/<id>')
-def gmah_page(id):
-    gmah = Gmah.query.filter_by(id=id).first()
-    products = Products.query.filter_by(gmah_id=id).all()
-    return render_template('gmah_page.html',gmah=gmah,products=products)
+# @main.route('/gmah_page/<id>')
+# def gmah_page(id):
+#     gmah = Gmah.query.filter_by(id=id).first()
+#     products = Products.query.filter_by(gmah_id=id).all()
+#     return render_template('gmah_page.html',gmah=gmah,products=products)
 
 
 # @main.route('/gmah_search/<id>')
@@ -152,7 +152,7 @@ def test_map():
 
 @main.route('/popup')
 def popup(gmah):
-    return render_template('map_popup.html', name=gmah.name, city=gmah.city, id=gmah.id)
+    return render_template('map_popup.html', name=gmah.name, city=gmah.city, id=gmah.id, email=gmah.email)
 
 
 # @main.route('/iframe')

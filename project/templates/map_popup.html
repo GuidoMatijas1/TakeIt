@@ -5,7 +5,7 @@
   <div class="card-body">
     <h5 class="card-title">{{ name }}</h5>
     <p class="card-text">{{ city }}</p>
-    <a href="{{url_for('main.gmah_page', id=id) }}" class="btn btn-primary" target="_blank">Go somewhere</a>
+    <a href="{{url_for('main.profile', email=email) }}" class="btn btn-primary" target="_blank">Go somewhere</a>
   </div>
 </div>
 {% endblock %}
