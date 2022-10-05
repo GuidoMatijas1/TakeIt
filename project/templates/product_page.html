@@ -3,15 +3,14 @@
 {% block content %}
 
 {% for product in product %}
-<h2 style="text-align:center;">Product page of product : {{product.name }} </h2>
-            {% with messages = get_flashed_messages() %}
+<h2 style="text-align:center;">Product page : {{product.name }} </h2>
+           {% with messages = get_flashed_messages() %}
                 {% if messages %}
                 <div class="notification is-danger" style="color:red;margin: 1% 0 0 0 ; font-size:120%;text-align:center">
                     {{ messages[0] }}
                 </div>
                 {% endif %}
             {% endwith %}
-
         {% if not current_user.is_authenticated %}
         <p style="font-size:20px;text-align:center;color:red;">You need to login for borrow items</p>
         {% endif %}
@@ -25,20 +24,19 @@
     <p>the Gmah : {{gmah.name}} located in:  {{gmah.city}} on street: {{gmah.street}} {{gmah.street_number}}</p>
     <p>the contact person is: {{gmah.owner_first_name}} {{gmah.owner_last_name}}</p>
     <p>the contact detailes: {{gmah.phone}}</p>
-    <p>Gmah Profile Page: <a href="{{ url_for('main.gmah_page', id=gmah.id)}}">Show Gmah </a>
-</p>
-
+    <p>Gmah Profile Page: <a href="{{ url_for('main.profile', email=gmah.email)}}">Show Gmah </a></p>
+        <br><br>
 </div>
 {% if gmah.id!=current_user.id %}
-    <div>
-        <form action="/borrow_item" method="POST" class="centerform">
-            <input type="date" name="start_date">
+    <div >
+        <form action="/borrow_item" method="POST" class="centerformproduct">
             <label for="start_date">Start Date</label>
-            <input type="date" name="end_date">
+            <input type="date" name="start_date">
             <label for="end_date">End Date</label>
+            <input type="date" name="end_date">
             <input type="text" name="gmah_id" value="{{ gmah.id }}" hidden>
-            <input type="text" name="product_id" value="{{ product.id }}" hidden>
-            <input type="submit">
+            <input type="text" name="product_id" value="{{ product.id }}" hidden><br>
+            <input type="submit" style="width:30%;text-align:center;">
 {% endif %}
         </form>
     </div>

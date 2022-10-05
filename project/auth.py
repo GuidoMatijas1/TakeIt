@@ -630,7 +630,9 @@ def donate_items_post():
     donate_phone = request.form.get('donate_phone')
     gmah_id = request.form.get('gmah_id')
     f = request.files['file']
-
+    if not f:
+        flash('Upload photo is mandatory.')
+        return redirect(url_for('auth.donate_items'))
     _picture = f.filename
     f.save(os.path.join('project/static/images/products/', secure_filename(f.filename)))
     today = datetime.now()
@@ -649,6 +651,7 @@ def donate_items_post():
                                 donate_name=donate_name,
                                 donate_phone=donate_phone,
                                 donate_for = gmah_id,
+                                accepted=0,
                                 )
 
     else:
@@ -659,6 +662,7 @@ def donate_items_post():
                                 is_available=1,
                                 pic_name=f.filename,
                                 user_id=user_id,
+                                accepted=0,
                                 )
 
     db.session.add(new_product)
