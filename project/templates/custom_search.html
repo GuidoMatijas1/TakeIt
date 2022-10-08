@@ -15,13 +15,13 @@
     <div style="float:left;width:33%;border: 1px solid black;">
 <h2 class="headersearch">Search Gmah By Category</h2>
 <form action="/searchgmahbycategory" method="POST" class="customesearch">
-  <label  for="search" style="font-family: 'Optima';">Choose a category:</label>
-  <select id="search" name="search" size="1" style="font-family: 'Optima';margin-left:40%;">
+  <label  for="search" style="margin:10% 0 0 15%;font-family: 'Optima';">Choose a category:
+  <select id="search" name="search" size="1" style="font-family: 'Optima';margin-left:10%;">
      {% for category in categories %}
     <option name="search" value={{category.category}} >{{category.category}}</option>
     {% endfor %}
-  </select><br><br>
-  <input style="width:30%;" type="submit" class="form-control submitfont">
+  </select><br><br></label>
+  <input style="width:30%;margin:0% 0 6.5% 35% " type="submit" class="form-control submitfont">
 </form>
       </div>
     <div style="float:left;width:33%;border: 1px solid black;">
