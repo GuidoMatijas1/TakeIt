@@ -12,7 +12,9 @@
 
     <div class="box">
     <form action="/donate_items" method="POST" class="centerform" enctype="multipart/form-data">
-        <h1 class="textcenter">Donate Items</h1>
+        <br>
+        <h1 class="textcenter" >Donate Items</h1>
+        <br>
         <input type="text" name="user_id" value="{{ current_user.id }}" hidden>
     <!--    <input type="text" name="category" value="{{ current_user.category }}" hidden>-->
         <label for="name" ><b>Product name</label>
@@ -20,9 +22,9 @@
         <label for="description" ><b>Description</label>
         <input type="name" name="description" id="description" placeholder="Search Anything Here..." class="form-control" style="width:70%">
         <label for="upload_product" ><b>Product Photo</label>
-        <input type="file" id="file" name="file" class="form-control" >
-        <label style="margin-left:35%;" for="search">Choose gmah to donate:</label>
-        <select id="gmah_id" name="gmah_id" size="1" style="margin-left:40%;">
+        <input style="margin-bottom:5%;margin-top:2%" type="file" id="file" name="file" class="form-control" >
+        <label style="margin-left:25%;display: inline;" for="search">Choose gmah to donate:</label>
+        <select id="gmah_id" name="gmah_id" size="1" style="margin-left:10%;display: inline;">
         {% for gmah in gmah_list %}
             <option name="gmah_id" value={{gmah.id}}>{{gmah.id}}</option>
         {% endfor %}
