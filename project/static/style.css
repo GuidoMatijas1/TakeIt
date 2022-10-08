@@ -1,3 +1,48 @@
+*{
+    font-family: 'Optima';
+
+}
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+#startingToday{
+display:none;
+}
+#returningToday{
+display:none;
+}
+#activeBorrows{
+display:none;
+}
+#waitingeBorrows{
+display:none;
+}
+#approvedBorrows{
+display:none;
+}
 body{
     margin-top:5%;
     overflow-y: scroll;
@@ -33,6 +78,12 @@ float:right;
     text-align:right;
     line-height: 2 ;
 }
+.border1{
+border: 2px solid black;
+margin-left:10%;
+width:80%;
+border-radius:10%;
+}
 /* Login Page */
   .pushable {
     border-radius: 12px;
@@ -64,15 +115,19 @@ float:right;
 text-align:center;
 }
 /*custome search*/
-.customesearch{
-    width:50%;
-    margin:auto;
-}
 .headersearch{
     font-family: 'Optima';
     font-size:24px;
     text-align:center;
     margin:2% 2% 5% 2%;
+}
+
+.submitfont{
+    font-family: 'Optima';
+}
+
+.gap{
+    margin-bottom:11%
 }
 
 /*navbar */
@@ -235,7 +290,6 @@ text-align:center;
 
 .floatleft{
     float:left;
-    width:50%;
 }
 /* forms*/
 .centerform{
@@ -244,6 +298,7 @@ text-align:center;
   margin:auto;
   margin-top:90px;
   padding-bottom:10px;
+  border-radius:5%;
 }
 .centerformproduct{
   box-shadow: inset 0 3px 6px rgba(0,0,0,0.16), 0 4px 60px rgba(0,0,0,0.1);
@@ -264,6 +319,7 @@ text-align:center;
   z-index: 1;
   overflow-x: hidden;
   position: fixed;
+  margin:0;
 
 }
 

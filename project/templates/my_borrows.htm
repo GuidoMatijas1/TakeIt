@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2 class="homewelcome" style="text-align:center;">My Borrows</h2>
+
+<h2 style="text-align:center;font-family:'Optima';margin-bottom:5%">My Borrows</h2>
     <div class="container ">
     <div class="row">
-         <h1 class="homewelcome" style="font-size:30px;text-align:center;">Starting Today</h1>
+<!--         <h1 class="homewelcome" style="font-size:30px;text-align:center;">Starting Today</h1>-->
+        <div class="border1" style="text-align:center;">
+        <i style="font-size:30px;" class="homewelcome" >Starting Today <a  onclick="myFunction()" style="float:right;margin:1.5% 2% 0 0 ;" class="arrow down"></a></i>
+        </div>
+        <div id="startingToday">
         {% for borrow in borrows %}
             {% if borrow.is_active==0 and borrow.approved==1 and func3(borrow.start_date) %}
                 <div class="col-lg-6" style="border: 1px solid black;">
@@ -27,8 +32,13 @@
                 </div>
             {% endif %}
         {% endfor %}
+            </div>
         <br style="clear:both;">
-         <h1 class="homewelcome" style="font-size:30px;text-align:center;">Returning Today</h1>
+        <div class="border1" style="text-align:center;">
+        <i style="font-size:30px;" class="homewelcome" >Returning Today <a onclick="myFunctionreturning()" style="float:right;margin:1.5% 2% 0 0 ;" class="arrow down"></a></i>
+        </div>
+<!--         <h1 class="homewelcome" style="font-size:30px;text-align:center;">Returning Today</h1>-->
+        <div id="returningToday">
         {% for borrow in borrows %}
             {% if borrow.is_active==1 and borrow.approved==1 and func3(borrow.end_date) %}
                 <div class="col-lg-6" style="border: 1px solid black;">
@@ -46,8 +56,13 @@
                 </div>
             {% endif %}
         {% endfor %}
+        </div>
         <br style="clear:both;">
-        <h1 class="homewelcome" style="font-size:30px;text-align:center;"> Active Borrows</h1>
+<!--        <h1 class="homewelcome" style="font-size:30px;text-align:center;"> Active Borrows</h1>-->
+        <div class="border1" style="text-align:center;">
+        <i style="font-size:30px;" class="homewelcome" >Active Borrows <a onclick="myFunctionactive()" style="float:right;margin:1.5% 2% 0 0 ;" class="arrow down"></a></i>
+        </div>
+        <div id="activeBorrows">
         {% for borrow in borrows %}
             {% if borrow.approved==1 and borrow.is_active==1 and not func3(borrow.end_date)%}
                 <div class="col-sm-6" style="border: 1px solid black;">
@@ -65,8 +80,13 @@
 
             {% endif %}
         {% endfor %}
+        </div>
         <br style="clear:both;">
-        <h1 class="homewelcome" style="font-size:30px;text-align:center;">Waiting for approve Borrows</h1>
+<!--        <h1 class="homewelcome" style="font-size:30px;text-align:center;">Waiting for approve Borrows</h1>-->
+        <div class="border1" style="text-align:center;">
+        <i style="font-size:30px;" class="homewelcome" >Waiting for approve Borrows <a  onclick="myFunctionwaiting()" style="float:right;margin:1.5% 2% 0 0 ;" class="arrow down"></a> </i>
+        </div>
+        <div id="waitingeBorrows">
         {% for borrow in borrows %}
             {% if (borrow.approved==0 and borrow.is_active==1) and borrow.declined!=1 %}
                 <div class="col-lg-6" style="border: 1px solid black;">
@@ -81,14 +101,22 @@
                        <p>Product Name: {{ (func2(borrow.product_id)).name }}</p>
                    </div>
                     {% if borrow.approved==0 %}
-                        <a class="btn btn-primary" href="{{ url_for('auth.approved_borrow_post', id=borrow.id) }}" style="margin:0 0 0 30%;">Approve</a> <br>
-                        <a class="btn btn-danger" style="color;" href="{{ url_for('auth.decline_borrow_post', id=borrow.id) }}" style="margin:0 0 0 30%;">Decline</a> <br>
+                        <a class="btn btn-primary" href="{{ url_for('auth.approved_borrow_post', id=borrow.id) }}" style="margin:0 0 0 0;">Approve</a>
+                        <a class="btn btn-danger" href="{{ url_for('auth.decline_borrow_post', id=borrow.id) }}" style="margin:0 0 0 0;">Decline</a>
+                            <br style="clear:both;">
+
                     {% endif %}
                 </div>
             {% endif %}
         {% endfor %}
+        </div>
         <br style="clear:both;">
-         <h1 class="homewelcome" style="font-size:30px;text-align:center;">Approved And Future Borrows</h1>
+<!--         <h1 class="homewelcome" style="font-size:30px;text-align:center;">Approved And Future Borrows</h1>-->
+        <div class="border1" style="text-align:center;">
+        <i style="font-size:30px;" class="homewelcome" >Approved And Future Borrows <a onclick="myFunctionapproved()" style="float:right;margin:1.5% 2% 0 0 ;" class="arrow down"></a> </i>
+        </div>
+        <div id="approvedBorrows">
+
         {% for borrow in borrows %}
             {% if borrow.approved==1 and borrow.is_active==0 and not func3(borrow.start_date) %}
                 <div class="col-lg-6" style="border: 1px solid black;">
@@ -126,4 +154,48 @@
     </div>
 </div>
 <br><br><br>
+<script>
+function myFunction() {
+  var x = document.getElementById("startingToday");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+function myFunctionreturning() {
+  var x = document.getElementById("returningToday");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+function myFunctionactive() {
+  var x = document.getElementById("activeBorrows");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+function myFunctionwaiting() {
+  var x = document.getElementById("waitingeBorrows");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+function myFunctionapproved() {
+  var x = document.getElementById("approvedBorrows");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+
+</script>
 {% endblock %}
