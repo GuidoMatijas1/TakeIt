@@ -3,7 +3,7 @@
 {% block content %}
 
 {% for product in product %}
-<h2 style="text-align:center;">Product page : {{product.name }} </h2>
+<h2 style="font-family: 'Optima';text-align:center;">Product page : {{product.name }}</h2>
            {% with messages = get_flashed_messages() %}
                 {% if messages %}
                 <div class="notification is-danger" style="color:red;margin: 1% 0 0 0 ; font-size:120%;text-align:center">
@@ -18,18 +18,17 @@
     <div class="productphoto">
     <img src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="220px" height="220px"></br>
     </div>
-<div class="productdesc">
-    <p>Name:        {{ product.name }}</p>
-    <p>Gmah That this product belongs to:  {{gmah.name}}</p>
-    <p>the Gmah : {{gmah.name}} located in:  {{gmah.city}} on street: {{gmah.street}} {{gmah.street_number}}</p>
-    <p>the contact person is: {{gmah.owner_first_name}} {{gmah.owner_last_name}}</p>
-    <p>the contact detailes: {{gmah.phone}}</p>
-    <p>Gmah Profile Page: <a href="{{ url_for('main.profile', email=gmah.email)}}">Show Gmah </a></p>
-        <br><br>
-</div>
+    <div class="productdesc">
+        <p>Name:        {{ product.name }}</p>
+        <p>Gmah That this product belongs to:  {{gmah.name}}</p>
+        <p>the Gmah : {{gmah.name}} located in:  {{gmah.city}} on street: {{gmah.street}} {{gmah.street_number}}</p>
+        <p>the contact person is: {{gmah.owner_first_name}} {{gmah.owner_last_name}}</p>
+        <p>the contact detailes: {{gmah.phone}}</p>
+        <p>Gmah Profile Page: <a href="{{ url_for('main.profile', email=gmah.email)}}">Show Gmah </a></p>
+        </div>
 {% if gmah.id!=current_user.id %}
-    <div >
         <form action="/borrow_item" method="POST" class="centerformproduct">
+            <div style="clear:both;"></div>
             <label for="start_date">Start Date</label>
             <input type="date" name="start_date">
             <label for="end_date">End Date</label>
@@ -39,11 +38,7 @@
             <input type="submit" style="width:30%;text-align:center;">
 {% endif %}
         </form>
-    </div>
 <br><br>
-
     {% endfor %}
-
-
 {% endblock %}
 
