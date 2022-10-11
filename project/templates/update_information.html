@@ -18,39 +18,49 @@
         {% endif %}
         {% endwith %}
     <hr>
-
+            <!--placeholders with active information-->
       <label for="firstname"><b><p class="hova">*</p> First Name</b></label>
-    <input type="text" placeholder="Avi" name="firstname"
+    <input type="text" placeholder={% if current_user.owner_first_name%}
+           {{ current_user.owner_first_name }}
+           {% else %}
+           {{ current_user.name }}
+          {% endif %}
+           name="firstname"
            oninvalid="this.setCustomValidity('Enter User First Name Here')"
     oninput="this.setCustomValidity('')" >
 
       <label for="lastname"><b><p class="hova">*</p> Last Name</p></b></label>
-    <input type="text" placeholder="כהן" name="lastname"
+    <input type="text" placeholder={% if current_user.owner_first_name%}
+           {{ current_user.owner_last_name }}
+           {% else %}
+           {{ current_user.last_name }}
+          {% endif %}
+           name="lastname"
            oninvalid="this.setCustomValidity('Enter User Last Name Here')"
     oninput="this.setCustomValidity('')" >
 
       <label for="phone"><b>Phone Number</b></label>
-    <input type="text" placeholder="05x-xxxxxxx" name="phone" pattern="[0][0-9]{2}-[0-9]{7}"
+    <input type="text" placeholder={{current_user.phone}} name="phone" pattern="[0][0-9]{2}-[0-9]{7}"
                oninvalid="this.setCustomValidity('Enter User Phone number This Format: 055-1234567')"
     oninput="this.setCustomValidity('')" >
 
       <label for="city"> <p class="hova">*</p> <b> City </b></label>
-    <input type="text" placeholder="אשדוד" name="city" >
+    <input type="text" placeholder={{current_user.city}} name="city" >
 <!--    required-->
 <!--                      oninvalid="this.setCustomValidity('Enter User City Here')"-->
 <!--    oninput="this.setCustomValidity('')" >-->
 
       <label for="street"><b> <p class="hova">*</p> Street </b></label>
-    <input type="text" placeholder="הנופך" name="street" >
+    <input type="text" placeholder={{current_user.street}} name="street" >
 <!--    required-->
 <!--                      oninvalid="this.setCustomValidity('Enter User Street Here')"-->
 <!--    oninput="this.setCustomValidity('')" >-->
 
       <label for="streetnum"><b>Street Number </b></label>
-    <input id="streetnum" type="12" name="streetnum" value="0">
+    <input id="streetnum" type="12" name="streetnum" value="{{current_user.street_number}}">
 
     <label for="email"><b> <p class="hova">*</p> Email Address </b></label>
-    <input type="email" placeholder="name@domain.co" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"
+    <input type="email" placeholder={{current_user.email}} name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"
                       oninvalid="this.setCustomValidity('Enter User Email Here')"
     oninput="this.setCustomValidity('')" >
     <!--    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"-->

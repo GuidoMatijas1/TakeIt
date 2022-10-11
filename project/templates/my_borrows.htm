@@ -3,11 +3,11 @@
 {% block content %}
 
 <h2 style="text-align:center;font-family:'Optima';margin-bottom:5%">My Borrows</h2>
-    <div class="container ">
+<div class="container ">
     <div class="row">
 <!--         <h1 class="homewelcome" style="font-size:30px;text-align:center;">Starting Today</h1>-->
         <div class="border1" style="text-align:center;">
-        <i style="font-size:30px;" class="homewelcome" >Starting Today <a  onclick="myFunction()" style="float:right;margin:1.5% 2% 0 0 ;" class="arrow down"></a></i>
+        <i style="font-size:30px;" class="homewelcome" >Starting Today <button onclick="myFunction()" type="submit" class="showmore" style="font-size:20px;color:black;text-align:center" >▼</button></i>
         </div>
         <div id="startingToday">
         {% for borrow in borrows %}
@@ -35,7 +35,7 @@
             </div>
         <br style="clear:both;">
         <div class="border1" style="text-align:center;">
-        <i style="font-size:30px;" class="homewelcome" >Returning Today <a onclick="myFunctionreturning()" style="float:right;margin:1.5% 2% 0 0 ;" class="arrow down"></a></i>
+        <i style="font-size:30px;" class="homewelcome" >Returning Today <button onclick="myFunctionreturning()" type="submit" class="showmore"style="font-size:20px;color:black;text-align:center">▼</button></i>
         </div>
 <!--         <h1 class="homewelcome" style="font-size:30px;text-align:center;">Returning Today</h1>-->
         <div id="returningToday">
@@ -60,7 +60,7 @@
         <br style="clear:both;">
 <!--        <h1 class="homewelcome" style="font-size:30px;text-align:center;"> Active Borrows</h1>-->
         <div class="border1" style="text-align:center;">
-        <i style="font-size:30px;" class="homewelcome" >Active Borrows <a onclick="myFunctionactive()" style="float:right;margin:1.5% 2% 0 0 ;" class="arrow down"></a></i>
+        <i style="font-size:30px;" class="homewelcome" >Active Borrows <button onclick="myFunctionactive()" type="submit" class="showmore" style="font-size:20px;color:black;text-align:center">▼</button></i>
         </div>
         <div id="activeBorrows">
         {% for borrow in borrows %}
@@ -82,9 +82,9 @@
         {% endfor %}
         </div>
         <br style="clear:both;">
-<!--        <h1 class="homewelcome" style="font-size:30px;text-align:center;">Waiting for approve Borrows</h1>-->
         <div class="border1" style="text-align:center;">
-        <i style="font-size:30px;" class="homewelcome" >Waiting for approve Borrows <a  onclick="myFunctionwaiting()" style="float:right;margin:1.5% 2% 0 0 ;" class="arrow down"></a> </i>
+            <i style="font-size:30px;" class="homewelcome" >Waiting for approve Borrows <button onclick="myFunctionwaiting()" type="submit" class="showmore" style="font-size:20px;color:black;text-align:center">▼</button></i>
+
         </div>
         <div id="waitingeBorrows">
         {% for borrow in borrows %}
@@ -113,7 +113,7 @@
         <br style="clear:both;">
 <!--         <h1 class="homewelcome" style="font-size:30px;text-align:center;">Approved And Future Borrows</h1>-->
         <div class="border1" style="text-align:center;">
-        <i style="font-size:30px;" class="homewelcome" >Approved And Future Borrows <a onclick="myFunctionapproved()" style="float:right;margin:1.5% 2% 0 0 ;" class="arrow down"></a> </i>
+        <i style="font-size:30px;" class="homewelcome" >Approved And Future Borrows <button onclick="myFunctionapproved()" type="submit" class="showmore" style="font-size:20px;color:black;text-align:center">▼</button> </i>
         </div>
         <div id="approvedBorrows">
 
@@ -133,26 +133,10 @@
                 </div>
             {% endif %}
         {% endfor %}
-<!--             <br style="clear:both;">-->
-<!--         <h1 class="homewelcome" style="font-size:30px;text-align:center;">Ended Loans</h1>-->
-<!--        {% for borrow in borrows %}-->
-<!--            {% if borrow.approved==0 and borrow.is_active==0 %}-->
-<!--                <div class="col-lg-6" style="border: 1px solid black;">-->
-<!--                     <div style="float:left">-->
-<!--                         {% set imagename = (func2(borrow.product_id)).pic_name %}-->
-<!--                        <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">-->
-<!--                   </div>-->
-<!--                   <div style="float:right ;margin:5% 15% 0 0;">-->
-<!--                       <p>Start Date:{{ borrow.start_date }}</p>-->
-<!--                       <p>End Date:{{ borrow.end_date }}</p>-->
-<!--                       <p>Borrower Name: {{ (func(borrow.borrower_id)).name }}</p>-->
-<!--                       <p>Product Name: {{ (func2(borrow.product_id)).name }}</p>-->
-<!--                   </div>-->
-<!--                </div>-->
-<!--            {% endif %}-->
-<!--        {% endfor %}-->
     </div>
 </div>
+</div>
+
 <br><br><br>
 <script>
 function myFunction() {
