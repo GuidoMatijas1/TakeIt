@@ -423,6 +423,25 @@ def borrow_item():
     borrow_id = str(borrower_id) + str(product_id) + str(gmah_id)
     borrow_id = int(borrow_id)
     check_id = Borrows.query.filter_by(id=borrow_id).first()
+    today = datetime.now()
+    try:
+        check_start_date = pd.to_datetime(start_date)
+    except:
+        flash('Start date cannot be earlier than today')
+        return redirect(url_for('main.product_page', id=product_id))
+    try:
+        check_end_date = pd.to_datetime(end_date)
+    except:
+        flash('check your end date and try again')
+        return redirect(url_for('main.product_page', id=product_id))
+    check_start_date = pd.to_datetime(start_date)
+    check_end_date = pd.to_datetime(end_date)
+    if check_start_date<today:
+        flash('Start date cannot be earlier than today')
+        return redirect(url_for('main.product_page', id=product_id))
+    if check_end_date<check_start_date:
+        flash('End date cannot be earlier than start date')
+        return redirect(url_for('main.product_page', id=product_id))
     while check_id:
         borrow_id = borrow_id + 1
         check_id = Borrows.query.filter_by(id=borrow_id).first()
@@ -440,7 +459,11 @@ def borrow_item():
         flash('This product isnt available between the dates.' + str(borrow.start_date) + ' and ' + str(borrow.end_date))
         return redirect(url_for('main.product_page', id=product_id))
     db.session.add(new_borrow)
-    db.session.commit()
+    try:
+        db.session.commit()
+    except:
+        flash('check your end date and try again')
+        return redirect(url_for('main.product_page', id=product_id))
     product = Products.query.filter_by(id=product_id).first()
     user = User.query.filter_by(id=borrower_id).first()
     user_name = user.name
