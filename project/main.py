@@ -156,3 +156,30 @@ def popup(gmah):
 # @main.route('/iframe')
 # def iframe(gmah):
 #     return flask.send_file('templates/popup_iframe.html', gmah=gmah)
+
+@login_required
+@main.route('/gmah_dashboard')
+def gmah_dashboard():
+    id = current_user.id
+    product_name_list = []
+    products_dict = {}
+    borrowed_products_dict = {}
+    available_products_dict = {}
+    total_borrows = Borrows.query.filter_by(gmah_id=id).count()
+    pending_borrows = Borrows.query.filter_by(gmah_id=id,approved=0,is_active=0).count()
+    active_borrows = Borrows.query.filter_by(gmah_id=id, approved=1, is_active=1).count()
+    gmah_products = Products.query.filter_by(gmah_id=id).all()
+    for product in gmah_products:
+        product_name_list.append(product.name)
+    product_name_list = list(set(product_name_list))
+    for product in product_name_list:
+        products_dict[product] = Products.query.filter_by(name=product).count()
+        borrowed_products_dict[product] = Products.query.filter_by(name=product,idle=1).count()
+        available_products_dict[product] = Products.query.filter_by(name=product,idle=0).count()
+    return render_template('gmah_dashboard.html', total_borrows=total_borrows,
+                           pending_borrows=pending_borrows,
+                           active_borrows=active_borrows,
+                           product_name_list=product_name_list,
+                           products_dict=products_dict,
+                           borrowed_products_dict=borrowed_products_dict,
+                           available_products_dict=available_products_dict)

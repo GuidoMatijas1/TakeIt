@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Borrows Status</h1>
+    <div>Total Borrows: {{ total_borrows }}</div>
+    <div>Pending Borrows: {{ pending_borrows }}</div>
+    <div>Active Borrows: {{ active_borrows }}</div>
+      <h1>Products Status</h1>
+    {% for name in product_name_list %}
+        <div>{{ name }}: total: {{ products_dict[name] }} borrowed: {{ borrowed_products_dict[name] }}  available: {{ available_products_dict[name] }} </div>
+    {% endfor %}
+{% endblock %}
