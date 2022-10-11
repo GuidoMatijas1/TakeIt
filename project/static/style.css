@@ -1,6 +1,46 @@
+/*RESPONSIV*/
+/*NAVBAR*/
+@media screen and (min-width: 1200px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+    }
+
+
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+#col-1 {
+  position: fixed;
+  width: 50%;
+  left: 0;
+  height: 100%;
+  z-index: 1010101010
+}
+
+#col-2 {
+  position: fixed;
+  width: 50%;
+  left: 50%;
+  height: 100%;
+  z-index: 1010101010
+}
+
 *{
     font-family: 'Optima';
+}
+.showmore{
+    margin:0 2% 0 0;
+    float:right;
+    background-color: transparent;
 
+    width: 5%;
 }
 .arrow {
   border: solid black;
@@ -149,9 +189,16 @@ text-align:center;
 .profileline{
     float:left;
     height:100%;
-    margin:1% 0 0 10%;
+    margin:1% 0 0 6%;
     overflow: auto;
+    width:23%;
 }
+
+.headersmall{
+    font-family: 'Optima';
+    font-size:22px;
+}
+
 
 .profilephoto{
     float:left;
@@ -159,7 +206,7 @@ text-align:center;
     max-height:250px;
     }
 .profiledesc{
-    font-size: 26px;
+    font-size: 20px;
     font-family: 'Optima';
 }
 
@@ -173,7 +220,6 @@ text-align:center;
 
 .flex-container > div {
     background-color: #f1f1f1;
-    height:250px;
     width:250px;
     margin:3%;
     border: 1px solid black;
@@ -319,15 +365,15 @@ text-align:center;
   z-index: 1;
   overflow-x: hidden;
   position: fixed;
-  margin:0;
+  margin:2% 0 0 2%;
 
 }
 
-.left {
+.left12 {
   left: 0;
 }
 
-.right {
+.right12 {
   right: 0;
 }
 

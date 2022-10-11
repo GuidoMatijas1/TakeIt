@@ -384,6 +384,12 @@ def searchgmahforprod(id):
         return ""
 
 
+@auth.route('/get_user/<id>')
+def get_user(id):
+    user = User.query.filter_by(id=id).first()
+    return user
+
+
 @auth.route('/my_products/')
 def my_products():
     gmah_id = current_user.id
@@ -662,6 +668,7 @@ def donate_items_post():
                                 is_available=1,
                                 pic_name=f.filename,
                                 user_id=user_id,
+                                donate_for=gmah_id,
                                 accepted=0,
                                 )
 
@@ -691,7 +698,7 @@ def donations():
     id = current_user.id
     results = Donations.query.filter_by(donate_for=id,accepted=0)
     # result = Products.query.filter_by(name=serched)
-    return render_template("donations.html", results=results, func=searchgmahforprod, header="Item For Donations")
+    return render_template("donations.html", results=results, func=get_user, header="Item For Donations")
 
 
 @auth.route('/accept_donation/<id>')

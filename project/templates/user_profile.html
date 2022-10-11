@@ -2,61 +2,67 @@
 
 {% block content %}
 <div>
-<h2 class="homewelcome" style="text-align:center;">Profile Page: {{ user.name }} </h2>
-    <div class="profileline" style="margin-left:10%;">
-          {% set imagename = user.profile_picture %}
-          <img class="profilephoto" src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="200px" height="200px"
-          style="border-radius:50%;">
-      </div>
-        <div style="margin: 2% 0 0 10%;float:left">
-        {% if user.owner_first_name %}<!-- if the object is gmah print full name-->
-        <p class="profiledesc">Name: {{ user.owner_first_name }} {{user.owner_last_name}} </p>
-        {% else %} <!-- else print full name-->
-        <p class="profiledesc">Name: {{ user.name }} {{user.last_name}} </p>
-        {% endif %}
-        <p class="profiledesc">Address: {{ user.city }},{{ user.street }}  {{ user.street_number }}</p>
-        <p class="profiledesc">Phone: {{ user.phone }} </p>
-    </div>
+<h2 class="headersmall" style="text-align:center;">Profile Page: {{ user.name }} </h2>
+        <div class="profileline" >
+            <div>
+              {% set imagename = user.profile_picture %}
+              <img class="profilephoto" src={{url_for('static',filename='images/profile/{}'.format(imagename))}} width="200px" height="200px"
+              style="border-radius:50%;border: 3px solid black">
+            </div>
+                <br style="clear:both;">
+            <div style="margin: 12% 0 0 0%;float:left">
+                    {% if user.owner_first_name %}<!-- if the object is gmah print full name-->
+                    <p class="profiledesc"><b>Name </b>{{ user.owner_first_name }} {{user.owner_last_name}} </p>
+                    {% else %} <!-- else print full name-->
+                    <p class="profiledesc"><b>Name</b> {{ user.name }} {{user.last_name}}</p>
+                    {% endif %}
+                    <p class="profiledesc"><b>Address</b> {{ user.city }},{{ user.street }}  {{ user.street_number }} </p>
+                    <p class="profiledesc"><b>Phone </b>{{ user.phone }} </p>
+            </div>
         </div>
-    <div style="margin: 2% 0 0 10%;float:left">
-        {% if current_user.name==user.name or  current_user.name==gmah.owner_first_name%}<!-- if the object is gmah print full name-->
-            <a class="profiledesc" href="/borrows">Dashboard</a><br>
-            <a class="profiledesc" href="/borrows">My Borrows</a><br>
-            <a class="profiledesc" href="/update_information">Update Information</a><br>
+        {% if current_user.is_authenticated and (current_user.name==user.name or  current_user.name==gmah.owner_first_name)%}<!-- if the object is gmah print full name-->
+        <div style="margin: 2% 0 0 12%;float:left">
             {% if current_user.owner_first_name %}
-                <a class="profiledesc" href="/add_product">Add Product</a><br>
+            <a class="profiledesc" style="margin-left:20%;font-size: 30px" href="/borrows">Dashboard</a>
+            <i style="font-size:30px;"><b>|</b></i>
+            <a class="profiledesc" style="font-size: 30px;"  href="/borrows">My Borrows</a><br>
             {% endif %}
-
+            <a class="profiledesc" style="font-size: 30px;"  href="/update_information">Update Information</a>
+            <i style="font-size:30px;"><b>|</b></i>
+            <a class="profiledesc" style="font-size: 30px;"  href="/add_product">Add Product</a>
+            <i style="font-size:30px;"><b>|</b></i>
+            <a class="profiledesc" style="font-size: 30px;"  href="/forget">Reset Password</a><br>
         {% else %} <!-- else print full name-->
+            <div style="margin: 2% 15% 0 10%;float:right">
             <img src="https://i.ibb.co/NKDN475/Whats-App-Image-2022-08-13-at-10-26-11-AM-removebg-preview.png"
                  alt="Logo" width="70%" height="70%">
          {% endif %}
-
-    </div>
+            </div>
+        </div>
 </div>
     <br style="clear:both;">
 
     {% if gmah %}<!-- dont print header product list if object is not gmah-->
-<h2 class="homewelcome" style="text-align:center;">Product List </h2>
-    <div>
+<h2 class="headersmall" style="text-align:center;">Product List </h2><br>
     <div class=" space">
     {% for result in results %}
-        <div class="col-xs-3" style="border: 1px solid black;margin:0 0 0 6%">
-          {% set imagename = result.pic_name %}
-          <div style="float:left;">
-              <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">
-          </div>
-            <div style="float:left; margin:5% 0 0 1%">
-                <p>Product Name: {{ result.name }}</p>
-                {% if result.idle %}
+        <div class="col-xs-2" style="margin:0 0 1% 6%">
+        <div style="float:left;margin:2% 0 0 18%;">
+            {% set imagename = result.pic_name %}
+            <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">
+        </div>
+        <br style="clear:both;">
+        <div style="margin:2% 0 1% 6%;text-align:center">
+            <p>Product Name: {{ result.name }}</p>
+            {% if result.idle %}
                 <p style="color: green;">This Product is available</p>
-                    {% if current_user.id!=user.id%}
-                        <a class="btn btn-primary" href="{{ url_for('main.product_page', id=result.id) }}">Details</a> <br>
-                    {% endif %}
-               {% else %}
+            {% if current_user.id!=user.id%}
+                <a class="btn btn-primary" href="{{ url_for('main.product_page', id=result.id) }}">Details</a> <br>
+            {% endif %}
+            {% else %}
                 <p style="color:red;">This Product isnt <br>available</p>
-              {% endif %}
-            </div>
+            {% endif %}
+        </div>
         </div>
          {% endfor %}
         {% endif %}
@@ -64,6 +70,6 @@
 </div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
 
 {% endblock %}

@@ -1,58 +1,56 @@
-    {% extends "base.html" %}
+{% extends "base.html" %}
 
-
-    {% block content %}
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                <div class="alert alert-warning notification is-danger alert-dismissible" style="color:blue;margin: 1% 0 0 0 ; font-size:120%;text-align:center">
-                    {{ messages[0] }}
-                </div>
-                {% endif %}
-                        <br><br><br><br>
-
-            {% endwith %}
-    <div class="split homeleft">
-        {% if current_user.is_authenticated %}
-        <h1 class="homewelcome">
-                                <br>
-                Welcome back {{ current_user.name }}!
-            </h1>
-        {% endif %}
-        {% if not current_user.is_authenticated %}
-        <div class="split homeleft">
-            <img src="https://i.ibb.co/NKDN475/Whats-App-Image-2022-08-13-at-10-26-11-AM-removebg-preview.png"
-                 alt="Logo" width="10%" height="10%">
-            <h1 class="homewelcome">
-                 Welcome To TakeIt
-             </h1>
-            {% endif %}
-            <h2 class="homedesc">
-                The first "give-away" platform.
-            </h2>
-            <p class="homedesc" >
-                Here you can borrow items from the closest place to your home
-            </p>
-            <div style="margin-left:0%;;width:80%;" >
-                  <button class="homepushable" style="margin-left:0%;width:45%;float:left">
-                      <a href="/donate_items" class="homefront raise shadowed" style="text-decoration:none">
-                        Donate item
-                      </a>
-                  </button>
-                 <button class="homepushable" style="width:45%;float:left;">
-                      <a href="/login" class="homefront raise shadowed" style="text-decoration:none">
-                        login
-                      </a>
-                  </button>
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-warning notification is-danger alert-dismissible" style="color:blue;margin: 1% 0 0 0 ; font-size:120%;text-align:center">
+                {{ messages[0] }}
             </div>
+        {% endif %}
+    <br><br><br><br>
+    {% endwith %}
+<div class="split homeleft">
+    {% if current_user.is_authenticated %}
+    <h1 class="homewelcome">
+        <br>
+        Welcome back {{ current_user.name }}!
+    </h1>
+    {% endif %}
+    {% if not current_user.is_authenticated %}
+    <div class="split homeleft">
+         <img src="https://i.ibb.co/NKDN475/Whats-App-Image-2022-08-13-at-10-26-11-AM-removebg-preview.png"
+                                             alt="Logo" width="10%" height="10%">
+         <h1 class="homewelcome">
+                Welcome To TakeIt
+         </h1>
+        s
+    {% endif %}
+        <h2 class="homedesc">
+            The first "give-away" platform.
+        </h2>
+        <p class="homedesc" >
+            Here you can borrow items from the closest place to your home
+        </p>
+        <div style="margin-left:0%;;width:80%;" >
+              <button class="homepushable" style="width:45%;float:left">
+                  <a href="/donate_items" class="homefront raise shadowed" style="text-decoration:none">
+                    Donate item
+                  </a>
+              </button>
+             <button class="homepushable" style="width:45%;float:left;">
+                  <a href="/login" class="homefront raise shadowed" style="text-decoration:none">
+                    login
+                  </a>
+              </button>
         </div>
-        <div class="split homeright">
-      <iframe class="mapcentered"
-              src="{{ url_for('main.test_map') }}"
-                width="690" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
+    <div class="split homeright">
+  <iframe class="mapcentered"
+          src="{{ url_for('main.test_map') }}"
+            width="690" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
 
-    </div>
-
+</div>
     {% endblock %}
 

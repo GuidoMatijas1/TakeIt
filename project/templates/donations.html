@@ -1,19 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2 class="homewelcome" style="text-align:center;">{{header}}</h2>
+<h2 style="text-align:center;font-family:'Optima';margin-bottom:5%" >{{header}}</h2>
 
-<div class="flex-container">
+<div class="flex-container" >
     {% for result in results %}
        {% if result.accepted!=1 %}
   <div>
       {% set imagename = result.pic_name %}
       <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">
-        <p>Product Name: {{ result.name }}</p>
-      <a class="btn btn-primary" href="{{ url_for('auth.accept_donation', id=result.id) }}">Accept</a>
-
-       {% endif %}
+      <p>Product Name: {{ result.name }}</p>
+      <p>Product Name: {{ result.name }}</p>
+      {% if result.donate_name %}
+          <p>Donor name: {{ result.donate_name }}</p>
+          <p>Donor phone: {{ result.donate_phone }}</p>
+      {% else %}
+          <p>Borrower Name: {{ (func(result.user_id).name) }}</p>
+          <a class="btn btn-primary" style="margin-bottom:5%;" href="{{ url_for('main.profile', email=(func(result.user_id).email)  ) }}">Profile</a>
+      {% endif %}
+      <a class="btn btn-primary" style="margin-bottom:5%;" href="{{ url_for('auth.accept_donation', id=result.id) }}">Accept</a>
+   {% endif %}
   </div>
     {% endfor %}
+</div>
+<div>
+    <p style="margin-top:3%;color:red;text-align:center;">Note: when you accept the donated product you should manually add it through add product page </p>
 </div>
 {% endblock %}
