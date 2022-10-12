@@ -1,45 +1,54 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<h2 style="text-align:center;font-family:'Optima';margin-bottom:5%">My Borrows</h2>
-<div class="container ">
-    <div class="row">
-<!--         <h1 class="homewelcome" style="font-size:30px;text-align:center;">Starting Today</h1>-->
-        <div class="border1" style="text-align:center;">
-        <i style="font-size:30px;" class="homewelcome" >Starting Today <button onclick="myFunction()" type="submit" class="showmore" style="font-size:20px;color:black;text-align:center" >▼</button></i>
-        </div>
-        <div id="startingToday">
-        {% for borrow in borrows %}
-            {% if borrow.is_active==0 and borrow.approved==1 and func3(borrow.start_date) %}
-                <div class="col-lg-6" style="border: 1px solid black;">
-                     <div  style="float:left;margin:0 0 0 3%;">
-                        {% set imagename = (func2(borrow.product_id)).pic_name %}
-                        <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">
-                   </div>
-                   <div style="float:right ;margin:5% 15% 0 0;">
-                       <p>Start Date:{{ borrow.start_date }}</p>
-                       <p>End Date:{{ borrow.end_date }}</p>
-                       <p>Borrower Name: {{ (func(borrow.borrower_id)).name }}</p>
-                       <p>Product Name: {{ (func2(borrow.product_id)).name }}</p>
-                   </div>
-                    {% if borrow.approved==0 %}
-                        <a class="btn btn-primary" href="{{ url_for('auth.approved_borrow_post', id=borrow.id) }}" style="margin:0 0 0 30%;">Approve</a> <br>
-                    {% endif %}
-                    {% if borrow.approved==1 %}
-                        <a class="btn btn-primary" href="{{ url_for('auth.start_borrow', id=borrow.id) }}" style="margin:0 0 0 30%;">Taken</a> <br>
-                    {% endif %}
-                </div>
-            {% endif %}
-        {% endfor %}
-            </div>
-        <br style="clear:both;">
-        <div class="border1" style="text-align:center;">
-        <i style="font-size:30px;" class="homewelcome" >Returning Today <button onclick="myFunctionreturning()" type="submit" class="showmore"style="font-size:20px;color:black;text-align:center">▼</button></i>
-        </div>
-<!--         <h1 class="homewelcome" style="font-size:30px;text-align:center;">Returning Today</h1>-->
-        <div id="returningToday">
-        {% for borrow in borrows %}
+<div style="width:50%;margin:auto;">
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Starting Today
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+            {% for borrow in borrows %}
+                {% if borrow.is_active==0 and borrow.approved==1 and func3(borrow.start_date) %}
+                    <div class="col-lg-6" style="border: 1px solid black;">
+                         <div  style="float:left;margin:0 0 0 3%;">
+                            {% set imagename = (func2(borrow.product_id)).pic_name %}
+                            <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">
+                       </div>
+                       <div style="float:right ;margin:5% 15% 0 0;">
+                           <p>Start Date:{{ borrow.start_date }}</p>
+                           <p>End Date:{{ borrow.end_date }}</p>
+                           <p>Borrower Name: {{ (func(borrow.borrower_id)).name }}</p>
+                           <p>Product Name: {{ (func2(borrow.product_id)).name }}</p>
+                       </div>
+                        {% if borrow.approved==0 %}
+                            <a class="btn btn-primary" href="{{ url_for('auth.approved_borrow_post', id=borrow.id) }}" style="margin:0 0 0 30%;">Approve</a> <br>
+                        {% endif %}
+                        {% if borrow.approved==1 %}
+                            <a class="btn btn-primary" href="{{ url_for('auth.start_borrow', id=borrow.id) }}" style="margin:0 0 0 30%;">Taken</a> <br>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Returning Today
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+          {% for borrow in borrows %}
             {% if borrow.is_active==1 and borrow.approved==1 and func3(borrow.end_date) %}
                 <div class="col-lg-6" style="border: 1px solid black;">
                      <div  style="float:left;margin:0 0 0 3%;">
@@ -55,21 +64,27 @@
                         <a class="btn btn-primary" href="{{ url_for('auth.end_borrow', id=borrow.id) }}" style="margin:0 0 0 30%;">Returned</a> <br>
                 </div>
             {% endif %}
-        {% endfor %}
-        </div>
-        <br style="clear:both;">
-<!--        <h1 class="homewelcome" style="font-size:30px;text-align:center;"> Active Borrows</h1>-->
-        <div class="border1" style="text-align:center;">
-        <i style="font-size:30px;" class="homewelcome" >Active Borrows <button onclick="myFunctionactive()" type="submit" class="showmore" style="font-size:20px;color:black;text-align:center">▼</button></i>
-        </div>
-        <div id="activeBorrows">
+          {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Active Borrows
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
         {% for borrow in borrows %}
             {% if borrow.approved==1 and borrow.is_active==1 and not func3(borrow.end_date)%}
                 <div class="col-sm-6" style="border: 1px solid black;">
                      <div style="float:left">
                         {% set imagename = (func2(borrow.product_id)).pic_name %}
                         <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">
-                   </div>
+                     </div>
                    <div style="float:right ;margin:5% 15% 0 0;">
                        <p>Start Date:{{ borrow.start_date }}</p>
                        <p>End Date:{{ borrow.end_date }}</p>
@@ -80,14 +95,20 @@
 
             {% endif %}
         {% endfor %}
+      </div>
+    </div>
+  </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingFour">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Waiting for approve Borrows
+            </a>
+          </h4>
         </div>
-        <br style="clear:both;">
-        <div class="border1" style="text-align:center;">
-            <i style="font-size:30px;" class="homewelcome" >Waiting for approve Borrows <button onclick="myFunctionwaiting()" type="submit" class="showmore" style="font-size:20px;color:black;text-align:center">▼</button></i>
-
-        </div>
-        <div id="waitingeBorrows">
-        {% for borrow in borrows %}
+        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+              <div class="panel-body">
+{% for borrow in borrows %}
             {% if (borrow.approved==0 and borrow.is_active==1) and borrow.declined!=1 %}
                 <div class="col-lg-6" style="border: 1px solid black;">
                      <div style="float:left">
@@ -102,85 +123,45 @@
                    </div>
                     {% if borrow.approved==0 %}
                     <div style="margin:6% 0 0 0 ">
-                        <a class="btn btn-success" style="color:white" href="{{ url_for('auth.approved_borrow_post', id=borrow.id) }}" style="margin:0 0 0 0;">Approve</a>
-                        <a class="btn btn-danger" href="{{ url_for('auth.decline_borrow_post', id=borrow.id) }}" style="margin:2% 0 0 0;">Decline</a>
+                        <a class="btn btn-success" style="color:white" href="{{ url_for('auth.approved_borrow_post', id=borrow.id) }}" >Approve</a>
+                        <a class="btn btn-danger" href="{{ url_for('auth.decline_borrow_post', id=borrow.id) }}" style="margin-left:42%;">Decline</a>
                             <br style="clear:both;">
                     </div>
                     {% endif %}
                 </div>
             {% endif %}
-        {% endfor %}
+        {% endfor %}              </div>
         </div>
-        <br style="clear:both;">
-<!--         <h1 class="homewelcome" style="font-size:30px;text-align:center;">Approved And Future Borrows</h1>-->
-        <div class="border1" style="text-align:center;">
-        <i style="font-size:30px;" class="homewelcome" >Approved And Future Borrows <button onclick="myFunctionapproved()" type="submit" class="showmore" style="font-size:20px;color:black;text-align:center">▼</button> </i>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingFive">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              Approved And Future Borrows
+            </a>
+          </h4>
         </div>
-        <div id="approvedBorrows">
-
-        {% for borrow in borrows %}
-            {% if borrow.approved==1 and borrow.is_active==0 and not func3(borrow.start_date) %}
-                <div class="col-lg-6" style="border: 1px solid black;">
-                     <div style="float:left">
-                       {% set imagename = (func2(borrow.product_id)).pic_name %}
-                        <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">
-                   </div>
-                   <div style="float:right ;margin:5% 15% 0 0;">
-                       <p>Start Date:{{ borrow.start_date }}</p>
-                       <p>End Date:{{ borrow.end_date }}</p>
-                       <p>Borrower Name: {{ (func(borrow.borrower_id)).name }}</p>
-                       <p>Product Name: {{ (func2(borrow.product_id)).name }}</p>
-                   </div>
-                </div>
-            {% endif %}
-        {% endfor %}
+        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+              <div class="panel-body">
+                {% for borrow in borrows %}
+                    {% if borrow.approved==1 and borrow.is_active==0 and not func3(borrow.start_date) %}
+                        <div class="col-lg-6" style="border: 1px solid black;">
+                             <div style="float:left">
+                               {% set imagename = (func2(borrow.product_id)).pic_name %}
+                                <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">
+                           </div>
+                           <div style="float:right ;margin:5% 15% 0 0;">
+                               <p>Start Date:{{ borrow.start_date }}</p>
+                               <p>End Date:{{ borrow.end_date }}</p>
+                               <p>Borrower Name: {{ (func(borrow.borrower_id)).name }}</p>
+                               <p>Product Name: {{ (func2(borrow.product_id)).name }}</p>
+                           </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+        </div>
+        </div>
+      </div>
+</div>
     </div>
-</div>
-</div>
-
-<br><br><br>
-<script>
-function myFunction() {
-  var x = document.getElementById("startingToday");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-function myFunctionreturning() {
-  var x = document.getElementById("returningToday");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-function myFunctionactive() {
-  var x = document.getElementById("activeBorrows");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-function myFunctionwaiting() {
-  var x = document.getElementById("waitingeBorrows");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-function myFunctionapproved() {
-  var x = document.getElementById("approvedBorrows");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-
-
-</script>
 {% endblock %}

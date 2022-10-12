@@ -8,7 +8,11 @@
     top: 0;
   }
     }
-
+table, th, td {
+    width:3px;
+    text-align:center;
+  border:1px solid black;
+}
 
   .topnav.responsive a {
     float: none;
@@ -38,9 +42,8 @@
 .showmore{
     margin:0 2% 0 0;
     float:right;
-    background-color: transparent;
-
     width: 5%;
+
 }
 .arrow {
   border: solid black;
@@ -72,16 +75,16 @@
 display:none;
 }
 #returningToday{
-display:none;
+    display:none;
 }
 #activeBorrows{
-display:none;
+    display:none;
 }
 #waitingeBorrows{
-display:none;
+    display:none;
 }
 #approvedBorrows{
-display:none;
+    display:none;
 }
 body{
     margin-top:5%;

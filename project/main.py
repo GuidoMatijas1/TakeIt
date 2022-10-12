@@ -7,7 +7,7 @@ import sqlite3
 import os
 import geopy
 import folium
-from .auth import searchgmahforprod
+from .auth import searchgmahforprod,compare_dates,get_user,get_product
 from folium.plugins import FastMarkerCluster
 
 
@@ -172,6 +172,10 @@ def gmah_dashboard():
     pending_borrows = Borrows.query.filter_by(gmah_id=id,approved=0,is_active=0).count()
     active_borrows = Borrows.query.filter_by(gmah_id=id, approved=1, is_active=1).count()
     gmah_products = Products.query.filter_by(gmah_id=id).all()
+    all_borrows = Borrows.query.filter_by(gmah_id=id).all()
+    for product in gmah_products:
+        product_name_list.append(product.name)
+        all_product = Products.query.filter_by(gmah_id=id).all()
     for product in gmah_products:
         product_name_list.append(product.name)
     product_name_list = list(set(product_name_list))
@@ -185,4 +189,10 @@ def gmah_dashboard():
                            product_name_list=product_name_list,
                            products_dict=products_dict,
                            borrowed_products_dict=borrowed_products_dict,
+                           available_products_dict=available_products_dict,
+                           all_product=all_product,
+                           all_borrows=all_borrows,
+                           func=get_user,
+                           func2=get_product,
+                           func3=compare_dates)
                            available_products_dict=available_products_dict)
