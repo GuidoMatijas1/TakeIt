@@ -160,9 +160,6 @@ def popup(gmah):
 #     return flask.send_file('templates/popup_iframe.html', gmah=gmah)
 
 
-
-# Delete before
-
 @login_required
 @main.route('/gmah_dashboard')
 def gmah_dashboard():
