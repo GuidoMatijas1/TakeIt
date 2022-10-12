@@ -176,6 +176,8 @@ def gmah_dashboard():
     for product in gmah_products:
         product_name_list.append(product.name)
         all_product = Products.query.filter_by(gmah_id=id).all()
+    for product in gmah_products:
+        product_name_list.append(product.name)
     product_name_list = list(set(product_name_list))
     for product in product_name_list:
         products_dict[product] = Products.query.filter_by(name=product).count()
@@ -193,3 +195,4 @@ def gmah_dashboard():
                            func=get_user,
                            func2=get_product,
                            func3=compare_dates)
+                           available_products_dict=available_products_dict)
