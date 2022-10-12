@@ -23,7 +23,7 @@
         {% if current_user.is_authenticated and (current_user.name==user.name or  current_user.name==gmah.owner_first_name)%}<!-- if the object is gmah print full name-->
         <div style="margin: 2% 0 0 12%;float:left">
             {% if current_user.owner_first_name %}
-            <a class="profiledesc" style="margin-left:20%;font-size: 30px" href="/borrows">Dashboard</a>
+            <a class="profiledesc" style="margin-left:20%;font-size: 30px" href="/gmah_dashboard">Dashboard</a>
             <i style="font-size:30px;"><b>|</b></i>
             <a class="profiledesc" style="font-size: 30px;"  href="/borrows">My Borrows</a><br>
             {% endif %}

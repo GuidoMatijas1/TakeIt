@@ -389,6 +389,11 @@ def get_user(id):
     user = User.query.filter_by(id=id).first()
     return user
 
+@auth.route('/get_product/<id>')
+def get_product(id):
+    product = Products.query.filter_by(id=id).first()
+    return product
+
 
 @auth.route('/my_products/')
 def my_products():

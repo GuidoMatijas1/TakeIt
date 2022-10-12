@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 style="font-family: 'Optima';text-align:center;">Borrows Status</h2>
+    <div style="font-family: 'Optima';text-align:center;font-size:22px;">Total Borrows: {{ total_borrows }}</div>
+    <table style="width:50%;margin:auto;">
+      <tr>
+        <th>Start date</th>
+        <th>End date</th>
+        <th>Borrower id</th>
+        <th>Borrower name</th>
+        <th>Product</th>
+        {% for result in all_borrows %}
+            <tr>
+                <td>{{result.start_date}}</td>
+                <td>{{result.end_date}}</td>
+                <td>{{result.borrower_id}}</td>
+                <td>{{ (func(result.borrower_id).name) }}</td>
+                <td>{{ (func2(result.product_id).name) }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div style="font-family: 'Optima';text-align:center;font-size:22px;">Pending Borrows: {{ pending_borrows }}</div>
+    <table style="width:50%;margin:auto;">
+      <tr>
+        <th>Start_date</th>
+        <th>End_date</th>
+        <th>Borrower_id</th>
+        <th>Borrower_name</th>
+        <th>Product</th>
+        {% for result in all_borrows %}
+            {% if result.approved==0 and result.is_active==1 %}
+                <tr>
+                    <td>{{ (func2(result.product_id).pic_name) }}</td>
+                    <td>{{result.end_date}}</td>
+                    <td>{{result.borrower_id}}</td>
+                    <td>{{ (func(result.borrower_id).name) }}</td>
+                    <td>{{ (func2(result.product_id).name) }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+
+    </table>
+   <div style="font-family: 'Optima';text-align:center;font-size:22px;">Active Borrows: {{ active_borrows }}</div>
+    <table style="width:50%;margin:auto;">
+      <tr>
+        <th>Start_date</th>
+        <th>End_date</th>
+        <th>Borrower_id</th>
+        <th>Borrower_name</th>
+        <th>Product</th>
+        {% for result in all_borrows %}
+            {% if result.approved==1 and result.is_active==1 and not func3(result.end_date)%}
+                <tr>
+                    <td>{{result.start_date}}</td>
+                    <td>{{result.end_date}}</td>
+                    <td>{{result.borrower_id}}</td>
+                    <td>{{ (func(result.borrower_id).name) }}</td>
+                    <td>{{ (func2(result.product_id).name) }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+
+<h2 style="font-family: 'Optima';text-align:center;">Products Status</h2>
+<!--        <div style="text-align:center;">{{ name }}: total: {{ products_dict[name] }} borrowed: {{ borrowed_products_dict[name] }}  available: {{ available_products_dict[name] }} </div>-->
+    <table style="width:50%;margin:auto;">
+      <tr>
+        <th>Product Photo</th>
+        <th>Product Name</th>
+        <th>Total</th>
+        <th>borrowed</th>
+        <th>available</th>
+        {% for name in product_name_list %}
+                <tr>
+                    <td>all_product</td>
+                    <td>{{ name }}</td>
+                    <td>{{ products_dict[name] }}</td>
+                    <td>{{ borrowed_products_dict[name] }}</td>
+                    <td>{{ available_products_dict[name] }}</td>
+                </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
