@@ -5,8 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/project/db.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/custom_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/custom_search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/templates/product_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/product_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/templates/my_borrows.htm" beforeDir="false" afterPath="$PROJECT_DIR$/project/templates/my_borrows.htm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_map.html" beforeDir="false" afterPath="$PROJECT_DIR$/test_map.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
