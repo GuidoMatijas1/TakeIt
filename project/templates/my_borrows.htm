@@ -101,10 +101,11 @@
                        <p>Product Name: {{ (func2(borrow.product_id)).name }}</p>
                    </div>
                     {% if borrow.approved==0 %}
-                        <a class="btn btn-primary" href="{{ url_for('auth.approved_borrow_post', id=borrow.id) }}" style="margin:0 0 0 0;">Approve</a>
-                        <a class="btn btn-danger" href="{{ url_for('auth.decline_borrow_post', id=borrow.id) }}" style="margin:0 0 0 0;">Decline</a>
+                    <div style="margin:6% 0 0 0 ">
+                        <a class="btn btn-success" style="color:white" href="{{ url_for('auth.approved_borrow_post', id=borrow.id) }}" style="margin:0 0 0 0;">Approve</a>
+                        <a class="btn btn-danger" href="{{ url_for('auth.decline_borrow_post', id=borrow.id) }}" style="margin:2% 0 0 0;">Decline</a>
                             <br style="clear:both;">
-
+                    </div>
                     {% endif %}
                 </div>
             {% endif %}

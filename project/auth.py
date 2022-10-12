@@ -427,7 +427,7 @@ def borrow_item():
     try:
         check_start_date = pd.to_datetime(start_date)
     except:
-        flash('Start date cannot be earlier than today')
+        flash('check your start date and try again')
         return redirect(url_for('main.product_page', id=product_id))
     try:
         check_end_date = pd.to_datetime(end_date)
