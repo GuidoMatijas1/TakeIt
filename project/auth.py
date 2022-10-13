@@ -639,7 +639,21 @@ def compare_dates(date):
         else:
             return False
 
-
+@auth.route('/compare_dates2/<date>')
+def compare_dates(date):
+    date = date.strftime("%Y-%m-%d")
+    now = datetime.now()
+    now = now.strftime("%Y-%m-%d")
+    result = now > date
+    if result:
+        return True
+    else:
+        if now == date:
+            return True
+        else:
+            return False
+        
+    
 def check_dates(borrow):
     product_id = borrow.product_id
     existing_borrow = Borrows.query.filter_by(product_id=product_id,approved=1).first()
