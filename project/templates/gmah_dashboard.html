@@ -85,15 +85,15 @@
       <h1>Products Status</h1>
      {% for name in product_name_list %}
 
-        <div class="productdesc" style="border:1px solid black; font-size: 14px; width: 150px; height: 150px; padding-left: 3%">
-{#      {% set imagename = result.pic_name %}#}
-{#      <img class="resultProductPhoto" src={{url_for('static',filename='images/products/{}'.format(imagename))}} width="180px" height="150px">#}
-      <br class=”blank” />
-        <p>Product Name: {{ name }}</p>
-        <p>Total: {{ products_dict[name] }}</p>
-          <p style="color: #9C1A1C">Borrowed: {{ borrowed_products_dict[name] }}</p>
-          <p style="color: #3A7734">Available: {{ available_products_dict[name] }}</p>
-  </div>
-{#        <div>{{ name }}: total: {{ products_dict[name] }} borrowed: {{ borrowed_products_dict[name] }}  available: {{ available_products_dict[name] }} </div>#}
+        <div class="productdesc" style="border:1px solid black; font-size: 14px; width: 150px; height: 150px;">
+            <div style="text-align:center;">
+                <br class=”blank” />
+                <p>Product Name: {{ name }}</p>
+                <p>Total: {{ products_dict[name] }}</p>
+                <p style="color: #9C1A1C">Borrowed: {{ borrowed_products_dict[name] }}</p>
+                <p style="color: #3A7734">Available: {{ available_products_dict[name] }}</p>
+            </div>
+        </div>
     {% endfor %}
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock %}
