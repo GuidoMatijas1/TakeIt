@@ -66,14 +66,12 @@
 <!--        <div style="text-align:center;">{{ name }}: total: {{ products_dict[name] }} borrowed: {{ borrowed_products_dict[name] }}  available: {{ available_products_dict[name] }} </div>-->
     <table style="width:50%;margin:auto;">
       <tr>
-        <th>Product Photo</th>
         <th>Product Name</th>
         <th>Total</th>
         <th>borrowed</th>
         <th>available</th>
         {% for name in product_name_list %}
                 <tr>
-                    <td>all_product</td>
                     <td>{{ name }}</td>
                     <td>{{ products_dict[name] }}</td>
                     <td>{{ borrowed_products_dict[name] }}</td>
@@ -81,7 +79,6 @@
                 </tr>
         {% endfor %}
     </table>
-=======
     <div>Total Borrows: {{ total_borrows }}</div>
     <div>Pending Borrows: {{ pending_borrows }}</div>
     <div>Active Borrows: {{ active_borrows }}</div>
