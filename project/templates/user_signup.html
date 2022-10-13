@@ -18,9 +18,7 @@
         {% endwith %}
     <hr>
         <label name="id" for="id"><br> <p class="hova"> *</p> id</b></label>
-    <input type="text" placeholder="1234556789" name="id" required
-                      oninvalid="this.setCustomValidity('Enter Your ID Here')"
-    oninput="this.setCustomValidity('')" >
+    <input type="text" placeholder="1234556789" name="id" required minlength="9" maxlength="9" >
 
       <label for="firstname"><b><p class="hova">*</p> First Name</b></label>
     <input type="text" placeholder="Avi" name="firstname"
@@ -67,13 +65,13 @@
     required oninvalid="this.setCustomValidity('Enter Your Password Here')" oninput="this.setCustomValidity('')" >
 
     <label for="password-repeat"><b> <p class="hova">*</p> Repeat Password</b></label>
-    <input type="password-repeat" placeholder="********" name="password-repeat"
+    <input type="password" placeholder="********" name="password-repeat"
     required
                       oninvalid="this.setCustomValidity('Enter Your Password Here')"
     oninput="this.setCustomValidity('')" >
 
             <label for="profile"><b>Profile Picture</label>
-            <input type="file" id="file" name="file" class="form-control">
+            <input type="file" id="file" name="file" class="form-control" accept="image/gif, image/jpeg">
     <div class="clearfix">
       <button type="button" class="cancelbtn">Cancel</button>
       <button type="submit" class="signupbtn" >Sign Up</button>

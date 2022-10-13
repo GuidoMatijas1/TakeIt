@@ -175,14 +175,14 @@ def gmah_dashboard():
     all_borrows = Borrows.query.filter_by(gmah_id=id).all()
     for product in gmah_products:
         product_name_list.append(product.name)
-        all_product = Products.query.filter_by(gmah_id=id).all()
+    all_product = Products.query.filter_by(gmah_id=id).all()
     for product in gmah_products:
         product_name_list.append(product.name)
     product_name_list = list(set(product_name_list))
     for product in product_name_list:
         products_dict[product] = Products.query.filter_by(name=product).count()
-        borrowed_products_dict[product] = Products.query.filter_by(name=product,idle=1).count()
-        available_products_dict[product] = Products.query.filter_by(name=product,idle=0).count()
+        borrowed_products_dict[product] = Products.query.filter_by(name=product,idle=0).count()
+        available_products_dict[product] = Products.query.filter_by(name=product,idle=1).count()
     return render_template('gmah_dashboard.html', total_borrows=total_borrows,
                            pending_borrows=pending_borrows,
                            active_borrows=active_borrows,

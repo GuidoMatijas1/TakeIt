@@ -21,18 +21,18 @@
             </div>
         </div>
         {% if current_user.is_authenticated and (current_user.name==user.name or  current_user.name==gmah.owner_first_name)%}<!-- if the object is gmah print full name-->
-        <div style="margin: 2% 0 0 12%;float:left">
+        <div style="margin:2% 0 0 12%;float:left">
             {% if current_user.owner_first_name %}
-            <a class="profiledesc" style="margin-left:20%;font-size: 30px" href="/gmah_dashboard">Dashboard</a>
+            <a class="profiledesc" style="font-size: 30px" href="/gmah_dashboard">Dashboard</a>
             <i style="font-size:30px;"><b>|</b></i>
-            <a class="profiledesc" style="font-size: 30px;"  href="/borrows">My Borrows</a><br>
+            <a class="profiledesc" style="font-size: 30px;"  href="/borrows">My Borrows</a>
+            <i style="font-size:30px;"><b>|</b></i>
+            <a class="profiledesc" style="font-size: 30px;"  href="/add_product">Add Product</a><br>
             {% endif %}
-            <a class="profiledesc" style="font-size: 30px;"  href="/update_information">Update Information</a>
-            <i style="font-size:30px;"><b>|</b></i>
-            <a class="profiledesc" style="font-size: 30px;"  href="/add_product">Add Product</a>
+            <a class="profiledesc" style="margin-left:3%;font-size: 30px;"  href="/update_information">Update Information</a>
             <i style="font-size:30px;"><b>|</b></i>
             <a class="profiledesc" style="font-size: 30px;"  href="/forget">Reset Password</a><br>
-        {% else %} <!-- else print full name-->
+        {% else %}
             <div style="margin: 2% 15% 0 10%;float:right">
             <img src="https://i.ibb.co/NKDN475/Whats-App-Image-2022-08-13-at-10-26-11-AM-removebg-preview.png"
                  alt="Logo" width="70%" height="70%">
@@ -68,8 +68,6 @@
         {% endif %}
     </div>
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
+
 
 {% endblock %}

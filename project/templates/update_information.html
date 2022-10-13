@@ -19,7 +19,7 @@
         {% endwith %}
     <hr>
             <!--placeholders with active information-->
-      <label for="firstname"><b><p class="hova">*</p> First Name</b></label>
+      <label for="firstname"><b> First Name</b></label>
     <input type="text" placeholder={% if current_user.owner_first_name%}
            {{ current_user.owner_first_name }}
            {% else %}
@@ -29,7 +29,7 @@
            oninvalid="this.setCustomValidity('Enter User First Name Here')"
     oninput="this.setCustomValidity('')" >
 
-      <label for="lastname"><b><p class="hova">*</p> Last Name</p></b></label>
+      <label for="lastname"><b> Last Name</p></b></label>
     <input type="text" placeholder={% if current_user.owner_first_name%}
            {{ current_user.owner_last_name }}
            {% else %}
@@ -44,13 +44,13 @@
                oninvalid="this.setCustomValidity('Enter User Phone number This Format: 055-1234567')"
     oninput="this.setCustomValidity('')" >
 
-      <label for="city"> <p class="hova">*</p> <b> City </b></label>
+      <label for="city"> <b> City </b></label>
     <input type="text" placeholder={{current_user.city}} name="city" >
 <!--    required-->
 <!--                      oninvalid="this.setCustomValidity('Enter User City Here')"-->
 <!--    oninput="this.setCustomValidity('')" >-->
 
-      <label for="street"><b> <p class="hova">*</p> Street </b></label>
+      <label for="street"><b> Street </b></label>
     <input type="text" placeholder={{current_user.street}} name="street" >
 <!--    required-->
 <!--                      oninvalid="this.setCustomValidity('Enter User Street Here')"-->
@@ -59,7 +59,7 @@
       <label for="streetnum"><b>Street Number </b></label>
     <input id="streetnum" type="12" name="streetnum" value="{{current_user.street_number}}">
 
-    <label for="email"><b> <p class="hova">*</p> Email Address </b></label>
+    <label for="email"><b> Email Address </b></label>
     <input type="email" placeholder={{current_user.email}} name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"
                       oninvalid="this.setCustomValidity('Enter User Email Here')"
     oninput="this.setCustomValidity('')" >

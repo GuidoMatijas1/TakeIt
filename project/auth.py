@@ -105,7 +105,7 @@ def update_information_post():
             db.session.commit()
         if streetnum:
             user = User.query.filter_by(id=current_user.id).first()
-            user.streetn_number = streetnum
+            user.street_number = streetnum
             db.session.commit()
         if email:
             # gmah_email = Gmah.query.filter_by(email=email).first()
@@ -140,7 +140,7 @@ def update_information_post():
             db.session.commit()
         if streetnum:
             user = Gmah.query.filter_by(id=current_user.id).first()
-            user.streetn_number = streetnum
+            user.street_number = streetnum
             db.session.commit()
         if email:
             gmah_email = Gmah.query.filter_by(email=email).first()

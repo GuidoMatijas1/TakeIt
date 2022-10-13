@@ -18,9 +18,7 @@
             <hr>
 
         <label name="id" for="id"><br> <p class="hova"> *</p> id</b></label>
-            <input type="text" placeholder="1234556789" name="id" required
-                      oninvalid="this.setCustomValidity('Enter Your ID Here')"
-                    oninput="this.setCustomValidity('')" >
+            <input type="text" placeholder="1234556789" name="id" required minlength="9" maxlength="9">
 
     <label for="email"><b> <p class="hova">*</p> Email Address </b></label>
             <input type="email" placeholder="name@domain.co" name="email"
@@ -48,7 +46,7 @@
             <input type="number" name="street_number" required>
 
             <label for="category"><b>Category</b></label>
-            <input type="text" name="Clothing" required>
+            <input type="text" name="category" required>
 
     <label for="password"><b> <p class="hova">*</p> Password </b></label>
             <input type="password" placeholder="********" name="password"
@@ -61,7 +59,7 @@
     oninput="this.setCustomValidity('')" >
 
             <label for="profile"><b>Profile Picture</label>
-            <input type="file" id="file" name="file" class="form-control">
+            <input type="file" id="file" name="file" class="form-control" accept="image/gif, image/jpeg">
 
             <div class="clearfix">
                 <button type="button" class="cancelbtn">Cancel</button>
