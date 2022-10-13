@@ -416,7 +416,7 @@ def tests():
         return "0"
 
 
-# =======
+
 @auth.route('/borrow_item', methods=['POST'])
 @login_required
 def borrow_item():
@@ -425,9 +425,9 @@ def borrow_item():
     gmah_id = request.form.get('gmah_id')
     product_id = request.form.get('product_id')
     borrower_id = current_user.id
-    borrow_id = str(borrower_id) + str(product_id) + str(gmah_id)
-    borrow_id = int(borrow_id)
-    check_id = Borrows.query.filter_by(id=borrow_id).first()
+    # borrow_id = str(borrower_id) + str(product_id) + str(gmah_id)
+    # borrow_id = int(borrow_id)
+    # check_id = Borrows.query.filter_by(id=borrow_id).first()
     today = datetime.now()
     try:
         check_start_date = pd.to_datetime(start_date)
@@ -447,9 +447,15 @@ def borrow_item():
     if check_end_date<check_start_date:
         flash('End date cannot be earlier than start date')
         return redirect(url_for('main.product_page', id=product_id))
-    while check_id:
-        borrow_id = borrow_id + 1
-        check_id = Borrows.query.filter_by(id=borrow_id).first()
+    # # while check_id:
+    #     borrow_id = borrow_id + 1
+    #     check_id = Borrows.query.filter_by(id=borrow_id).first()
+    id = random_with_N_digits(5)
+    existing_borrow = Borrows.query.filter_by(id=id).first()
+    while existing_borrow:
+        id = random_with_N_digits(5)
+        existing_borrow = Borrows.query.filter_by(id=id).first()
+
     new_borrow = Borrows(product_id=product_id,
                          gmah_id=gmah_id,
                          borrower_id=borrower_id,
@@ -458,7 +464,7 @@ def borrow_item():
                          approved=0,
                          is_active=1,
                          declined =  0,
-                         id=borrow_id)
+                         id=id)
     if not check_dates(new_borrow):
         borrow = Borrows.query.filter_by(product_id=product_id).first()
         flash('This product isnt available between the dates.' + str(borrow.start_date) + ' and ' + str(borrow.end_date))
@@ -784,3 +790,8 @@ def start_borrow(id):
     msg.body = "The borrow of item: " + product.name +" number "+str(product.id)+ " has been started.\n the product is out of stock until "+str(borrows.end_date)
     mail.send(msg)
     return redirect(url_for('auth.borrows'))
+
+def random_with_N_digits(n):
+    range_start = 10**(n-1)
+    range_end = (10**n)-1
+    return random.randint(range_start, range_end)
