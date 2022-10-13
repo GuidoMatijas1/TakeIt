@@ -31,7 +31,7 @@
         {% for result in all_borrows %}
             {% if result.approved==0 and result.is_active==1 %}
                 <tr>
-                    <td>{{ (func2(result.product_id).pic_name) }}</td>
+                    <td>{{result.start_date}}</td>
                     <td>{{result.end_date}}</td>
                     <td>{{result.borrower_id}}</td>
                     <td>{{ (func(result.borrower_id).name) }}</td>
