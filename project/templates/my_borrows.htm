@@ -79,7 +79,7 @@
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
       <div class="panel-body">
         {% for borrow in borrows %}
-            {% if borrow.approved==1 and borrow.is_active==1 and not func3(borrow.end_date) and func2(borrow.start_date)%}
+            {% if borrow.approved==1 and borrow.is_active==1 and not func3(borrow.end_date) and func4(borrow.start_date)%}
                 <div class="col-sm-6" style="border: 1px solid black;">
                      <div style="float:left">
                         {% set imagename = (func2(borrow.product_id)).pic_name %}
