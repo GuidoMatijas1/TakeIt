@@ -425,6 +425,7 @@ def borrow_item():
     gmah_id = request.form.get('gmah_id')
     product_id = request.form.get('product_id')
     borrower_id = current_user.id
+
     # borrow_id = str(borrower_id) + str(product_id) + str(gmah_id)
     # borrow_id = int(borrow_id)
     # check_id = Borrows.query.filter_by(id=borrow_id).first()
@@ -539,8 +540,7 @@ def borrows():
         date = datetime.now()
         date = date.strftime("%Y-%m-%d")
         return render_template("my_borrows.htm", gmah=gmah, borrows=borrows, func=return_user, func2=return_product,
-                               date=date,func4=compare_dates2,
-                               func3=compare_dates)
+                               date=date,func4=compare_dates2,func3=compare_dates,func5=check_if_today)
 
 
 # @auth.route('/approve_borrow/')
@@ -564,6 +564,7 @@ def borrows():
 def approved_borrow_post(id):
     borrows = Borrows.query.filter_by(id=id).first()
     borrows.approved = 1
+    borrows.is_active = 0
     product_id = borrows.product_id
     product = Products.query.filter_by(id=product_id).first()
     product.idle = 0
@@ -652,7 +653,19 @@ def compare_dates2(date):
             return True
         else:
             return False
-        
+
+
+@auth.route('/check_if_today/<date>')
+def check_if_today(date):
+    date = date.strftime("%Y-%m-%d")
+    now = datetime.now()
+    now = now.strftime("%Y-%m-%d")
+    result = now == date
+    if result:
+        return True
+    else:
+        return False
+
     
 def check_dates(borrow):
     product_id = borrow.product_id

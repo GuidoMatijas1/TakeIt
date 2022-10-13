@@ -14,7 +14,7 @@
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
             {% for borrow in borrows %}
-                {% if borrow.is_active==0 and borrow.approved==1 and func3(borrow.start_date) %}
+                {% if borrow.is_active==0 and borrow.approved==1 and func5(borrow.start_date) %}
                     <div class="col-lg-6" style="border: 1px solid black;">
                          <div  style="float:left;margin:0 0 0 3%;">
                             {% set imagename = (func2(borrow.product_id)).pic_name %}
@@ -49,7 +49,7 @@
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
           {% for borrow in borrows %}
-            {% if borrow.is_active==1 and borrow.approved==1 and func3(borrow.end_date) %}
+            {% if borrow.is_active==1 and borrow.approved==1 and func5(borrow.end_date) %}
                 <div class="col-lg-6" style="border: 1px solid black;">
                      <div  style="float:left;margin:0 0 0 3%;">
                         {% set imagename = (func2(borrow.product_id)).pic_name %}
@@ -144,7 +144,7 @@
         <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
               <div class="panel-body">
                 {% for borrow in borrows %}
-                    {% if borrow.approved==1 and borrow.is_active==0 and func3(borrow.start_date) %}
+                    {% if borrow.approved==1 and borrow.is_active==0 and not func3(borrow.start_date) %}
                         <div class="col-lg-6" style="border: 1px solid black;">
                              <div style="float:left">
                                {% set imagename = (func2(borrow.product_id)).pic_name %}
