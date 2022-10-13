@@ -640,7 +640,7 @@ def compare_dates(date):
             return False
 
 @auth.route('/compare_dates2/<date>')
-def compare_dates(date):
+def compare_dates2(date):
     date = date.strftime("%Y-%m-%d")
     now = datetime.now()
     now = now.strftime("%Y-%m-%d")
