@@ -539,7 +539,7 @@ def borrows():
         date = datetime.now()
         date = date.strftime("%Y-%m-%d")
         return render_template("my_borrows.htm", gmah=gmah, borrows=borrows, func=return_user, func2=return_product,
-                               date=date,
+                               date=date,func2=compare_dates2,
                                func3=compare_dates)
 
 
