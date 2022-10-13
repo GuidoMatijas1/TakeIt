@@ -195,4 +195,3 @@ def gmah_dashboard():
                            func=get_user,
                            func2=get_product,
                            func3=compare_dates)
-                           available_products_dict=available_products_dict)
