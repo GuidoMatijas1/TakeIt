@@ -462,7 +462,7 @@ def borrow_item():
                          start_date=pd.to_datetime(start_date),
                          end_date=pd.to_datetime(end_date),
                          approved=0,
-                         is_active=0,
+                         is_active=1,
                          declined =  0,
                          id=id)
     if not check_dates(new_borrow):
