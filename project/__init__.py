@@ -23,7 +23,7 @@ def create_app():
     app.config['MAIL_USE_TLS'] = True
     app.config['MAIL_USERNAME'] = 'apikey'
     # app.config['MAIL_PASSWORD'] = os.environ.get('SENDGRID_API_KEY')
-    app.config['MAIL_PASSWORD'] = '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'
+    app.config['MAIL_PASSWORD'] = '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'
     # app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER')
     app.config['MAIL_DEFAULT_SENDER'] ='TakeItApp@takeit.lol'
     mail = Mail(app)
